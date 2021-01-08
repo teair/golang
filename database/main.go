@@ -52,18 +52,18 @@ func main() {
 	// fmt.Println("insert succ,", id)
 
 	// 查询
-	// var OnCemat []OnCemat
+	var OnCemat []OnCemat
 
-	// err = Db.Select(&OnCemat, "select * from on_cemat where id = ?", 1)
+	err = Db.Select(&OnCemat, "select * from on_cemat where id = ?", 1)
 
-	// if err != nil {
-	// 	fmt.Println("exec failed,", err)
-	// 	return
-	// }
+	if err != nil {
+		fmt.Println("exec failed,", err)
+		return
+	}
 
-	// for _, v := range OnCemat {
-	// 	fmt.Println(v)
-	// }
+	for _, v := range OnCemat {
+		fmt.Println(v)
+	}
 
 	// 修改
 	// res, err := Db.Exec("update on_cemat set mobile = ? where id = ?", 111, 8)

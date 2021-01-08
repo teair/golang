@@ -6,7 +6,7 @@
     "configurations": [
         
         {
-            "name": "Launch remote", 
+            "name": "database", 
             "type": "go",
             "request": "launch",
             "mode": "remote",
