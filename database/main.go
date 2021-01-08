@@ -2,37 +2,37 @@ package main
 
 import (
 	"fmt"
-
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/jmoiron/sqlx"
+	// "github.com/jmoiron/sqlx"
+	// _ "github.com/go-sql-driver/mysql"
 )
 
 // test 结构体是表on_cemat的映射
-type test struct {
-	ID      uint8  `db:"id"`
-	Uname   string `db:"uname"`
-	Company string `db:"company"`
-	Duty    string `db:"duty"`
-	Mobile  string `db:"mobile"`
-}
+// type test struct {
+// 	ID      uint8  `db:"id"`
+// 	Uname   string `db:"uname"`
+// 	Company string `db:"company"`
+// 	Duty    string `db:"duty"`
+// 	Mobile  string `db:"mobile"`
+// }
 
 // Db 对象
-var Db *sqlx.DB
+// var Db *sqlx.DB
 
 func main() {
 
+	fmt.Println("11111111111111")
+
 	// database 连接数据库
-	database, err := sqlx.Open("mysql", "root:123456@tcp(127.0.0.1:3306)/test")
+	// database, err := sqlx.Open("mysql", "test:123456@tcp(127.0.0.1:3306)/test")
 
-	if err != nil {
-		fmt.Println("failed connect mysql,", err)
-		return
-	}
+	// if err != nil {
+	// 	fmt.Println("failed connect mysql,", err)
+	// 	return
+	// }
 
-	Db = database
+	// Db = database
 
 	// defer Db.Close() // 注意，这行代码要写在上面err判断的下面
-	defer Db.Close()
 
 	// 新增
 	// r, err := Db.Exec("insert into test(uname,company,duty,mobile) values(?,?,?,?)", "小红", "仿生科技", "技术", "115")
@@ -52,18 +52,18 @@ func main() {
 	// fmt.Println("insert succ,", id)
 
 	// 查询
-	var test []test
+	// var test []test
 
-	err = Db.Select(&test, "select * from on_cemat where id = ?", 1)
+	// err = Db.Select(&test, "select * from test where id = ?", 1)
 
-	if err != nil {
-		fmt.Println("exec failed,", err)
-		return
-	}
+	// if err != nil {
+	// 	fmt.Println("exec failed,", err)
+	// 	return
+	// }
 
-	for _, v := range test {
-		fmt.Println(v)
-	}
+	// for _, v := range test {
+	// 	fmt.Println(v)
+	// }
 
 	// 修改
 	// res, err := Db.Exec("update test set mobile = ? where id = ?", 111, 8)
