@@ -22,7 +22,7 @@ var Db *sqlx.DB
 func main() {
 
 	// database 连接数据库
-	database, err := sqlx.Open("mysql", "test:123456@tcp(182.92.149.107:3306)/test")
+	database, err := sqlx.Open("mysql", "root:123456@tcp(127.0.0.1:3306)/cemat")
 
 	if err != nil {
 		fmt.Println("failed connect mysql,", err)
