@@ -10,10 +10,10 @@
             "type": "go",
             "request": "launch",
             "mode": "remote",
-            "remotePath": "D:/goproject/src/demo/main.go",
+            "remotePath": "D:/goproject/src/database/main.go",
             "host": "127.0.0.1", 
             "port": 2345, 
-            "program": "D:/goproject/src/demo/main.go",
+            "program": "D:/goproject/src/database/main.go",
             "env": {}
         }
     ]
