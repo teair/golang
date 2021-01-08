@@ -7,8 +7,8 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-// OnCemat 结构体是表on_cemat的映射
-type OnCemat struct {
+// test 结构体是表on_cemat的映射
+type test struct {
 	ID      uint8  `db:"id"`
 	Uname   string `db:"uname"`
 	Company string `db:"company"`
@@ -22,7 +22,7 @@ var Db *sqlx.DB
 func main() {
 
 	// database 连接数据库
-	database, err := sqlx.Open("mysql", "root:123456@tcp(127.0.0.1:3306)/cemat")
+	database, err := sqlx.Open("mysql", "root:123456@tcp(127.0.0.1:3306)/test")
 
 	if err != nil {
 		fmt.Println("failed connect mysql,", err)
@@ -35,7 +35,7 @@ func main() {
 	defer Db.Close()
 
 	// 新增
-	// r, err := Db.Exec("insert into on_cemat(uname,company,duty,mobile) values(?,?,?,?)", "小红", "方游", "技术", "115")
+	// r, err := Db.Exec("insert into test(uname,company,duty,mobile) values(?,?,?,?)", "小红", "仿生科技", "技术", "115")
 
 	// if err != nil {
 	// 	fmt.Println("exec failed,", err)
@@ -52,21 +52,21 @@ func main() {
 	// fmt.Println("insert succ,", id)
 
 	// 查询
-	var OnCemat []OnCemat
+	var test []test
 
-	err = Db.Select(&OnCemat, "select * from on_cemat where id = ?", 1)
+	err = Db.Select(&test, "select * from on_cemat where id = ?", 1)
 
 	if err != nil {
 		fmt.Println("exec failed,", err)
 		return
 	}
 
-	for _, v := range OnCemat {
+	for _, v := range test {
 		fmt.Println(v)
 	}
 
 	// 修改
-	// res, err := Db.Exec("update on_cemat set mobile = ? where id = ?", 111, 8)
+	// res, err := Db.Exec("update test set mobile = ? where id = ?", 111, 8)
 
 	// if err != nil {
 	// 	fmt.Println("update failed,", err)
@@ -83,7 +83,7 @@ func main() {
 	// fmt.Println("update succ:", row)
 
 	// 删除
-	// res, err := Db.Exec("delete from on_cemat where id = ?", 1)
+	// res, err := Db.Exec("delete from test where id = ?", 1)
 
 	// if err != nil {
 	// 	fmt.Println("failed delete:", err)
@@ -106,7 +106,7 @@ func main() {
 	// 	return
 	// }
 
-	// f1, err := Db.Exec("insert into on_cemat values (?,?,?,?,?)", nil, "申通", "物联网", "技术", "211")
+	// f1, err := Db.Exec("insert into test values (?,?,?,?,?)", nil, "申通", "物联网", "技术", "211")
 
 	// if err != nil {
 	// 	fmt.Println("insert f1 failed:", err)
@@ -124,7 +124,7 @@ func main() {
 
 	// fmt.Println("Insert f1id:", f1id)
 
-	// f2, err2 := Db.Exec("insert into on_cemat values(?,?,?,?,?)", nil, "立新", "方游", "技术", "222")
+	// f2, err2 := Db.Exec("insert into test values(?,?,?,?,?)", nil, "立新", "方游", "技术", "222")
 
 	// if err2 != nil {
 	// 	fmt.Println("f2 insert failed:", err2)
