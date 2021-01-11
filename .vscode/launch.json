@@ -6,15 +6,20 @@
     "configurations": [
         
         {
-            "name": "database", 
+            "name": "demo",
             "type": "go",
             "request": "launch",
-            "mode": "remote",
-            "remotePath": "D:/goproject/src/database/main.go",
-            "host": "127.0.0.1", 
-            "port": 2345, 
-            "program": "D:/goproject/src/database/main.go",
-            "env": {}
-        }
+            "mode": "debug",
+            "program": "D:/goproject/src/demo",
+            "showLog": true,
+        },
+        {
+            "name": "database",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "D:/goproject/src/database",
+            "showLog": true,
+        },
     ]
 }
