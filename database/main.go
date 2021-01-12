@@ -51,18 +51,18 @@ func main() {
 	// fmt.Println("insert succ,", id)
 
 	// 查询
-	var test []test
+	// var test []test
 
-	err = Db.Select(&test, "select * from test where id = ?", 1)
+	// err = Db.Select(&test, "select * from test where id = ?", 1)
 
-	if err != nil {
-		fmt.Println("exec failed,", err)
-		return
-	}
+	// if err != nil {
+	// 	fmt.Println("exec failed,", err)
+	// 	return
+	// }
 
-	for _, v := range test {
-		fmt.Println(v)
-	}
+	// for _, v := range test {
+	// 	fmt.Println(v)
+	// }
 
 	// 修改
 	// res, err := Db.Exec("update test set mobile = ? where id = ?", 111, 8)
@@ -105,7 +105,7 @@ func main() {
 	// 	return
 	// }
 
-	// f1, err := Db.Exec("insert into test values (?,?,?,?,?)", nil, "申通", "物联网", "技术", "211")
+	// f1, err := Db.Exec("insert into test values (?,?,?,?,?)", nil, "申通", "申通快递", "产品", "211")
 
 	// if err != nil {
 	// 	fmt.Println("insert f1 failed:", err)
@@ -123,7 +123,7 @@ func main() {
 
 	// fmt.Println("Insert f1id:", f1id)
 
-	// f2, err2 := Db.Exec("insert into test values(?,?,?,?,?)", nil, "立新", "方游", "技术", "222")
+	// f2, err2 := Db.Exec("insert into test values(?,?,?,?,?)", nil, "周震南", "北京传媒", "经理", "222")
 
 	// if err2 != nil {
 	// 	fmt.Println("f2 insert failed:", err2)
