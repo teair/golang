@@ -7,141 +7,116 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-// test 结构体是表on_cemat的映射
+// Test 结构体是表tests的映射
 type test struct {
-	ID      uint8  `db:"id"`
-	Uname   string `db:"uname"`
-	Company string `db:"company"`
-	Duty    string `db:"duty"`
-	Mobile  string `db:"mobile"`
+	id      int    `db:"id"`
+	uname   string `db:"uname"`
+	company string `db:"company"`
+	duty    string `db:"duty"`
+	mobile  string `db:"mobile"`
 }
 
-// Db 对象
+// Db 数据库对象
 var Db *sqlx.DB
 
 func main() {
 
 	// database 连接数据库
-	database, err := sqlx.Open("mysql", "test:123456@tcp(127.0.0.1:3306)/tests")
+	database, err := sqlx.Open("mysql", "root:123456@tcp(127.0.0.1:3306)/tests")
 
 	if err != nil {
-		fmt.Println("failed connect mysql,", err)
+		fmt.Println("failed connect mysql:", err)
 		return
 	}
 
+	// Db 数据库对象
 	Db = database
 
-	defer Db.Close() // 注意，这行代码要写在上面err判断的下面
+	defer Db.Close()
 
 	// 新增
-	// r, err := Db.Exec("insert into test(uname,company,duty,mobile) values(?,?,?,?)", "小红", "仿生科技", "技术", "115")
+
+	// i, err := Db.Exec("insert into test values(?,?,?,?,?)", nil, "小绿", "针织科技", "产品", "116")
 
 	// if err != nil {
-	// 	fmt.Println("exec failed,", err)
+	// 	fmt.Println("insert failed:", err)
 	// 	return
 	// }
 
-	// id, err := r.LastInsertId()
+	// id, err := i.LastInsertId()
 
 	// if err != nil {
-	// 	fmt.Println("exec failed, ", err)
+	// 	fmt.Println("exec failed:", err)
 	// 	return
 	// }
 
-	// fmt.Println("insert succ,", id)
-
-	// 查询
-	// var test []test
-
-	// err = Db.Select(&test, "select * from test where id = ?", 1)
-
-	// if err != nil {
-	// 	fmt.Println("exec failed,", err)
-	// 	return
-	// }
-
-	// for _, v := range test {
-	// 	fmt.Println(v)
-	// }
+	// fmt.Println("exec succ:", id)
 
 	// 修改
-	// res, err := Db.Exec("update test set mobile = ? where id = ?", 111, 8)
+
+	// u, err := Db.Exec("update test set mobile = ? where id=?", 176, 5)
 
 	// if err != nil {
-	// 	fmt.Println("update failed,", err)
+	// 	fmt.Println("update failed:", err)
 	// 	return
 	// }
 
-	// row, err := res.RowsAffected()
+	// row, err := u.RowsAffected()
 
-	// if err != nil {
-	// 	fmt.Println("rows failed,", err)
-	// 	return
-	// }
-
-	// fmt.Println("update succ:", row)
+	// fmt.Println("affected row:", row)
 
 	// 删除
-	// res, err := Db.Exec("delete from test where id = ?", 1)
+
+	// d, err := Db.Exec("delete from test where id = ?", 6)
 
 	// if err != nil {
-	// 	fmt.Println("failed delete:", err)
+	// 	fmt.Println("delete failed:", err)
 	// 	return
 	// }
 
-	// row, err := res.RowsAffected()
+	// row, err := d.RowsAffected()
 
-	// if err != nil {
-	// 	fmt.Println("get affect failed:", err)
-	// }
+	// fmt.Println("affected row:", row)
 
-	// fmt.Println("delete succ:", row)
+	// 事务
+	conn, err := Db.Begin()
 
-	// mysql 事务
-	// conn, err := Db.Begin()
+	f1, e1 := Db.Exec("insert into test values(?,?,?,?,?)", nil, "张飞", "百度", "保安", "130")
 
-	// if err != nil {
-	// 	fmt.Println("begin failed:", err)
-	// 	return
-	// }
+	if e1 != nil {
+		conn.Rollback()
+		fmt.Println("f1 failed,", e1)
+		return
+	}
 
-	// f1, err := Db.Exec("insert into test values (?,?,?,?,?)", nil, "申通", "申通快递", "产品", "211")
+	id1, e1 := f1.LastInsertId()
 
-	// if err != nil {
-	// 	fmt.Println("insert f1 failed:", err)
-	// 	conn.Rollback()
-	// 	return
-	// }
+	if e1 != nil {
+		fmt.Println("get id1 failed:", e1)
+		return
+	}
 
-	// f1id, err1 := f1.LastInsertId()
+	fmt.Println("id1 is:", id1)
 
-	// if err1 != nil {
-	// 	fmt.Println("f1id get failed:", err1)
-	// 	conn.Rollback()
-	// 	return
-	// }
+	f2, e2 := Db.Exec("insert into test values(?,?,?,?,?)", nil, "刘备", "百度", "经理", "131")
 
-	// fmt.Println("Insert f1id:", f1id)
+	if e2 != nil {
+		fmt.Println("f2 failed,", e2)
+		conn.Rollback()
+		return
+	}
 
-	// f2, err2 := Db.Exec("insert into test values(?,?,?,?,?)", nil, "周震南", "北京传媒", "经理", "222")
+	id2, e2 := f2.LastInsertId()
 
-	// if err2 != nil {
-	// 	fmt.Println("f2 insert failed:", err2)
-	// 	conn.Rollback()
-	// 	return
-	// }
+	if e2 != nil {
+		fmt.Println("get id2 failed:", e2)
+		return
+	}
 
-	// f2id, err := f2.LastInsertId()
+	fmt.Println("id2 is :", id2)
 
-	// if err != nil {
-	// 	fmt.Println("get f2id failed:", err)
-	// 	conn.Rollback()
-	// 	return
-	// }
+	conn.Commit()
 
-	// fmt.Println("Insert f2id:", f2id)
+	fmt.Println("insert success")
 
-	// fmt.Println("All Insert successfull!")
-
-	// conn.Commit()
 }
