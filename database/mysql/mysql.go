@@ -89,6 +89,7 @@ func Mysql() {
 		return
 	}
 
+	// 读取Mysql数据并储存到结构体当中，如果结构体字段首字母大写则对外可见否则不可见(写法规范:主键ID需要大写)
 	for i, v := range test {
 		fmt.Println(i, v)
 	}
