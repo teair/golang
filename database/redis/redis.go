@@ -16,7 +16,7 @@ func Redis() {
 	rdb := redis.NewClient(&redis.Options{
 		Addr:     "",
 		Password: "",
-		DB:       ,
+		DB:       6,
 	})
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
