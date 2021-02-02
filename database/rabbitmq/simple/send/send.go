@@ -8,7 +8,7 @@ import (
 )
 
 // MQURL 连接信息
-const MQURL = "amqp://shentong:123456@182.92.149.107:5672/amqp"
+const MQURL = ""
 
 // RabbitMQ 结构体
 type RabbitMQ struct {
