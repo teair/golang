@@ -1,7 +1,7 @@
 package receive2
 
 import (
-	"database/database/rabbitmq/simple/send"
+	"shentong/database/rabbitmq/simple/send"
 )
 
 // Receive 接收消息

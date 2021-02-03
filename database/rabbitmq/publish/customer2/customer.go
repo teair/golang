@@ -1,7 +1,7 @@
 package customer2
 
 import (
-	RabbitMQ "database/database/rabbitmq/publish/server"
+	RabbitMQ "shentong/database/rabbitmq/publish/server"
 )
 
 // Customer2 广播模式消费者1

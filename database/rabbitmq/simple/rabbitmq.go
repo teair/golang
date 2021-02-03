@@ -1,9 +1,9 @@
 package simple
 
 import (
-	"database/database/rabbitmq/simple/receive"
-	"database/database/rabbitmq/simple/send"
 	"fmt"
+	"shentong/database/rabbitmq/simple/receive"
+	"shentong/database/rabbitmq/simple/send"
 	"strconv"
 	"time"
 )

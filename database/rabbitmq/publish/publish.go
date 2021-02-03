@@ -1,7 +1,7 @@
 package publish
 
 import (
-	Rabbitmq "database/database/rabbitmq/publish/server"
+	Rabbitmq "shentong/database/rabbitmq/publish/server"
 	"strconv"
 	"time"
 )

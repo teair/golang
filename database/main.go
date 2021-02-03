@@ -1,7 +1,7 @@
 package main
 
 import (
-	rabbitmq "database/database/rabbitmq/publish"
+	rabbitmq "shentong/database/rabbitmq/publish"
 )
 
 func main() {
