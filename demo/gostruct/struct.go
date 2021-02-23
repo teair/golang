@@ -1,6 +1,9 @@
 package gostruct
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 // Person 结构体
 type Person struct {
@@ -41,4 +44,41 @@ func TestStruct() {
 	fmt.Printf("Of %s and %s, %s is older by %d years\n", tom.name, pau.name, tpOlder.name, tpDiff)
 	fmt.Printf("Of %s and %s, %s is older by %d years\n", bob.name, pau.name, bOlder.name, bpDiff)
 
+}
+
+// Rectangle 计算长方形面积
+type Rectangle struct {
+	width, height float64
+}
+
+// Circle 计算圆形面积
+type Circle struct {
+	radius float64
+}
+
+// 计算长方形面积(面积只是图形对象的一个属性)
+func (r Rectangle) area() float64 {
+	return r.width * r.height
+}
+
+// 计算原型面积
+func (c Circle) area() float64 {
+	return c.radius * c.radius * math.Pi
+}
+
+// CalcArea 计算图形面积
+func CalcArea() {
+
+	r1 := Rectangle{width: 10, height: 5}
+
+	r2 := Rectangle{18, 2}
+
+	c1 := Circle{radius: 5}
+
+	c2 := Circle{6}
+
+	fmt.Println("r1 area is :", r1.area())
+	fmt.Println("r2 area is :", r2.area())
+	fmt.Println("c1 area is :", c1.area())
+	fmt.Println("c2 ares is :", c2.area())
 }
