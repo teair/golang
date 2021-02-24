@@ -5,6 +5,8 @@ import (
 	"math"
 )
 
+// ----------struct 结构体初始化-----------------
+
 // Person 结构体
 type Person struct {
 	name string
@@ -46,6 +48,8 @@ func TestStruct() {
 
 }
 
+// --------结构体对象-----------
+
 // Rectangle 计算长方形面积
 type Rectangle struct {
 	width, height float64
@@ -81,4 +85,127 @@ func CalcArea() {
 	fmt.Println("r2 area is :", r2.area())
 	fmt.Println("c1 area is :", c1.area())
 	fmt.Println("c2 ares is :", c2.area())
+}
+
+// ------------------------------
+// WHITE 常量
+const (
+	WHITE = iota
+	BLACK
+	BLUE
+	RED
+	YELLOW
+)
+
+// Color 自定义method
+type Color byte
+
+// Box 对象
+type Box struct {
+	width, height, depth float64
+	color                Color
+}
+
+// BoxList 对象切片
+type BoxList []Box // a slice of boxes
+
+// Volume 对象面积
+func (b Box) Volume() float64 {
+	return b.width * b.height * b.depth
+}
+
+// SetColor 设定对象颜色
+func (b *Box) SetColor(c Color) {
+	b.color = c
+}
+
+// BiggestColor 最大对象的颜色
+func (bl BoxList) BiggestColor() Color {
+	v := 0.00
+	k := Color(WHITE)
+	for _, b := range bl {
+		if bv := b.Volume(); bv > v {
+			v = bv
+			k = b.color
+		}
+	}
+	return k
+}
+
+// PanitItBlack 给对象上色
+func (bl BoxList) PanitItBlack() {
+	for i := range bl {
+		bl[i].SetColor(BLACK)
+	}
+}
+
+func (c Color) String() string {
+	strings := []string{"WHITE", "BLACK", "BLUE", "RED", "YELLOW"}
+	return strings[c]
+}
+
+// TestBox 测试盒子对象入口
+func TestBox() {
+	boxes := BoxList{
+		Box{4, 4, 4, RED},
+		Box{10, 10, 1, YELLOW},
+		Box{1, 1, 20, BLACK},
+		Box{10, 10, 1, BLUE},
+		Box{10, 30, 1, WHITE},
+		Box{20, 20, 20, YELLOW},
+	}
+
+	fmt.Printf("We have %d boxes in our set\n", len(boxes))
+	fmt.Println("The volume of the first one is", boxes[0].Volume(), "cm³")
+	fmt.Println("The color of the last one is", boxes[len(boxes)-1].color.String())
+	fmt.Println("The biggest one is", boxes.BiggestColor().String())
+
+	fmt.Println("Let's paint them all black")
+	boxes.PanitItBlack()
+	fmt.Println("The color of the second one is", boxes[1].color.String())
+
+	fmt.Println("Obviously,now,the biggest one is", boxes.BiggestColor().String())
+}
+
+//----------method 继承--------------
+
+// Human 结构体
+type Human struct {
+	name  string
+	age   int
+	phone string
+}
+
+// Student 结构体
+type Student struct {
+	Human  // 匿名字段
+	school string
+}
+
+// Employee 结构体
+type Employee struct {
+	Human
+	company string
+}
+
+// SayHi 在Human结构体上定义一个method
+func (h *Human) SayHi() {
+	fmt.Printf("Hi, I am %s you can call me on %s\n", h.name, h.phone)
+}
+
+// SayHi 在Employee 结构体上定义一个method
+func (e *Employee) SayHi() {
+	fmt.Printf("Hi, I am %s, I work at %s. Call me on %s\n", e.name, e.company, e.phone)
+}
+
+// ExtendMethod 方法继承
+func ExtendMethod() {
+
+	mark := Student{Human{"Mark", 25, "222-222-YYYY"}, "MIT"}
+
+	sam := Employee{Human{"Sam", 45, "111-888-xxxx"}, "Golang Inc"}
+
+	mark.SayHi()
+
+	sam.SayHi()
 }
