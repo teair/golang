@@ -1,11 +1,14 @@
 package web
 
 import (
+	"crypto/md5"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"regexp"
 	"shentong/demo/beeku"
+	"strconv"
 	"strings"
 	"text/template"
 	"time"
@@ -35,9 +38,16 @@ func login(w http.ResponseWriter, r *http.Request) {
 		// t := time.Date(2021, time.Now().Month(), time.Now().Day(), time.Now().Hour(), time.Now().Minute(), time.Now().Second(), 0, time.UTC)
 		// fmt.Printf("Go launched at %s\n", t.Local())
 
+		// 防止重复提交的唯一token
+		curtime := time.Now().Unix()
+		h := md5.New()
+		io.WriteString(h, strconv.FormatInt(curtime, 10))
+		token := fmt.Sprintf("%x", h.Sum(nil)) // 得到token并存储到session中
+
 		t, _ := template.ParseFiles("login.html")
-		fmt.Println(t.Execute(w, nil))
-		fmt.Println(t)
+
+		//给静态页赋值
+		t.Execute(w, token)
 
 	} else {
 
@@ -57,6 +67,16 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 		// 输出看起来正常的js信息
 		fmt.Fprintln(w, r.FormValue("xss"))
+
+		token := r.Form.Get("token")
+
+		if token != "" {
+			// 验证token的合法性(与session中的token进行比对)
+
+		} else {
+			fmt.Fprintln(w, "token验证失败!")
+			return
+		}
 
 		// 正则匹配中文
 		if chinese, _ := regexp.MatchString("^\\p{Han}{2,5}$", r.FormValue("username")); !chinese {
