@@ -7,6 +7,7 @@ import (
 	"regexp"
 	"shentong/demo/beeku"
 	"strings"
+	"text/template"
 	"time"
 )
 
@@ -34,9 +35,9 @@ func login(w http.ResponseWriter, r *http.Request) {
 		// t := time.Date(2021, time.Now().Month(), time.Now().Day(), time.Now().Hour(), time.Now().Minute(), time.Now().Second(), 0, time.UTC)
 		// fmt.Printf("Go launched at %s\n", t.Local())
 
-		// t, _ := template.ParseFiles("login.html")
-		// fmt.Println(t.Execute(w, nil))
-		// fmt.Println(t)
+		t, _ := template.ParseFiles("login.html")
+		fmt.Println(t.Execute(w, nil))
+		fmt.Println(t)
 
 	} else {
 
@@ -47,6 +48,15 @@ func login(w http.ResponseWriter, r *http.Request) {
 		// 	fmt.Fprintf(w, "请输入用户名")
 		// 	return
 		// }
+
+		// func HTMLEscape(w io.Writer, b []byte) 把b进行转义后写入w
+		template.HTMLEscape(w, []byte(r.Form.Get("xss")))
+
+		// func HTMLEscapeString(s string) string 转义s之后返回字符串
+		fmt.Fprintln(w, template.HTMLEscapeString(r.FormValue("xss")))
+
+		// 输出看起来正常的js信息
+		fmt.Fprintln(w, r.FormValue("xss"))
 
 		// 正则匹配中文
 		if chinese, _ := regexp.MatchString("^\\p{Han}{2,5}$", r.FormValue("username")); !chinese {
