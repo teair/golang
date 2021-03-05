@@ -1,0 +1,29 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<form action="/login?username=astaxie" method="post">
+	用户名:<input type="text" name="username"><br>
+	密码:<input type="password" name="password"><br>
+	喜爱的水果:
+	<select name="favorite">
+		<option value="apple">apple</option>
+		<option value="pear">pear</option>
+		<option value="banana">banana</option>
+		<option value="peach">peach</option>
+		<option value="strawberry">strawberry</option>
+		<option value="pineapple">pineapple</option>
+		<option value="cherry">cherry</option>
+	</select><br>
+	喜爱的运动：
+	<input type="checkbox" name="interest" value="football">足球
+	<input type="checkbox" name="interest" value="basketball">篮球
+	<input type="checkbox" name="interest" value="tennis">网球
+	<input type="checkbox" name="interest" value="aa">未知<br>
+	<input type="text" name="xss"><br>
+	<input type="hidden" name="token" value="{{.}}">
+	<input type="submit" value="登录">
+</form>
+</body>
+</html>
