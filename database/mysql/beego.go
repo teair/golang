@@ -97,18 +97,3 @@ func OrmMain() {
 	// }
 
 }
-
-// OrmTest 测试orm与mysql时间问题
-func OrmTest() {
-
-	t := "2017-01-01 11:11:11"
-
-	o := orm.NewOrm()
-
-	qb, _ := orm.NewQueryBuilder("mysql")
-
-	sql := qb.Select("*").From("test").Where("create_time > ?").String()
-
-	o.Raw(sql, t).Exec()
-
-}
