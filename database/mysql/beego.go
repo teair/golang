@@ -9,8 +9,8 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-// profile 用户表
-type profile struct {
+// Profile 用户表
+type Profile struct {
 	ID                           int
 	Uname, Company, Duty, Mobile string
 }
@@ -21,7 +21,7 @@ func init() {
 	// 别名	数据库类型	连接参数	最大数据库连接
 	orm.RegisterDataBase("default", "mysql", "", 30)
 	// 注册定义的model(可同时注册多个model,相当于创建多个表的映射)
-	orm.RegisterModel(new(profile))
+	orm.RegisterModel(new(Profile))
 	// 不存在则创建table
 	// orm.RunSyncdb("default", false, true)
 }
@@ -29,14 +29,14 @@ func init() {
 // OrmMain orm框架入口
 func OrmMain() {
 
-	// 打印调试
+	// 开启sql打印调试
 	orm.Debug = true
 
 	// 导入必须的package之后，我们需要打开到数据库的链接，然后创建一个beego orm对象
 	ormObj := orm.NewOrm()
 
 	// 插入表
-	// user := profile{Uname: "百里守约", Company: "阿里", Duty: "p4", Mobile: "012"}
+	// user := Profile{Uname: "百里守约", Company: "阿里", Duty: "p4", Mobile: "012"}
 	// _, err := ormObj.Insert(&user)
 	// fmt.Println(user)
 
@@ -49,18 +49,18 @@ func OrmMain() {
 	// fmt.Printf("NUM: %d, ERR: %v\n", num, err)
 
 	// 读取 one
-	u := profile{ID: 2}
-	err := ormObj.Read(&u)
-	if err == orm.ErrNoRows {
-		fmt.Println("不存在该记录!")
-	} else if err == orm.ErrMissPK {
-		fmt.Println("找不到主键!")
-	} else {
-		fmt.Println(u.ID, u.Uname, u.Company, u.Duty, u.Mobile)
-	}
+	// u := Profile{ID: 2}
+	// err := ormObj.Read(&u)
+	// if err == orm.ErrNoRows {
+	// 	fmt.Println("不存在该记录!")
+	// } else if err == orm.ErrMissPK {
+	// 	fmt.Println("找不到主键!")
+	// } else {
+	// 	fmt.Println(u.ID, u.Uname, u.Company, u.Duty, u.Mobile)
+	// }
 
 	// ReadOrCreate 尝试从数据库读取，不存在则创建一个
-	// p := profile{Uname: "钟馗", Company: "驱魔集团", Duty: "CFO", Mobile: "110"}
+	// p := Profile{Uname: "钟馗", Company: "驱魔集团", Duty: "CFO", Mobile: "110"}
 	// if isCreated, id, err := ormObj.ReadOrCreate(&p, "Company"); err == nil {
 	// 	if isCreated {
 	// 		fmt.Println("New insert an Object. Id:", id)
@@ -70,7 +70,7 @@ func OrmMain() {
 	// }
 
 	// InsertMulti 同时插入多个对象
-	// p := []profile{
+	// p := []Profile{
 	// 	{Uname: "马云", Company: "阿里巴巴", Duty: "执行董事", Mobile: "456"},
 	// 	{Uname: "马化腾", Company: "腾讯", Duty: "CEO", Mobile: "789"},
 	// 	{Uname: "张磊", Company: "高瓴资本", Duty: "创始人兼首席执行官", Mobile: "159"},
@@ -82,7 +82,7 @@ func OrmMain() {
 	// }
 
 	// Update 更新
-	// p := profile{ID: 3}
+	// p := Profile{ID: 3}
 	// // Read 返回的是error类型，就是说成功读到该数据时
 	// if ormObj.Read(&p) == nil {
 	// 	p.Uname = "申通通"
@@ -92,8 +92,24 @@ func OrmMain() {
 	// }
 
 	//  Delete 删除
-	// if num, err := ormObj.Delete(&profile{ID: 10}); err == nil {
+	// if num, err := ormObj.Delete(&Profile{ID: 10}); err == nil {
 	// 	fmt.Println(num)
 	// }
+
+	// 高级查询 orm 以 QuerySeter 来组织查询
+
+	// 获取QuerySeter对象
+	// var p Profile
+	// qs := ormObj.QueryTable(p)
+	// 也可以直接使用 Model 结构体作为表名
+	// qs := ormObj.QueryTable(&Profile)
+	// 也可以直接使用对象作为表名
+	pro := new(Profile)
+	qs := ormObj.QueryTable(pro)
+	cnt, err := qs.Filter("ID__in", 2, 24, 25, 26).Count() // select count(*) from profile;
+
+	if err == nil {
+		fmt.Printf("Count num: %v", cnt)
+	}
 
 }
