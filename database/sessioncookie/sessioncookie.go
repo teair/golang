@@ -2,17 +2,54 @@ package sessioncookie
 
 import (
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
+
+	"github.com/astaxie/beego/session"
+	_ "github.com/astaxie/beego/session/redis"
 )
 
+var globalSessions *session.Manager
+
+func init() {
+	sessionConfig := &session.ManagerConfig{
+		CookieName:      "gosessionid",
+		EnableSetCookie: true,
+		Gclifetime:      60,
+		Maxlifetime:     60,
+		Secure:          false,
+		CookieLifeTime:  60,
+		// ProviderConfig:  "./tmp",
+		ProviderConfig: "RedisIP:端口,连接池(最大连接数),密码,数据库",
+	}
+	globalSessions, _ = session.NewManager("redis", sessionConfig)
+	go globalSessions.GC()
+}
+
 // SessionMain go session 入口
-func SessionMain() {
-	fmt.Println(111111)
+func SessionMain(w http.ResponseWriter, r *http.Request) {
+	provider := globalSessions.GetProvider()
+	sess, _ := globalSessions.SessionStart(w, r)
+	defer sess.SessionRelease(w)
+	if r.Method == "GET" {
+		fmt.Println(provider)
+		t, _ := template.ParseFiles("sessioncookie/view/login.html")
+		w.Header().Set("Content-Type", "text/html")
+		t.Execute(w, nil)
+	} else {
+		val := sess.Get("username")
+		if val == nil {
+			sess.Set("username", r.FormValue("username"))
+		} else {
+			fmt.Println(val)
+		}
+		// http.Redirect(w, r, "http://www.baidu.com", 302)
+	}
 }
 
 // CookieMain go cookie 入口
@@ -23,6 +60,8 @@ func CookieMain() {
 	http.HandleFunc("/getcookie", getcookie)
 
 	http.HandleFunc("/delcookie", DelCookie)
+
+	http.HandleFunc("/setsession", SessionMain)
 
 	err := http.ListenAndServe(":9090", nil) // 设置监听的端口
 
