@@ -1,7 +1,7 @@
 package main
 
 import (
-	rabbitmq "shentong/database/rabbitmq/publish"
+	"shentong/database/sessioncookie"
 )
 
 func main() {
@@ -25,11 +25,15 @@ func main() {
 	/**
 	 * fanout 类型
 	 */
-	rabbitmq.Publish()
+	// rabbitmq.Publish()
 
-	rabbitmq.Customer1()
+	// rabbitmq.Customer1()
 
-	rabbitmq.Customer2()
+	// rabbitmq.Customer2()
 
-	//mysql.Mysql()
+	// mysql.Mysql()
+
+	// mysql.OrmMain()
+
+	sessioncookie.CookieMain()
 }
