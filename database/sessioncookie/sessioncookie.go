@@ -1,8 +1,10 @@
 package sessioncookie
 
 import (
+	"crypto/md5"
 	"fmt"
 	"html/template"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -20,10 +22,10 @@ func init() {
 	sessionConfig := &session.ManagerConfig{
 		CookieName:      "gosessionid",
 		EnableSetCookie: true,
-		Gclifetime:      60,
-		Maxlifetime:     60,
+		Gclifetime:      3600,
+		Maxlifetime:     3600,
 		Secure:          false,
-		CookieLifeTime:  60,
+		CookieLifeTime:  3600,
 		// ProviderConfig:  "./tmp",
 		ProviderConfig: "RedisIP:端口,连接池(最大连接数),密码,数据库",
 	}
@@ -52,6 +54,43 @@ func SessionMain(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// 模拟session劫持与解决方法
+func Count(w http.ResponseWriter, r *http.Request) {
+	sess, _ := globalSessions.SessionStart(w, r)
+	defer sess.SessionRelease(w)
+
+	count := sess.Get("count")
+
+	if count == nil {
+		sess.Set("count", 1)
+	} else {
+		sess.Set("count", count.(int)+1)
+	}
+	t, _ := template.ParseFiles("sessioncookie/view/count.html")
+	t.Execute(w, count)
+}
+
+func HiJacked(w http.ResponseWriter, r *http.Request) {
+	sess, _ := globalSessions.SessionStart(w, r)
+	defer sess.SessionRelease(w)
+	if r.Method == "GET" {
+		h := md5.New()
+		salt := "shentongtong!"
+		io.WriteString(h, salt+time.Now().String())
+		token := fmt.Sprintf("%x", h.Sum(nil))
+		sess.Set("token", token)
+		t, _ := template.ParseFiles("sessioncookie/view/hijacked.html")
+		t.Execute(w, token)
+	} else {
+		token := sess.Get("token")
+		if r.FormValue("token") != token || token == "" {
+			fmt.Fprintln(w, "token验证失败!!")
+			return
+		}
+		fmt.Fprintln(w, "Welcome!")
+	}
+}
+
 // CookieMain go cookie 入口
 func CookieMain() {
 
@@ -62,6 +101,10 @@ func CookieMain() {
 	http.HandleFunc("/delcookie", DelCookie)
 
 	http.HandleFunc("/setsession", SessionMain)
+
+	http.HandleFunc("/hijacked", HiJacked)
+
+	http.HandleFunc("/count", Count)
 
 	err := http.ListenAndServe(":9090", nil) // 设置监听的端口
 
