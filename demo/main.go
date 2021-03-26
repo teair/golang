@@ -1,7 +1,7 @@
 package main
 
 import (
-	web "shentong/demo/web"
+	web "demo/web"
 )
 
 func main() {
