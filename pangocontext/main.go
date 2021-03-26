@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+import (
+	jsontostruct "pangocontext/jsontostruct"
+)
 
 func main() {
-	fmt.Println("222222")
+	jsontostruct.SimpleJson()
+
 }
