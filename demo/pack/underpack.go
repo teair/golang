@@ -1,13 +1,13 @@
 package pack
 
 import (
-	_ "os"
 	"fmt"
+	_ "os"
 )
 
 var name = "申通通"
 
-func UnderPack(){
+func UnderPack() {
 	fmt.Println(name)
 	/*buf := make([]byte,1024)
 	f,_ := os.Open("/test.txt")
