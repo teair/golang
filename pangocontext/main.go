@@ -1,10 +1,7 @@
 package main
 
-import (
-	structoxml "shentong/pangocontext/structoxml"
-)
+import "fmt"
 
 func main() {
-	// xmltostruct.XMLMain()
-	structoxml.StructMain()
+	fmt.Println("1111")
 }
