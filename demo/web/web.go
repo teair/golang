@@ -3,6 +3,7 @@ package web
 import (
 	"bytes"
 	"crypto/md5"
+	"demo/beeku"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -11,7 +12,6 @@ import (
 	"net/http"
 	"os"
 	"regexp"
-	"shentong/demo/beeku"
 	"strconv"
 	"strings"
 	"text/template"
