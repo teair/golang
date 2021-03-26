@@ -1,7 +1,8 @@
 package main
 
 import (
-	"shentong/database/sessioncookie"
+	"fmt"
+	redis "shentong/redis"
 )
 
 func main() {
@@ -35,5 +36,9 @@ func main() {
 
 	// mysql.OrmMain()
 
-	sessioncookie.CookieMain()
+	// sessioncookie.CookieMain()
+
+	redis.Redis()
+
+	fmt.Println("111111111")
 }
