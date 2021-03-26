@@ -9,7 +9,7 @@
             "type": "go",
             "request": "launch",
             "mode": "debug",
-            "program": "D:/goproject/src/pangocontext/main.go"
+            "program": "D:/goproject/src/pangocontext"
         }
     ]
 }
