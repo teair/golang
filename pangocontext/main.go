@@ -1,10 +1,9 @@
 package main
 
 import (
-	jsontostruct "pangocontext/jsontostruct"
+	reg "pangocontext/regexp"
 )
 
 func main() {
-	jsontostruct.SimpleJson()
-
+	reg.RegexMain()
 }
