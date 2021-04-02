@@ -1,9 +1,9 @@
 package main
 
 import (
-	reg "pangocontext/regexp"
+	tmpe "pangocontext/template"
 )
 
 func main() {
-	reg.RegexMain()
+	tmpe.TemplateMain()
 }
