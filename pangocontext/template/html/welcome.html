@@ -7,7 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    hello,{{.UserName}}<br>
+    {{if .UserName}}
+        hello,{{.UserName | html}}<br>
+    {{else}}
+        无内容<br>
+    {{end}} 
     {{range .Emails}}
         an email {{.}} !<br>
     {{end}}
@@ -16,5 +20,8 @@
             my friend name is {{.Fname}} !<br>
         {{end}}
     {{end}}
+    {{with $x := "adc" | printf "%v\n"}} {{$x}} {{end}}
+    {{with $x := "ADC"}} {{printf "%s" $x}} {{end}}
+    {{with $x := "top"}} {{$x | printf "%v"}} {{end}}
 </body>
 </html>
