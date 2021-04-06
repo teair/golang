@@ -31,13 +31,11 @@ type Data struct {
 
 func init() {
 
-	// 注册驱动
+	// 注册mysql驱动
 	orm.RegisterDriver("mysql", orm.DRMySQL)
-
-	// 设置默认数据库
-	orm.RegisterDataBase("default", "mysql", "", 30)
-
-	// 注册定义的model
+	// 注册默认数据库
+	orm.RegisterDataBase("default", "mysql", "连接参数", 30)
+	// 注册表对应的模型
 	orm.RegisterModel(new(Cemat))
 }
 
@@ -108,7 +106,7 @@ func TemplateTest(w http.ResponseWriter, r *http.Request) {
 	t, _ := template.ParseFiles("template/html/welcome.html")
 
 	p := Person{
-		UserName: "ShenTongtong",
+		UserName: "<script>alert('1111');</script>",
 		Emails:   []string{"111@qq.com", "222@qq.com"},
 		Friends:  []*Friend{&f1, &f2},
 	}
