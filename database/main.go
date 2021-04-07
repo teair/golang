@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	redis "shentong/redis"
+
+	beego "shentong/mysql"
 )
 
 func main() {
@@ -38,7 +39,7 @@ func main() {
 
 	// sessioncookie.CookieMain()
 
-	redis.Redis()
+	beego.OrmMain()
 
 	fmt.Println("111111111")
 }
