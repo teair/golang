@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>替换</title>
+</head>
+<body>
+    {{if .UserName}}
+        hello, {{.UserName}}<br>
+    {{else}}
+        空
+    {{end}}
+    {{range .Emails}}
+        email : {{.|emailDeal}}<br>
+    {{end}}
+    {{with .Friends}}
+    {{range .}}
+        The name is {{.Fname}}<br>
+    {{end}}
+    {{end}}
+</body>
+</html>
