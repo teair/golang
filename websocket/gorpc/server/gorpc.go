@@ -27,7 +27,7 @@ func (t *Arith) Divide(args *Args, quo *Quotient) error {
 		return errors.New("divide by zero")
 	}
 	quo.Quo = args.A / args.B
-	quo.Rem = args.A / args.B
+	quo.Rem = args.A % args.B
 	return nil
 }
 
