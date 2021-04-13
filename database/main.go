@@ -1,9 +1,7 @@
 package main
 
 import (
-	"fmt"
-
-	beego "shentong/mysql"
+	my "shentong/mysql"
 )
 
 func main() {
@@ -35,11 +33,11 @@ func main() {
 
 	// mysql.Mysql()
 
-	// mysql.OrmMain()
+	my.OrmMain()
 
 	// sessioncookie.CookieMain()
 
-	beego.OrmMain()
+	//beego.OrmMain()
 
-	fmt.Println("111111111")
+	//fmt.Println("111111111")
 }
