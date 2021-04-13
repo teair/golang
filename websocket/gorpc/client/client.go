@@ -15,6 +15,7 @@ type Quotient struct {
 	Quo, Rem int // 商和余数
 }
 
+// ClientMain 基于http协议的rpc客户端
 func ClientMain() {
 
 	if len(os.Args) != 2 {
