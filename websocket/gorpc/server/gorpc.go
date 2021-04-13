@@ -31,6 +31,7 @@ func (t *Arith) Divide(args *Args, quo *Quotient) error {
 	return nil
 }
 
+// ServerMain 基于HTTP协议的RPC服务端
 func ServerMain() {
 
 	arith := new(Arith)
