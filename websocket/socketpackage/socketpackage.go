@@ -33,16 +33,29 @@ func SimulationMain() {
 		os.Exit(1)
 	}
 	service := os.Args[1]
+
 	tcpAddr, err := net.ResolveTCPAddr("tcp4", service)
 	checkError(err)
+
 	conn, err := net.DialTCP("tcp", nil, tcpAddr)
 	checkError(err)
-	_, err = conn.Write([]byte("HEAD / HTTP/1.0\r\n\r\n"))
+
+	_, err = conn.Write([]byte("timestamp"))
 	checkError(err)
+
 	result := make([]byte, 256)
 	_, err = conn.Read(result)
 	checkError(err)
-	fmt.Println(string(result))
+
+	// 按照格式输出同步的时间
+	tmp := string(result)
+	fmt.Printf("%T %v\n", tmp, tmp)
+	atoi, _ := strconv.ParseInt(tmp, 10, 64)
+	//atoi,_ := strconv.Atoi(tmp)
+	fmt.Printf("%T %v\n", atoi, atoi)
+	fmt.Println(time.Unix(atoi, 0).Format("2006-04-02 15:04:05"))
+	//fmt.Println(time.Parse("2006-01-02 15:4:5",string(result)))
+
 	os.Exit(0)
 }
 
@@ -51,12 +64,14 @@ func ServerMain() {
 
 	service := "127.0.0.1:9091"
 
-	// ResolveTCPAddr 返回 tcp 端点地址
+	// ResolveTCPAddr 将service作为tcp地址解析并返回; 返回 网络名和端口名
 	tcpAddr, err := net.ResolveTCPAddr("tcp4", service)
 	checkError(err)
+
 	// ListenTCP 类似于监听tcp网络
 	listener, err := net.ListenTCP("tcp", tcpAddr)
 	checkError(err)
+
 	for {
 		// Accept实现listener接口中的Accept方法;
 		// 它等待下一个调用并返回一个泛型conn
@@ -65,10 +80,12 @@ func ServerMain() {
 			continue
 		}
 
-		//fmt.Println("什么玩意儿!")
-		//conn.Write([]byte("什么玩意儿!"))
+		// 单任务情况
+		//daytime := time.Now().String()
+		//conn.Write([]byte(daytime))
 		//conn.Close()
 
+		// 支持多并发
 		go handleClient(conn)
 	}
 }
@@ -89,7 +106,6 @@ func handleClient(conn net.Conn) {
 			fmt.Println(err)
 			break
 		}
-
 		if read_len == 0 {
 			break // connection already closed by client
 		} else if strings.TrimSpace(string(request[:read_len])) == "timestamp" {
