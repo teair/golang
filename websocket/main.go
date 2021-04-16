@@ -1,7 +1,7 @@
 package main
 
-import "websocket/restful"
+import "websocket/socketpackage"
 
 func main() {
-	restful.RestMain()
+	socketpackage.ServerMain()
 }
