@@ -11,7 +11,7 @@ var commonIV = []byte{0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09
 
 func AesMain() {
 
-	// 需要加密的字符串
+	// 需要去加密的字符串
 	plaintext := []byte("My Name is ShenTongtong!")
 
 	// 如果传入加密串的话，plaint就是传入的字符串
@@ -20,7 +20,7 @@ func AesMain() {
 	}
 
 	// aes 加密的字符串
-	key_text := "asdkf;alsdfrtygh"
+	key_text := "asdfkjk;alsdkf;lsdkaf;lsosifwoer"
 	if len(os.Args) > 2 {
 		key_text = os.Args[2]
 	}
@@ -30,7 +30,7 @@ func AesMain() {
 	// 创建加密算法 aes
 	c, err := aes.NewCipher([]byte(key_text))
 	if err != nil {
-		fmt.Printf("Error:NewCipher(%d bytes) = %s", len(key_text), err)
+		fmt.Printf("Error: NewCipher(%d bytes) = %s", len(key_text), err)
 		os.Exit(-1)
 	}
 
@@ -44,5 +44,5 @@ func AesMain() {
 	cfbdec := cipher.NewCFBDecrypter(c, commonIV)
 	plaintextCopy := make([]byte, len(plaintext))
 	cfbdec.XORKeyStream(plaintextCopy, ciphertext)
-	fmt.Printf("%x=>%s\n", ciphertext, plaintextCopy)
+	fmt.Printf("%x => %s\n", ciphertext, plaintextCopy)
 }
