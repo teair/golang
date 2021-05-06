@@ -9,7 +9,8 @@ type MainController struct {
 }
 
 func (c *MainController) Get() {
-	c.Data["Website"] = "beego.me"
-	c.Data["Email"] = "astaxie@gmail.com"
-	c.TplName = "home/index.html"
+	dir := "/static"
+	path := "/img/a.jpg"
+	imgpath := dir + path
+	c.Ctx.WriteString(imgpath)
 }
