@@ -22,5 +22,5 @@ func (c *UserController) Get() {
 	}*/
 
 	c.Data["Pinduoduo"] = "拼多多真坑!"
-	c.TplName = "home/user.html"
+	c.TplName = "controllers/user.html"
 }
