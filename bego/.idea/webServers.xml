@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f586121b-aedf-4171-a600-1f2e2fb5c991" name="mine">
+        <fileTransfer rootFolder="/www/wwwroot/gowork/src" accessType="SFTP" host="182.92.149.107" port="22" sshConfigId="bfd2b4bf-799b-4917-adb9-dbd73bb74c25" sshConfig="root@182.92.149.107:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

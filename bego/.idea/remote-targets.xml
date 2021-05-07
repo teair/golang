@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteTargetsManager">
+    <targets>
+      <target name="root@182.92.149.107:22" type="ssh/sftp">
+        <config>
+          <option name="projectRootOnTarget" value="/www/wwwroot/gowork/src" />
+          <option name="serverName" value="root@182.92.149.107:22 password" />
+        </config>
+        <ContributedStateBase type="GoLanguageRuntime">
+          <config />
+        </ContributedStateBase>
+      </target>
+    </targets>
+  </component>
+</project>
