@@ -11,7 +11,7 @@ func init() {
 		beego.ControllerComments{
 			Method:           "AllBlock",
 			Router:           "/all/:key",
-			AllowHTTPMethods: []string{"get"},
+			AllowHTTPMethods: []string{"post"},
 			MethodParams:     param.Make(),
 			Filters:          nil,
 			Params:           nil})
