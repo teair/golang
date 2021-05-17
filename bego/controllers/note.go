@@ -1,12 +1,15 @@
 package controllers
 
 import (
-	beego "github.com/beego/beego/v2/server/web"
-	"html/template"
+	"github.com/beego/beego/v2/server/web"
 )
 
 type NoteController struct {
-	beego.Controller
+	web.Controller
+}
+
+func (this *NoteController) Prepare() {
+	this.EnableXSRF = false
 }
 
 // 注解路由【修改注解路由后需要重启方可生效,当beego框架版本为2.X的时候xsrf只支持HTTPS协议】
@@ -17,12 +20,11 @@ func (this *NoteController) URLMapping() {
 
 // @router	/staticblock/:key [get]
 func (this *NoteController) StaticBlock() {
-	this.Data["xsrfdata"] = template.HTML(this.XSRFFormHTML())
 	this.TplName = "common/xsrf.html"
 	//this.Ctx.WriteString("???????")
 }
 
 // @router /all/:key [post]
 func (this *NoteController) AllBlock() {
-	this.Ctx.WriteString("this is allblock")
+	this.Ctx.WriteString("???")
 }
