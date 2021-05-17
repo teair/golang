@@ -1,21 +1,23 @@
 package routers
 
 import (
-	"bego/admin"
 	"bego/controllers"
 	beego "github.com/beego/beego/v2/server/web"
 	"github.com/beego/beego/v2/server/web/context"
 )
 
 func init() {
-
 	// beego 基本Get路由
 	/*beego.Get("/", func(ctx *context.Context) {
 		ctx.Output.Body([]byte("Hello,Get"))
 	})*/
 
+	beego.Get("/", func(ctx *context.Context) {
+		ctx.WriteString("?????????")
+	})
+
 	// beego 基本Post路由
-	beego.Post("/alice", func(ctx *context.Context) {
+	/*beego.Post("/alice", func(ctx *context.Context) {
 		ctx.Output.Body([]byte("Hello,Post"))
 	})
 
@@ -28,7 +30,7 @@ func init() {
 	beego.Router("/controllers", &controllers.MainController{})
 	beego.Router("/user", &controllers.UserController{})
 	beego.Router("/admin", &admin.MainController{})
-	beego.Router("/admin/article", &admin.ArticleController{})
+	beego.Router("/admin/article", &admin.ArticleController{})*/
 
 	// 正则路由
 	//beego.Router("api/?:id", &controllers.RController{}) // api/12与api/ 都可匹配
@@ -42,5 +44,52 @@ func init() {
 	//beego.Router("shen_:id([0-9]+).html",&controllers.RController{})	// 带有前缀的自定义正则,匹配:id为正则类型,类似:shen_123.html
 
 	beego.Router("/test/:username:string", &controllers.RController{}, "*:RcGet")
-	beego.Router("/cmn", &controllers.CmnController{}, "get,post:CmnGet")
+	beego.Router("/cmn", &controllers.CmnController{}, "*:CmnTest;get,post:CmnGet")
+
+	// 自动匹配路由
+	beego.AutoRouter(&controllers.AutoController{})
+
+	// 注解路由
+	beego.Include(&controllers.NoteController{})
+
+	// namespace
+	ns :=
+		beego.NewNamespace("v1",
+			// 支持满足条件的就执行该namespace
+			/*beego.NSCond(func(b *context.Context) bool  {
+				if b.Input.Domain() == "www.wsst.vip" {
+					b.WriteString("1")
+					return true
+				}
+				b.WriteString("0")
+				return false
+			}),
+			beego.NSBefore(func(this *context.Context) {
+				this.WriteString("this is before")
+			}),*/
+			beego.NSGet("/notallowed", func(ctx *context.Context) {
+				//ctx.Output.Body([]byte("notAllowed"))
+				ctx.WriteString("notAllowed")
+			}),
+			beego.NSRouter("/version", &controllers.WatermelonController{}, "get:ShowAPIVersion"),
+			beego.NSRouter("/changepassword", &controllers.WatermelonController{}, "get:ChangePassword"),
+			beego.NSRouter("/xsrfhtml", &controllers.WatermelonController{}, "get:XsrfHtml"),
+			beego.NSRouter("/xsrfpost", &controllers.WatermelonController{}, "post:XsrfPost"),
+			beego.NSNamespace("/shop",
+				beego.NSGet("/:id", func(ctx *context.Context) {
+					ctx.Output.Body([]byte("shop/int"))
+				}),
+			),
+			beego.NSNamespace("/cms",
+				beego.NSInclude(
+					&controllers.WatermelonController{},
+					&controllers.NoteController{},
+					&controllers.UserController{},
+				),
+			),
+			beego.NSRouter("/watermelon", &controllers.WatermelonController{}, "get:WaterFruit"),
+		)
+
+	// 注册 namespace
+	beego.AddNamespace(ns)
 }
