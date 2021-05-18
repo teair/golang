@@ -9,7 +9,7 @@ type NoteController struct {
 }
 
 func (this *NoteController) Prepare() {
-	this.EnableXSRF = false
+	this.EnableXSRF = true
 }
 
 // 注解路由【修改注解路由后需要重启方可生效,当beego框架版本为2.X的时候xsrf只支持HTTPS协议】
