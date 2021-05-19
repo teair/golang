@@ -1,0 +1,94 @@
+
+.content{
+    width: 100%;
+    padding-bottom: 50px;
+    background-color: #f3f3f3;
+}
+
+.content .mod{ 
+    padding-top: 12px;
+}
+
+/*支付*/
+.pay-view{background: #f9fafa; margin-top: 20px;}
+/*支付左侧*/
+.pay-left { width: 240px; float: left; position:relative; z-index: 2; min-height: 500px; overflow:hidden;background: #f9fafa;}
+.pay-left .pay-list { padding: 16px 0; }
+.pay-left .pay-list li { vertical-align: top; }
+.pay-left .pay-list li a { display: block; width: 200px; height: 42px; line-height: 42px; padding-left: 40px; border-top: 1px solid #f9fafa; color: #595757; font-size: 12px; border-bottom: 1px solid #f9fafa;
+ background: #f9fafa; margin-top: -1px;-webkit-transition: initial; -ms-transition: initial; -o-transition: initial; transition: initial;}
+.pay-left .pay-list li a.active, .pay-list li a:hover { width: 201px; color: #595757!important; border-top-color: #e1405a; border-bottom-color: #e1405a; background-color: #fff; position:relative; z-index: 2;}
+.pay-left .pay-list i { width: 30px; height: 42px; margin-right: 12px; background-image: url('../images/pay-menu.png'); float: left;}
+.pay-left .pay-list span { float: left;}
+.pay-left .pay-list .item-1 i { background-position: 2px 10px; }
+.pay-left .pay-list .item-2 i { background-position: 2px -32px; }
+.pay-left .pay-list .item-3 i { background-position: 2px -74px; }
+/*支付右侧*/
+.pay-right { width: 960px; border-left: 1px solid #e4e4e4; background: #fff; float: right; min-height: 520px; padding-bottom: 30px; box-sizing: border-box;}
+/*tit*/
+.order-tit i, .o-table .pay-for i, .o-table .pay-for em, .o-table .role-status i, .pay-money-list .money-item i, .select-wp .close, .search-box .btn-search, .other-money-box i, .ubind-pop .level-tips i, .login-pop .icon-user, .login-pop .icon-lock, .login-pop .icon-cb {
+    display: inline-block;
+    vertical-align: top;
+    background-image: url(../images/pay.png);
+}
+.order-tit { height: 38px; line-height: 38px; font-size: 26px; margin: 30px 0 30px 70px;font-weight: normal;color: #595757;}
+.order-tit i { width: 38px; height: 38px; margin-right: 10px; display: inline-block;}
+.order-tit i.o-tit-1 { background-position: 0 2px;}
+.order-tit i.o-tit-2 { background-position: 0 -35px;}
+.order-tit i.o-tit-3 { background-position: 0 -75px;}
+
+.o-table .btn-define { display:inline-block; vertical-align: top; color: #429deb; margin: 0 12px; }
+/*form*/
+.o-table{ margin-left: 70px; font-size: 12px;}
+.o-table .o-tr{ margin: 14px 0; position:relative;}
+.o-table .o-label { width: 68px; height: 32px; line-height: 32px; padding-right: 10px; text-align: right; float: left;}
+.o-table .o-div { min-height: 32px; line-height: 32px; float: left; position:relative;}
+.o-table .o-input, .o-table .pay-for { display:inline-block; width: 206px; height: 32px; line-height: 32px; margin-right: 10px; border: 1px solid #d1d1d1; background: #fff; 
+	vertical-align: top; position:relative; overflow:hidden;text-align: center;}
+.o-table .o-input:focus { border-color: #e1405a; }
+/*充值到*/
+.o-table .pay-for { width: 204px; height: 34px; text-align: center; float: left; display: inline; color: #666; position: relative; box-sizing: border-box;}
+.o-table .pay-for em { width: 16px; height: 16px; background-position: 0 -520px; position:absolute; right: 0px; bottom: 0px; display: none; }
+.o-table .pay-for span { display:inline-block; vertical-align: top; line-height: 32px; }
+.o-table .pay-for i { width: 24px; height: 24px; margin: 4px 5px; overflow: hidden;}
+.o-table .pay-for-game i { background-position: 0 -436px; }
+.o-table .pay-for-platform i { background-position: 0 -477px; }
+.o-table .pay-for.active, .o-table .pay-for:hover { border: 2px solid #e1405a; color: #595757 !important;}
+.o-table .pay-for.active em { display: block; }
+.o-table .pay-for.active span,.o-table .pay-for:hover span { line-height: 30px; }
+.o-table .pay-for.active i, .o-table .pay-for:hover i { height: 24px; margin: 3px 5px; }
+.o-table .pay-for-game.active i { background-position: 0 -436px!important; }
+.o-table .pay-for-game:hover i { background-position: 0 -436px!important; }
+.o-table .pay-for-platform.active i { background-position: 0 -477px!important; }
+.o-table .pay-for-platform:hover i { background-position: 0 -477px!important; }
+.pay-for-tip { width: 159px; height: 23px; line-height: 23px; text-align: center; color: #e1405a; margin-top: 5px; float: left; background-image: url('../images/pay-for-tip.png'); display: none; }
+/*选择游戏*/
+.tr-select-type { z-index: 2;}
+.o-table .o-select { display: block; width: 166px; height: 30px; line-height: 30px; padding: 0 20px; border: 1px solid #d1d1d1; background: #fff; color: #595757; margin-right: 10px; float: left; position:relative; box-sizing: content-box;}
+.o-table select { display: block; width: 166px; height: 30px; line-height: 30px; padding: 0 20px; border: 1px solid #d1d1d1; background: #fff; color: #595757; margin-right: 10px; float: left; position:relative; box-sizing: content-box;}
+.o-table .o-select:after { width: 0; height: 0; content: ' '; position:absolute; top: 12px; right: 10px; border-width: 8px; border-style: solid; border-color: #a8a8a8 #fff #fff #fff; }
+.o-table .select-list { width: 206px; height: auto; border: 1px solid #d1d1d1; border-top: 0 none; background: #fff; position:absolute; top: 31px; left: 0px; z-index: 1;}
+.o-table .select-list li { height: 34px; line-height: 34px; padding: 0 20px; cursor: pointer; }
+.o-table .select-list li:hover { color: #fff; background: #e1405a; }
+/*选择金额*/
+.pay-money-list { width: 580px; height: auto!important; overflow:hidden;}
+.pay-money-list a { width: 97px; height: 30px; line-height: 30px; text-align: center; border: 1px solid #d1d1d1; color: #595757; margin: 0 10px 14px 0; float: left; display: inline; position:relative;}
+.pay-money-list .money-item i, .other-money-box i { width: 16px; height: 16px; background-position: 0 -520px!important;; position:absolute; right: 0px; bottom: 0px; display: none; overflow:hidden;}
+.pay-money-list .active, .pay-money-list a:hover { width: 95px; height: 28px; line-height: 28px; border: 2px solid #e1405a; }
+.pay-money-list .active i { display: block; }
+.o-table .other-money { text-align: center; }
+.other-money-wp { display:inline-block; vertical-align: top; height: 32px; line-height: 32px; margin-right: 10px; position:relative; *margin-top: 10px;}
+.other-money-box { display:inline-block; vertical-align: top; height: 32px; line-height: 32px; position:relative; margin-right: 10px; *vertical-align: middle;}
+.user-getcoin { display:inline-block; vertical-align: top; height: 32px; line-height: 32px;}
+.col1 { color: #e1405a; }
+.other-money-box .other-money  { margin-right: 0;-webkit-transition: color 200ms ease-out,background-color 200ms ease-out,border-color 200ms ease-out,opacity 200ms ease-out;
+    -ms-transition: color 200ms ease-out,background-color 200ms ease-out,border-color 200ms ease-out,opacity 200ms ease-out;
+    -o-transition: color 200ms ease-out,background-color 200ms ease-out,border-color 200ms ease-out,opacity 200ms ease-out;
+    transition: color 200ms ease-out,background-color 200ms ease-out,border-color 200ms ease-out,opacity 200ms ease-out; }
+.other-money-box.active .other-money  { width: 204px; height: 28px; line-height: 28px; border: 2px solid #e1405a;}
+.other-money-box.active i { display: block; }
+
+/*立即充值*/
+.btn-cforder { display: block; width: 208px; height: 40px; line-height: 40px; text-align: center; font-size: 16px; color: #fff; border-radius: 5px; background: #e1405a; }
+.btn-cforder:hover { color: #fff!important; background: #f6587b; }
+

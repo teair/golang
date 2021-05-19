@@ -1,0 +1,348 @@
+<!doctype html>
+<html>
+<head>
+<!--- The site is designed by zkx,Inc 12/2016 --->
+<meta charset="utf-8">
+<title>mxyouxi-center</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="mxyouxi">
+<meta name="description" content="mxyouxi">
+<meta name="author" content="kxin">
+<!-- 初始化样式表-->
+<link href="css/layout.css" rel="stylesheet" type="text/css">
+<link href="./vender/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!-- Swiper's CSS -->
+<link rel="stylesheet" href="./vender/swiper/css/swiper.min.css">
+<!-- 页面公有样式-->
+<link href="css/common.css" rel="stylesheet" type="text/css">
+<!-- 页面私有样式-->
+<link href="css/recharge.css" rel="stylesheet" type="text/css">
+</head>
+	
+<body>
+
+<div class="header" style="">
+    <div class="cont clearfix">
+      	<div class="fl">
+	        <div class="h_logo">
+				<a href="#" style=""><h1>游戏网</h1></a>
+	        </div>
+	        <div class="h_list">
+            	<ul class="clearfix">
+              		<li>
+                  		<a href="./index.html" class="">首页</a>
+                  		<i>|</i>
+              		</li>
+              		<li>
+	                  	<a href="./game.html" class="">游戏中心</a>
+	                  	<i>|</i>
+	              	</li>
+	              	<li>
+	                  	<a href="./user.html" class="">用户中心</a>
+	                  	<i>|</i>
+	              	</li>
+	              	<li>
+	                	<a href="./kaifu.html" class="">开服中心</a>
+	                  	<i>|</i>
+	              	</li>
+	              	<li>
+	                	<a href="./service.html" class="">客服中心</a>
+	                  	<i>|</i>
+	              	</li>
+	              	<li>
+	                	<a href="./recharge.html" class="cur">充值中心</a>
+	              	</li>
+            	</ul>
+	        </div>
+      	</div>
+	    <div class="h_right clearfix fr">
+	    	<div class="menu fl">
+			  	<a class="log_btn" href="#" >登录</a> |
+			  	<a class="reg_btn" href="#" target="_blank">注册</a>
+			</div>
+				
+			<div class="h_line fl"></div>
+
+			<div class="h_addtools fl">
+				<span title="收藏" class=h_cover">
+					<i class="fa fa-star"></i>
+				</span>
+				<div class="h_layer">
+				    <a href="javascript:;" class="a_mod p1">
+				        <i class="fa fa-tv"></i>
+				      	<span>存至桌面</span>
+				    </a>
+				    <a href="javascript:;" class="a_mod p2">
+				      	<i class="fa fa-star"></i>
+				      	<span>收藏本站</span>
+				    </a>
+				    <a href="javascript:;" class="a_mod p3">
+				      	<i class="fa fa-home"></i>
+				      	<span>设为主页</span>
+				  	</a>
+				</div>
+			</div>
+
+	    	
+	    </div>
+
+    </div>
+</div>
+
+<div class="banner_game"><img src="./images/default/game_banner.jpg"></div>
+
+<div class="content">
+	<div class="cont" style="overflow: hidden;">
+		<div class="pay-view clearfix">
+			<div class="pay-left">
+				<ul class="pay-list">
+					<li data-navitem="1"><a href="javascript:;" class="item-1 active"><i></i><span>微信支付</span></a></li>
+					<li data-navitem="2"><a href="javascript:;" class="item-2"><i></i><span>支付宝支付</span></a></li>
+					<li data-navitem="3"><a href="javascript:;" class="item-3"><i></i><span>支付宝扫码</span></a></li>
+				</ul>
+			</div>
+
+			<div class="pay-right">
+				<h2 class="order-tit"><i class="o-tit-1"></i> <span>微信支付</span> </h2>
+				<div class="o-table">
+					<div class="o-tr clearfix">
+						<label class="o-label">充值账号：</label>
+						<div class="o-div">
+							<div class="name-fill ">
+								<input type="text" class="o-input" placeholder="请输入帐号" id="uname2" value=""> <a href="javascript:;" class="btn-define">[确定]</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="o-tr clearfix" id="tr-pay-for">
+						<label class="o-label">充值到：</label>
+						<div class="o-div">
+							<a href="javascript:;" class="pay-for pay-for-game active" data-payfornum="1"><i></i><span>游戏</span><em></em></a>
+							<a href="javascript:;" class="pay-for pay-for-platform" data-payfornum="2"><i></i><span>9377游戏币</span><em></em></a>
+							<span class="pay-for-tip none">手游暂不支持游戏币充值</span>
+						</div>
+					</div>
+
+					<div class="o-tr tr-select-type clearfix" id="tr-select-type">
+						<label class="o-label">选择游戏：</label>
+						<div class="o-div">
+							<!-- <a href="javascript:;" class="o-select j-select-game">选择充值游戏</a>
+							<a href="javascript:;" class="o-select j-select-serv">选择充值区服</a> -->
+							<select>
+								<option>选择充值游戏</option>
+							</select>
+							<select>
+								<option>选择充值区服</option>
+							</select>
+							<span class="role-status"></span>
+						</div>
+					</div>
+
+					<div class="o-tr clearfix">
+						<label class="o-label">选择金额：</label>
+						<div class="o-div">
+							<div class="pay-money-list">
+								<a href="javascript:;" data-sum="10" class="money-item">10元
+								    <i></i>
+								</a>
+								<a href="javascript:;" data-sum="20" class="money-item">20元
+								    <i></i>
+								</a>
+								<a href="javascript:;" data-sum="50" class="money-item">50元
+								    <i></i>
+								</a>
+								<a href="javascript:;" data-sum="100" class="money-item">100元
+								    <i></i>
+								</a>
+								<a href="javascript:;" data-sum="200" class="money-item">200元
+								    <i></i>
+								</a>
+								<a href="javascript:;" data-sum="300" class="money-item">300元
+								    <i></i>
+								</a>
+								<a href="javascript:;" data-sum="500" class="money-item">500元
+								    <i></i>
+								</a>
+								<a href="javascript:;" data-sum="800" class="money-item">800元
+								    <i></i>
+								</a>
+								<a href="javascript:;" data-sum="1000" class="money-item">1000元
+								    <i></i>
+								</a>
+								<a href="javascript:;" data-sum="2000" class="money-item">2000元
+								    <i></i>
+								</a>
+								<a href="javascript:;" data-sum="3000" class="money-item">3000元
+								    <i></i>
+								</a>
+								<a href="javascript:;" data-sum="5000" class="money-item">5000元
+								    <i></i>
+								</a>
+								<a href="javascript:;" data-sum="10000" class="money-item">10000元
+								    <i></i>
+								</a>
+								<a href="javascript:;" data-sum="20000" class="money-item">20000元
+								    <i></i>
+								</a>
+							</div>
+							<span class="other-money-wp">
+								<span class="other-money-box"> <input type="text" maxlength="10" class="o-input other-money-box" placeholder="请输入其他金额"><i></i></span>元
+							</span>
+							
+							<span id="user-getcoin" class="user-getcoin">
+								您将获得 <strong class="col1" id="game-coin">0</strong> 
+								元宝 (兑换比例 1:<span id="coin-radio">100</span>)
+							</span>
+						</div>
+					</div>	
+
+					<div class="o-tr clearfix">
+						<label class="o-label">&nbsp;</label>
+						<div class="o-div">
+							<a href="#" class="btn-cforder">立即充值</a>
+						</div>
+					</div>
+
+				</div>	
+
+			</div>	
+
+		</div>
+			
+
+	</div>	
+
+</div>
+
+<div class="footer" style="min-height: 300px;">
+	<div class="cont">
+		<div class="links-box">
+		    <div class="remgame-box">
+		        <div class="links-list">
+		            <span>推荐游戏：</span>
+		            <div class="lbox">
+		                <a href="#" target="_blank">神戒</a>
+		                <a href="#" target="_blank">灭神</a>
+		                <a href="#" target="_blank">攻铩</a>
+		                <a href="#" target="_blank">赤月传说Ⅱ</a>
+		                <a href="#" target="_blank">武动苍穹</a>
+		                <a href="#" target="_blank">血饮传说</a>
+		                <a href="#" target="_blank">猛将天下</a>
+		                <a href="#" target="_blank">创世热血战歌</a>
+		                <a href="#" target="_blank">屠龙战记</a>
+		                <a href="#" target="_blank">剑道仙语</a>
+		                <a href="#" target="_blank">雷霆之怒</a>
+		                <a href="#" target="_blank">皇图</a>
+		                <a href="#" target="_blank">烈焰</a>
+		                <a href="#" target="_blank">蓝月传奇</a>
+		                <a href="#" target="_blank">战神风云</a>
+		                <a href="#" target="_blank">魅影传说</a>
+		                <a href="#" target="_blank">乱斗乾坤</a>
+		                <a href="#" target="_blank">传奇世界</a>
+		                <a href="#" target="_blank">赤月传说</a>
+		                <a href="#" target="_blank">传奇荣耀</a>
+		                <a href="#" target="_blank">屠龙传说</a>
+		                <a href="#" target="_blank">九阴绝学</a>
+		                <a href="#" target="_blank">传奇盛世</a>
+		                <a href="#" target="_blank">斗破苍穹2</a>
+		                <a href="#" target="_blank">红月传说</a>
+		                <a href="#" target="_blank">天书世界</a>
+		            </div>
+		        </div>
+		        <a href="javascript:;" class="more"></a>
+		    </div>
+		    <div class="friends-box">
+		        <div class="links-list">
+		            <span>友情链接：</span>
+		            <div class="lbox">
+		                <a href="#" target="_blank">网页游戏</a>
+		                <a href="#" target="_blank">9377手游</a>
+		                <a href="#" target="_blank">360游戏</a>
+		                <a href="#" target="_blank">游侠页游</a>
+		                <a href="#" target="_blank">太平洋页游</a>
+		                <a href="#" target="_blank">腾讯游戏</a>
+		                <a href="#" target="_blank">A9VG</a>
+		                <a href="#" target="_blank">9K9K开服表</a>
+		                <a href="#" target="_blank">2243手游网</a>
+		                <a href="#" target="_blank">软件侠</a>
+		                <a href="#" target="_blank">快吧游戏</a>
+		                <a href="#" target="_blank">游戏交易平台</a>
+		                <a href="#" target="_blank">手游交易</a>
+		                <a href="#" target="_blank">ns游戏</a>
+		                <a href="#" target="_blank">加速器</a>
+		                <a href="#" target="_blank">网页游戏</a>
+		                <a href="#" target="_blank">9377手游</a>
+		                <a href="#" target="_blank">360游戏</a>
+		                <a href="#" target="_blank">游侠页游</a>
+		                <a href="#" target="_blank">太平洋页游</a>
+		                <a href="#" target="_blank">腾讯游戏</a>
+		                <a href="#" target="_blank">A9VG</a>
+		                <a href="#" target="_blank">9K9K开服表</a>
+		                <a href="#" target="_blank">2243手游网</a>
+		                <a href="#" target="_blank">软件侠</a>
+		                <a href="#" target="_blank">快吧游戏</a>
+		                <a href="#" target="_blank">游戏交易平台</a>
+		                <a href="#" target="_blank">手游交易</a>
+		                <a href="#" target="_blank">ns游戏</a>
+		                <a href="#" target="_blank">加速器</a>
+		            </div>
+		        </div>
+		        <a href="javascript:;" class="more"></a>
+		    </div>
+		</div>
+
+		<div class="coinfo">
+		    <a href="#" title="网页游戏" class="logo fl">
+		        <img src="./images/default/logo.png" width="100">
+		    </a>
+		    <div class="info fl">
+		        <div class="about">
+		            <a href="#" rel="nofollow" target="_blank">关于我们</a>
+		            <!-- <a href="http://hr.9377.com/" rel="nofollow" target="_blank">人才招聘</a> -->
+		            <a href="#" rel="nofollow" target="_blank">用户协议</a>
+		            <a href="#" rel="nofollow">友情链接联系</a>
+		            <a href="#" rel="nofollow">客服中心</a>
+		            <a href="http://www.9377.com/zjjh/" rel="nofollow" target="_blank">家长监护</a>
+		        </div>
+		        <div class="copyright">
+		            <p>北京方游网络科技有限公司 （FYGAMES）&nbsp;
+		                <a href="#" target="_blank">京网文[2016]0803-075号</a>&nbsp;
+		                <a href="#" target="_blank">京ICP备15058487号-3</a></p>
+		            <p>
+		                <a href="#" target="_blank">电信增值业务经营许可证：京ICP证160501号</a>联系电话(7x24)：010-86464875-分机826</p>
+		            <p>公司地址：北京市大兴区亦庄经济开发区亦城国际A座-816</p>
+		            <!-- <p>
+		            	9377
+		                <a href="#">网页游戏</a>平台 文化部网络游戏举报和联系电子邮箱：
+		                <a href="#" rel="nofollow">wlwh@vip.sina.com</a>
+		                <span class="col1 ml10">本站适龄提示：适合18岁以上使用。</span>
+		            </p> -->
+		            <p style=" margin-top: 0px;">Copyright 2013-20120 fangyoucn.com | Fy Network Technology Co., Ltd All Rights Reserved. 北京方游网络科技有限公司 （FYGAMES）</p>
+		            <p style="color:#a1a1a1; margin-top: 10px;">抵制不良网页游戏，拒绝盗版游戏。&nbsp;注意自我保护，谨防受骗上当。&nbsp;适度游戏益脑，沉迷游戏伤身。&nbsp;合理安排时间，享受健康生活。</p>
+		        </div>
+		    </div>
+		    <!-- <div class="legal-list">
+		        <a href="#" class="legal-4" rel="nofollow" target="_blank">公共信息安全<br>网络检查</a>
+		        <a href="#" class="legal-3" rel="nofollow" target="_blank">沪公网安备<br>31011402005021</a>
+		        <a href="#" class="legal-2" rel="nofollow" target="_blank">上海工商行<br>政管理局</a>
+		        <a href="#" class="legal-1" rel="nofollow" target="_blank">互联网文化<br>经营单位</a>
+		    </div> -->
+		</div>
+
+	</div>
+</div>
+
+
+<!-- jquery引用方式--> 
+<script src="js/jquery-1.9.1.min.js"></script>
+
+<!-- 公共js --> 
+<script src="js/common.js"></script>
+<!-- 页面私有js --> 
+<script src="js/recharge.js"></script>
+
+</body>
+</html>
+
+
+

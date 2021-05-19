@@ -1,0 +1,327 @@
+
+.content{
+    width: 100%;
+    padding-bottom: 50px;
+    background-color: #f3f3f3;
+}
+
+.content .mod{ 
+    padding-top: 12px;
+}
+
+.mod-tit{
+    width: 100%;
+    color: #545454;
+    font-size: 18px;
+    font-weight: bold;
+    height: 50px;
+    padding: 0px;
+    margin: 30px 0 5px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+.mod-tit .titlename{
+	height: 50px;
+	display: flex;
+    align-items: center;
+}
+
+.mod-tit .titlename i{
+    display: inline-block;
+    width: 3px;
+    height: 18px;
+    margin-right: 10px;
+    background: #FF6600; 
+}
+
+.mod-tit .titlename span{
+	line-height: 30px;
+}
+
+.mod-tit .more{
+    font-size: 13px;
+    color: #999;
+    margin-right: 30px;
+}
+
+/*game-list*/
+.mod .mod-gamelist{
+	width: 880px;
+}
+
+.game-list-view{
+	margin-top: 10px;
+}
+
+.game-list-view .column_classify{background:#fff;padding:16px 20px; border-top: 3px solid #ff6600; box-sizing: border-box;}
+.game-list-view .column_classify .tabs_label{position: relative;padding-left: 70px; line-height:20px}
+.game-list-view .column_classify .tabs_label label{position: absolute;top:0px;left:0;font-size: 13px;color:#666;display: inline-block;margin: 4px 0;}
+.game-list-view .column_classify .tabs_label a{font-size: 13px;color:#333;margin-right: 10px;padding:0px 8px;display: inline-block;margin: 4px 0;}
+.game-list-view .column_classify .tabs_label a.active{color:#ff6600;}
+
+.tools{margin:20px 0 15px 0; padding: 0 20px; box-sizing: border-box;}
+.tools .tab .item{width:70px;height:24px;text-align: center;line-height:24px;float:left;border:1px solid #DBDBDB;margin-right:10px;border-radius: 12px;font-size:13px;color:#666;margin-top:4px;cursor:pointer}
+.tools .tab .item i.fa{color:#B3B3B3;font-size:14px; margin-right: 5px;}
+.tools .tab .item.active{background:#FF6600;color:#fff;border-color:#FF6600}
+.tools .tab .item.active i.fa{color:#fff}
+.tools .search_bar {width: 158px;float: right;height: 28px;border:1px solid #DBDBDB;background:#fff}
+.tools .search_bar .search_ipt {width: 128px;height: 28px;line-height: 28px;text-indent: 12px;font-size: 13px;color: #a3a3a3;outline: none;float: left; border:none; box-sizing: border-box;}
+.tools .search_bar .search_btn {width: 30px;height: 28px;cursor: pointer;border:none;background:url(../images/search_ico.png) no-repeat 5px 5px;float: left;}
+
+.game_list{background:#fff;padding:20px}
+.game_list li {width:100%;position:relative;margin-bottom: 20px;}
+.game_list li .item-v{border:1px solid #E8E8E8;padding:10px;height:140px}
+.game_list li .item-v .gimg img{vertical-align: middle;}
+.game_list li .item-v .gimg .img_info{position:absolute;top:0;left:0;padding:26px 0 0 26px}
+.game_list li .item-v .gimg .img_info .gname{font-size:15px;color:#333;font-weight: bold;margin-bottom: 12px;}
+.game_list li .item-v .gimg .img_info .txt{font-size:13px;color:#666;margin-bottom: 3px;}
+.game_list li .item-v .gimg .img_info .ico {
+	display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 10px;
+}
+.game_list li .item-v .gimg .img_info .ico span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    line-height: 24px;
+}
+
+.game_list li .item-v .gimg .img_info .ico span.hotico {
+    background: #FF6600;
+}
+
+.game_list li .item-v .gimg .img_info .ico span.newico {
+    background: #4DC46A;
+}
+
+.game_list li .item-v .gimg .img_info .ico span font {
+    transform: scale(0.75);
+    display: block;
+    margin-left: -1px;
+}
+
+.game_list li .item-v .gimg .img_info .play {
+    position: relative;
+    width: 0px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    background: #FF6600;
+    font-size: 13px;
+    color: #fff;
+    border-radius: 12px;
+    top: -28px;
+    opacity: 0;
+    filter: Alpha(opacity=0);
+    transition: all .2s;
+}
+
+.game_list li .item-v .gimg:hover .img_info .play{
+    width:80px;
+    opacity:1;
+    filter:Alpha(opacity=100);
+    cursor: pointer;
+}
+
+.game_list li .item-v .ginfo{width:450px;margin-left:20px}
+.game_list li .item-v .ginfo.webinfo{width:518px}
+.game_list li .item-v .ginfo.webinfo .gtype{margin-top: 15px;}
+.game_list li .item-v .ginfo.webinfo .gtype .play{float:right}
+.game_list li .item-v .ginfo.webinfo .gtype .wd_down{float:right;height: 32px;line-height: 32px;background: #F2F2F2;color: #666;font-size: 15px;padding: 0 15px;border-radius: 4px;margin-right: 5px;}
+.game_list li .item-v .ginfo.webinfo .gtype .wd_down:hover{color:#333;background:#EAEAEA}
+.game_list li .item-v .ginfo .gname{line-height:35px;color:#333;font-size:20px;font-weight: bold;}
+.game_list li .item-v .ginfo .hotico{float:left;display: inline-block;*display: inline;*zoom:1;width:35px;height:16px;background:url(../images/type-ico.png) no-repeat;margin:10px 0 0 10px}
+.game_list li .item-v .ginfo .bili{line-height:35px;color:#ff3a3a;font-size: 14px;font-weight: bold}
+.game_list li .item-v .ginfo .fuli{line-height:23px;color:#666;font-size: 13px;margin-top:5px;height:46px;text-overflow: -o-ellipsis-lastline;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;line-clamp: 2;-webkit-box-orient: vertical;}
+.game_list li .item-v .ginfo .gtype .type{float:left;height:30px;line-height:30px;border:1px solid #E6E6E6;border-radius: 4px;padding:0 10px;margin-right:5px;font-size:13px;color:#666; cursor: default;}
+.game_list li .item-v .ginfo .gtype .type:hover{border-color:#FFA800;color:#ffa800}
+.game_list li .item-v .ginfo .gtype .play{float:left;height:32px;line-height:32px;background:#FFD300;color:#000;font-size:15px;padding:0 15px;border-radius: 4px;margin-right:5px}
+.game_list li .item-v .ginfo .gtype .play:hover{background:#FFEA00}
+.game_list li .item-v .glibao{margin:-10px -10px -10px 0;width:120px;height:158px;border-left:1px solid #E8E8E8;background: url(../images/libao-ico.png) no-repeat center 15px;text-align: center;}
+.game_list li .item-v .glibao:hover{background-position:center -160px}
+.game_list li .item-v .glibao a{display: inline-block;*display: line;*zoom:1;width:78px;height:26px;border:1px solid #E1E1E1;text-align: center;line-height: 24px;margin-top:112px}
+.game_list li .item-v .glibao a:hover{background:#FF7225;color:#fff;border-color:#FF7225}
+.game_list li .item-v .glibao a.nolibao{border:1px solid #E1E1E1;background:#E1E1E1;color:#999}
+.game_list li:hover .item-v{border-color:#FF8C25}
+.game_list li.nodata {width: 100%;border:none;text-align: center;color: #ccc;height: 30px;line-height: 30px;}
+
+.game_list .bty_icon{width: 50px;height: 50px;background: url("../images/icon.png") -52px -8px;display: inline-block;position: absolute;left: 0;top: 0;}
+.game_list .mvy_icon{width: 50px;height: 50px;background: url("../images/icon.png") -152px -8px;display: inline-block;position: absolute;left: 0;top: 0;}
+
+/*列表大图*/
+.game_list.picture{background:#F3F3F3;padding:0;margin-left:-20px}
+.game_list.picture li {width:auto;position:relative;margin-bottom: 18px;margin-left:18px;float:left}
+.game_list.picture li .item-v{border:1px solid transparent;padding:0px;width:280px;height:140px}
+.game_list.picture li .item-v .ginfo{display: none;}
+
+/*pages-start*/
+.paging{height:30px;line-height:30px;text-align:center; font-size:14px;margin-top: 30px;margin-bottom: 20px;}
+.paging a,.paging span{display:inline-block;border:1px solid #dedede;height:20px;line-height:28px;padding:0 10px; margin:0 3px;  cursor:pointer;vertical-align: middle;color: #666;}
+.paging i.fa{font-size:18px;font-weight: bold;line-height: 28px;}
+
+.paging a:hover{color:#666; text-decoration:none; background:#e4e1e1;}
+.paging span{background:#ff6600;color:#fff;border:1px solid #ff6600;}
+.paging a.cur{color:#fff; text-decoration:none; background:#ff6600;border:1px solid #ff6600;}
+/*pages-end*/
+
+/*开服模块*/
+.mod .mod-gameopen{
+	width: 300px;
+}
+
+.game-open{
+	background-color: #fff;
+	padding: 15px 0;
+    border-top: 3px solid #ff6600;
+    margin-top: 10px;
+}
+
+.game-open .game-open-tabs {
+    margin-bottom: 12px;
+    padding: 0;
+    /*border-bottom: 1px solid #F78F33;*/
+}
+
+
+.game-open .game-open-tabs dd {
+    width: 80px;
+    margin: 0 10px;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+    float: left;
+    background: #fff;
+    border: 0;
+    border: 1px solid #E3E3E3;
+    height: 30px;
+    line-height: 30px;
+    color: #565656;
+    box-sizing: border-box;
+}
+
+
+.game-open .game-open-tabs dd.active {
+    border-color: #FF8533;
+    background: #fff;
+    color: #FF8533;    
+}
+
+.game-open .game-open-tabs dd:first-child {
+    /*border: 0;*/
+}
+
+.game-open ul{
+    max-height: 782px;
+    overflow: hidden;
+}
+
+.game-open ul li {
+    float: left;
+    width: 300px;
+    height: 46px;
+    padding: 0px 15px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.game-open ul li .bd {
+    border-bottom: 1px dashed #E2E2E2;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    line-height: 46px;
+    font-size: 13px;
+    color: #333;
+}
+
+.game-open ul li:first-child .bd {
+    border-top: 1px dashed #E2E2E2;
+}
+
+.game-open ul li .date {
+    width: 100px;
+    font-size: 12px;
+}
+
+.game-open ul li em.ico{
+    display: inline-block;
+    width: 14px;
+    height: 16px;
+    margin: 14px 3px 0 5px;
+}
+
+.game-open ul li.zhiding em.ico{background:url(../images/zhiding_icon.png) no-repeat;}
+.game-open ul li.tuijian em.ico{background:url(../images/g_hot.gif) no-repeat;}
+.game-open ul li.zhiding{background:#fffef8}
+
+.game-open ul li .gname {
+    font-size: 14px;
+    color: #333;
+    margin-right: 5px;
+    display: inline-block;
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.game-open ul li .gline {
+    /*width: 30px;*/
+    text-align: right;
+    position: relative;
+    color: inherit;
+}
+
+.game-open ul li.zhiding,.game-open ul li.zhiding .gline{color:#e31414;}
+.game-open ul li.zhiding .gname{color:#ff1b1b;}
+.game-open ul li.zhiding .bd{border-color:#F4DF7C}
+.game-open ul li.now .date{color:#ff6666}
+.game-open ul li.nodata {color:#999;text-align: center;width:100%;padding:20px 0}
+.game-open ul li:hover{background:#E5FEFF;}
+.game-open ul li:hover .gline:after{content:'\5f00\59cb';position:absolute;top:10px;right:0;background:#0081E4;color:#fff;font-size:13px;width:52px;height:24px;text-align:center;line-height:24px;border-radius: 2px;}
+
+.open_page{margin-top:12px;text-align: center;}
+.open_page span{display: inline-block;*display: inline;*zoom:1;width:16px;height:16px;color:#747474;font-size:13px;text-align: center;line-height:16px;border-radius:2px;margin-left:10px;cursor: pointer;border:1px solid #E8E8E8}
+.open_page span.on{background:#FF6600;border-color: #FF6600;color:#fff;}
+
+.game-open .bili-fuli {
+    display: none;
+    position: absolute;
+    right: -260px;
+    top: -24px;
+    border: 2px solid #FF6C6C;
+    width: 228px;
+    min-height: 60px;
+    background: #FFFBDB;
+    padding: 10px;
+}
+
+.game-open .bili-fuli .bili {
+    color: #f20000;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.game-open .bili-fuli .fuli {
+    color: #832b00;
+    font-size: 12px;
+    line-height: 18px;
+    margin-top: 5px;
+}
+
+/*分页布局样式*/
+.open_pages{
+    text-align:center;
+}

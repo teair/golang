@@ -1,0 +1,579 @@
+﻿
+
+/*index*/
+.content{
+    width: 100%;
+    padding-bottom: 50px;
+}
+.content .mod{ 
+    padding-top: 12px;
+}
+.mod-tit{
+    width: 100%;
+    color: #545454;
+    font-size: 22px;
+    font-weight: bold;
+    height: 50px;
+    padding: 30px 0 5px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+.mod-tit .titlename{
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.mod-tit .titlename i{
+    display: inline-block;
+    width: 5px;
+    height: 20px;
+    margin-right: 10px;
+    background: #fe6517;  
+}
+
+.mod-tit .titlename span{
+    line-height: 30px;
+}
+
+.mod-tit .more{
+    font-size: 13px;
+    color: #999;
+    margin-right: 30px;
+}
+
+/*reco*/
+.mod-reco{
+    width: 900px;
+}
+
+.mod-reco ul{
+    height: 260px;
+    overflow: hidden;
+}
+
+.mod-reco ul li{
+    float: left;
+    width: 205px;
+    height: 260px;
+    margin-right: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.mod-reco ul li .tit{
+    width: 100%;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    background: rgba(0,0,0,0.6);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#6c000000',endColorstr='#6c000000');
+    position: absolute;
+    left: 0;
+    top: 226px;
+}
+
+.mod-reco ul li .moved {
+    transition: all .5s ease-in-out 0s;
+}
+
+/* .mod-reco ul li .imgHover {
+    width: 181px;
+    height: 58px;
+    padding: 10px 12px;
+    background: rgba(0,0,0,0.6);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#6c000000',endColorstr='#6c000000');
+    position: absolute;
+    left: 0;
+    top: 260px;
+    color: #b8b8b8;
+} */
+.mod-reco ul li .imgHover {
+    width: 203px;
+    height: 100px;
+    padding: 10px 12px;
+    background: rgba(0,0,0,0.6);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#6c000000',endColorstr='#6c000000');
+    position: absolute;
+    left: 0;
+    top: 270px;
+    color: #b8b8b8;
+}
+
+.imgHover p {
+    padding-bottom: 10px;
+    text-align: right;
+}
+
+.imgHover .name {
+    width: 100px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+    float: left;
+    text-align: left;
+}
+
+.imgHover .role {
+    width: 80px;
+    color: #999;
+    font-size: 14px;
+}
+
+.imgHover .role i {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.imgHover .links {
+    float: left;
+    line-height: 24px;
+    font-size: 14px;
+    width: 100px;
+    overflow: hidden;
+    text-align: left;
+}
+
+.imgHover a {
+    color: #b8b8b8;
+}
+
+.imgHover .links em {
+    margin: 0 5px;
+    color: #999;
+}
+
+.imgHover .goBtn {
+    width: 75px;
+    height: 24px;
+    font-size: 14px;
+    display: inline-block;
+    background: url(http://p8.yx-s.com/t016ba8f7f344947044.png) 0 -49px no-repeat;
+    text-align: center;
+    line-height: 24px;
+    color: #fff;
+} 
+
+.mod-reco ul li:hover .imgHover {
+    top: 182px;
+    transition: all .5s ease-in-out .2s;
+}
+
+.mod-reco ul li:hover .tit {
+    top: 260px;
+    transition: all .5s ease-in-out 0s;
+}
+
+/*news*/
+.mod-news{
+    width: 300px;
+}
+
+.news-list{
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.news-list li{
+    font-size: 12px;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    padding-left: 15px;
+    /*background: url(../images/middot.png) left center no-repeat;*/
+}
+
+.news-list li a {
+    text-decoration: none;
+    color: #3c3c3c;
+}
+
+.news-list li:hover a {
+    color: #f25277;
+}
+
+
+/*hot*/
+.mod-hot{
+    width: 900px;
+}
+.mod-hot ul{
+    max-height: 850px;
+    overflow: hidden;
+}
+.mod-hot ul li{
+    float: left;
+    width: 280px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border:1px solid #fff;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.mod-hot ul li:hover{
+    border-color:#FF6600;
+}
+
+.mod-hot ul li img{
+    width: 100%;
+    height: 100%;
+}
+
+.mod-hot ul li .ginfo{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 13px 0 0 13px;
+    box-sizing: border-box;
+}
+
+.mod-hot ul li .ginfo .gname {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.mod-hot ul li .ginfo .txt {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 5px;
+
+}
+
+.mod-hot ul li .ginfo .ico {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 13px;
+}
+
+.mod-hot ul li .ginfo .ico span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    line-height: 24px;
+}
+
+.mod-hot ul li .ginfo .ico span.hotico {
+    background: #FF6600;
+}
+
+.mod-hot ul li .ginfo .ico span.newico {
+    background: #4DC46A;
+}
+
+.mod-hot ul li .ginfo .ico span font {
+    transform: scale(0.75);
+    display: block;
+    margin-left: -1px;
+}
+
+.mod-hot ul li .ginfo .play {
+    position: relative;
+    width: 0px;
+    height: 25px;
+    line-height: 24px;
+    text-align: center;
+    background: #FF6600;
+    font-size: 13px;
+    color: #fff;
+    border-radius: 12px;
+    top: -29.9px;
+    opacity: 0;
+    filter: Alpha(opacity=0);
+    transition: all .2s;
+}
+
+.mod-hot ul li:hover .ginfo .play{
+    width:80px;
+    opacity:1;
+    filter:Alpha(opacity=100);
+    cursor: pointer;
+}
+
+/*open*/
+.mod-open{
+    width: 300px;
+    background: #F7F7F7;    
+}
+
+.mod-open{
+
+}
+
+.mod-open .mod-open-tabs {
+    margin-bottom: 12px;
+    padding: 0;
+    border-bottom: 1px solid #F78F33;
+}
+
+
+.mod-open .mod-open-tabs dd {
+    width: 100px;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+    float: left;
+    background: #ECECEC;
+    border: 0;
+    border-left: 1px solid #DBDBDB;
+    height: 36px;
+    line-height: 36px;
+    color: #565656;
+    box-sizing: border-box;
+}
+
+
+.mod-open .mod-open-tabs dd.active {
+    border-color: #FF8533;
+    background: #F78F33;
+    color: #fff;    
+}
+
+.mod-open .mod-open-tabs dd:first-child {
+    border: 0;
+    width: 100px;
+}
+
+.mod-open ul{
+    max-height: 782px;
+    overflow: hidden;
+}
+
+.mod-open ul li {
+    float: left;
+    width: 300px;
+    height: 46px;
+    padding: 0px 15px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.mod-open ul li .bd {
+    border-bottom: 1px dashed #E2E2E2;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    line-height: 46px;
+    font-size: 13px;
+    color: #333;
+}
+
+.mod-open ul li:first-child .bd {
+    border-top: 1px dashed #E2E2E2;
+}
+
+.mod-open ul li .date {
+    width: 100px;
+    font-size: 12px;
+}
+
+.mod-open ul li em.ico{
+    display: inline-block;
+    width: 14px;
+    height: 16px;
+    margin: 14px 3px 0 5px;
+}
+
+.mod-open ul li.zhiding em.ico{background:url(../images/zhiding_icon.png) no-repeat;}
+.mod-open ul li.tuijian em.ico{background:url(../images/g_hot.gif) no-repeat;}
+.mod-open ul li.zhiding{background:#fffef8}
+
+.mod-open ul li .gname {
+    font-size: 14px;
+    color: #333;
+    margin-right: 5px;
+    display: inline-block;
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mod-open ul li .gline {
+    /*width: 30px;*/
+    text-align: right;
+    position: relative;
+    color: inherit;
+}
+
+.mod-open ul li.zhiding,.mod-open ul li.zhiding .gline{color:#e31414;}
+.mod-open ul li.zhiding .gname{color:#ff1b1b;}
+.mod-open ul li.zhiding .bd{border-color:#F4DF7C}
+.mod-open ul li.now .date{color:#ff6666}
+.mod-open ul li.nodata {color:#999;text-align: center;width:100%;padding:20px 0}
+.mod-open ul li:hover{background:#E5FEFF;}
+.mod-open ul li:hover .gline:after{content:'\5f00\59cb';position:absolute;top:10px;right:0;background:#0081E4;color:#fff;font-size:13px;width:52px;height:24px;text-align:center;line-height:24px;border-radius: 2px;}
+
+
+.mod-open .bili-fuli {
+    display: none;
+    position: absolute;
+    right: -260px;
+    top: -24px;
+    border: 2px solid #FF6C6C;
+    width: 228px;
+    min-height: 60px;
+    background: #FFFBDB;
+    padding: 10px;
+}
+
+.mod-open .bili-fuli .bili {
+    color: #f20000;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.mod-open .bili-fuli .fuli {
+    color: #832b00;
+    font-size: 12px;
+    line-height: 18px;
+    margin-top: 5px;
+}
+
+/*H5*/
+.mod-h5{
+    width: 900px;
+}
+
+.mod-h5 .rel{
+    width: 280px;
+    height: 140px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff;
+    float: left;
+    position: relative;
+    border: 1px solid #DADADA;
+    box-sizing: border-box;    
+}
+
+.mod-h5 .rel .gimg{
+    display: block;
+}
+
+.mod-h5 .rel .codeimg{
+    display: none;
+}
+
+.mod-h5 .gameinfo {
+    margin-left: 10px;
+    width: 140px;
+}
+
+.mod-h5 .gameinfo .gamename a {
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.mod-h5 .gameinfo .type {
+    color: #999;
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 15px;
+}
+
+.mod-h5 .gameinfo .playbtn a {
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    width: 80px;
+    text-align: center;
+    border: 1px solid #DADADA;
+    border-radius: 15px;
+    color: #666;
+    font-size: 14px;
+}
+
+.mod-h5 .gameinfo .playbtn a:hover{background:#FFCC00;border-color:#FFCC00;color:#996633}
+
+.mod-h5 .rel:hover{
+    border-color:#FFCC00
+}
+
+.mod-h5 .rel:hover .codeimg{
+    display: block;
+}
+
+.mod-h5 .rel:hover .gimg{
+    display: none;
+}
+
+
+/*fast*/
+.mod-fast{
+    width: 300px;
+    background: #F7F7F7;   
+}
+
+.fast-wrap{
+    background: #f7f7f7;
+    padding: 20px;
+    box-sizing: border-box;
+
+}
+
+.hyperchannel div{float:left;width:131px;height: 50px;border:1px solid #EBEBEB;background:#F9F9F9;box-sizing: border-box;margin-right: -1px;margin-bottom: -1px;line-height: 50px;font-size: 14px;text-align: center;}
+.hyperchannel div a{color:#666}
+.hyperchannel div a em{width:18px;height: 18px;display: inline-block;vertical-align: middle;background:url(../images/hyperchannel.png?v=1) no-repeat}
+.hyperchannel div a span{vertical-align: middle;margin-left:8px}
+.hyperchannel div.item1 em{background-position:0 0}
+.hyperchannel div.item2 em{background-position:0 -43px}
+.hyperchannel div.item3 em{background-position:0 -85px}
+.hyperchannel div.item4 em{background-position:0 -127px}
+.hyperchannel div.item5 em{background-position:0 -168px}
+.hyperchannel div.item6 em{background-position:0 -209px}
+.hyperchannel div.item1:hover em{background-position:-36px 0}
+.hyperchannel div.item2:hover em{background-position:-35px -43px}
+.hyperchannel div.item3:hover em{background-position:-36px -85px}
+.hyperchannel div.item4:hover em{background-position:-35px -127px}
+.hyperchannel div.item5:hover em{background-position:-35px -168px}
+.hyperchannel div.item6:hover em{background-position:-35px -209px}
+.hyperchannel div:hover{background:#FDFDFD}
+.hyperchannel div:hover a{color:#b08255}
+
+.customService{border:1px solid #F1F1F1;height: 110px;background:#FAFAFA url(../images/service_qq.png?v=1) no-repeat 18px 23px}
+.customService .custom{margin:23px 0 0 85px}
+.customService .custom p.qq{font-size:13px;color:#666;margin-bottom:3px}
+.customService .custom p.time{font-size:12px;color:#999;margin-bottom:5px}
+.customService .custom a{display: inline-block; border:1px solid #D1D1D1;color:#989898;padding:2px 10px;height: 22px;line-height: 22px;text-align:center;
+    background: #F9F9F9; font-size: 14px; margin-top: 3px;}
+.customService .custom a:hover{border-color:#19B0FF;color:#19B0FF;background:#fff}
+
+
+
+.clearfix .rel { background: url(../images/middot.png) left center no-repeat; }
+
+/*开服分页样式*/
+.open_page{margin-top:12px;text-align: center;}

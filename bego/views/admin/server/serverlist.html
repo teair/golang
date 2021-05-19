@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>游戏-后台管理系统</title>
+    <!-- 页面公有样式 -->    
+    <link rel="stylesheet" href="/static/admin/vendor/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/static/admin/css/styles.css">
+    <link rel="stylesheet" href="/static/admin/css/sdk.css">
+</head>
+<body class="sidebar-fixed header-fixed">
+<div class="page-wrapper">
+
+    <!-- 头部引入 开始 -->  
+    {include file="public/header" /}
+    <!-- 头部引入 结束 -->
+
+    <div class="main-container">
+        <!-- 侧导航引入 开始 --> 
+        {include file="public/sidebar" /}
+        <!-- 侧导航引入 结束 -->
+
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            对接区服信息列表
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-top-form">
+                                <div class="fl clearfix table-top-btn">
+                                    <button type="button" class="btn btn-primary" id="uploadbtn">上传开服</button>
+                                </div>  
+
+                                <div class="fl clearfix table-top-btn">
+                                    <button type="button" class="btn btn-primary" id="addbtn">添加开服</button>
+                                </div>
+
+                                <div class="fl clearfix table-top-btn">
+                                    <button type="button" class="btn btn-primary" id="serverlist">上传区服信息列表</button>
+                                </div>
+
+                                <div class="fl clearfix table-top-btn">
+                                    <button type="button" class="btn btn-primary" id="seradd">添加区服信息</button>
+                                </div>
+
+                                <div class="fl clearfix table-top-btn">
+                                    <button type="button" class="btn btn-primary" id="serverinfo">上传区服信息</button>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>区服ID</th>
+                                        <th>区服名称</th>
+                                        <th>开服日期</th>
+                                        <th>游戏GID</th>
+                                        <th>创建时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="list">
+                                        {foreach $serverlist as $v}
+                                        <tr>
+                                            <td>{$v.id}</td>
+                                            <td>{$v.serverid}</td>
+                                            <td>{$v.servername}</td>
+                                            <td>{$v.server_time}</td>
+                                            <td>{$v.gid}</td>
+                                            <td>{$v.create_time}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-outline-warning serupdate" id='{$v.id},{$v.gid}'>修改</button>
+                                                <button type="button" class="btn btn-outline-danger serdel" id='{$v.id}'>删除</button>
+                                            </td>
+                                        </tr>
+                                        {/foreach}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--分页样式公共部分-->
+                            <div class="re-page clearfix" >
+                                <dl>
+                                    {$serverlist->render()}
+                                </dl>
+                            </div>
+                            <!--分页样式公共部分-->
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/static/admin/vendor/jquery/jquery-3.4.1.min.js"></script>
+<script src="/static/admin/vendor/popper.js/popper.min.js"></script>
+<script src="/static/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/admin/js/carbon.js"></script>
+<script src="/static/admin/js/demo.js"></script>
+<!-- 页面配置项 -->
+<script src="/static/admin/js/config/config.js"></script>
+<!-- 页面公有 -->
+<script src="/static/admin/js/sdk.js"></script>
+<!-- 页面插件加载 -->
+<!-- 弹出层 -->
+<script src="/static/admin/vendor/layer/layer.js"></script>
+<script src="/static/admin/js/config/layer-config.js"></script>
+<!-- 页面私有 -->
+<!-- <script type="text/javascript" src="./js/private/distribute.js"></script> -->
+<script type="text/javascript">
+    $("#addbtn").click(function(){
+        // alert('添加开服');
+        window.location.href="/Server/serveradd"
+    })
+
+    $("#uploadbtn").click(function(){
+        // alert('上传开服!');
+        window.location.href="/Server/upserver";
+    })
+
+    $('#serverinfo').click(function(){
+        // alert('??????');
+        window.location.href="/Server/serverinfo";
+    })
+
+    $("#serverlist").click(function(){
+        window.location.href="/Server/serverlist";
+    })
+
+    // 修改对接区服信息
+    $('.serupdate').click(function(){
+        var data  = $(this).attr('id');
+        var datas = data.split(',');
+        var gid = datas[1];
+        var id = datas[0];
+        window.location.href="/Server/editserver/id/" + id + '/gid/' + gid;
+    })
+
+    // 删除区服信息
+    $('.serdel').click(function(){
+        var id = $(this).attr('id');
+        layer.confirm('确定要删除吗？',function(){
+            // alert(id);return false;
+            window.location.href="/Server/delserver/id/" + id;
+        })
+    })
+
+    // 添加区服信息
+    $('#seradd').click(function(){
+        window.location.href="/Server/editserver";
+    })
+</script>
+
+</body>
+</html>

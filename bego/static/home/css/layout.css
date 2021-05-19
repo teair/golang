@@ -1,0 +1,44 @@
+﻿/* 初始CSS  */
+@charset "utf-8";
+body, h1, h2, h3, h4, h5, h6, h7, h8, h9, h10 blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; } 
+body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; font-family:"Microsoft YaHei", SimSun, Arial, Helvetica, sans-serif} 
+h1, h2, h3, h4, h5, h6, h7, h8, h9, h10{ font-size:100%; } 
+address, cite, dfn, em, var { font-style:normal; } 
+code, kbd, pre, samp { font-family:couriernew, courier, monospace; } 
+small{ font-size:12px; } 
+ul, ol { list-style:none; } 
+ul,ol,li { list-style-type: none;display: block;}
+sup { vertical-align:text-top; } 
+sub{ vertical-align:text-bottom; } 
+legend { color:#000; } 
+em{font-style:normal} 
+fieldset, img { border:0; } 
+button, input, select, textarea { font-size:100%; } 
+
+/*表格的 table样式*/
+table { border-collapse:collapse; border-spacing:0; } 
+
+/* a 标签的样式*/
+a{ text-decoration:none; } 
+/*a:hover { text-decoration:underline;}*/ /* 当有鼠标悬停在链接上 */
+/*a:link{color:#000;}*/ /* 未访问的链接 */
+/*a:visited{color:#666;}*/ /* 已访问的链接 */
+/*a:active {color:yellow;}*/ /* 被选择的链接 */
+
+/* clearfix CSS */
+.clearfix { zoom:1;}
+.clearfix:after { content:".";display:block;clear:both;height:0;overflow:hidden;visibility:hidden;}
+
+/* 浮动tool CSS */
+.fl{ float:left}
+.fr{ float:right}
+
+/* margin */
+.no-ml{ margin-left:0 !important;}
+.no-mr{ margin-right:0 !important;}
+.no-mt{ margin-top:0 !important;}
+.no-mb{ margin-bottom:0 !important;}
+
+/*content*/
+.cont{ width: 1200px; height: 100%; margin: 0 auto; }
+

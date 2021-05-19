@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>游戏-后台管理系统</title>
+    <!-- 页面公有样式 -->    
+    <link rel="stylesheet" href="/static/admin/vendor/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/static/admin/css/styles.css">
+    <link rel="stylesheet" href="/static/admin/css/sdk.css">
+ 
+</head>
+<body class="sidebar-fixed header-fixed">
+<div class="page-wrapper">
+
+    <!-- 头部引入 开始 -->  
+    {include file="public/header" /}
+    <!-- 头部引入 结束 -->
+
+    <div class="main-container">
+        <!-- 侧导航引入 开始 --> 
+        {include file="public/sidebar" /}
+        <!-- 侧导航引入 结束 -->
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header bg-light">
+                                统计代码
+                            </div>
+                            
+                            <form action='/Website/scriptadd' method='post'>
+                                <div class="card-body p-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">统计代码</label>
+                                                        <textarea class="form-control" style="height: 300px;" name='calcode' id='text'></textarea>
+                                                        <small class="form-text">
+                                                            <br>
+                                                            统计代码用途说明：<br><br>
+
+                                                            通过统计代码的植入可以在百度统计后台观测、分析到网站的时时数据清楚了解通过推广给网站带来的时时数据，方便渠道更好的运营网站！<br><br>
+
+                                                            统计代码设置步骤：<br><br>
+
+                                                            1、登录 tongji.baidu.com<br><br>
+
+                                                            2、注册百度统计账号登录<br><br>
+
+                                                            3、点击上方导航栏-【管理】<br><br>
+
+                                                            4、选择【新增网站】填写信息提交<br><br>
+
+                                                            5、生成统计代码复制后粘贴保存<br><br>
+
+                                                            6、后续登录百度统计账号查看数据<br><br>
+
+                                                            注:请输入完整代码(带'script')
+                                                            </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="card-footer px-4 text-left">
+                                    <button type="submit" class="btn btn-primary px-4" id="sub">确认提交</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/static/admin/vendor/jquery/jquery-3.4.1.min.js"></script>
+<script src="/static/admin/vendor/popper.js/popper.min.js"></script>
+<script src="/static/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/admin/js/carbon.js"></script>
+<script src="/static/admin/js/demo.js"></script>
+<!-- 页面外部调用JS -->
+
+<!-- 页面配置项 -->
+<script src="/static/admin/js/config/config.js"></script>
+<!-- 页面公有 -->
+<script src="/static/admin/js/sdk.js"></script>
+<!-- 页面插件加载 -->
+<!-- 弹出层 -->
+<script src="/static/admin/vendor/layer/layer.js"></script>
+<script src="/static/admin/js/config/layer-config.js"></script>
+<!-- 页面私有 -->
+<script type="text/javascript">
+    
+    $(function(){
+        var calcode = "<?php echo $calcode; ?>";
+        $('#text').html(calcode);
+    })
+
+
+</script>
+
+</body>
+</html>
+

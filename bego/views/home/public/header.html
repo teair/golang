@@ -1,0 +1,96 @@
+
+<div class="header" style="">
+    <div class="cont clearfix">
+      	<div class="fl">
+	        <div class="h_logo">
+				<?php if (isset($logo)) { ?>
+	        		<img src="http://download.qwyouxi.com/{$logo['osspath']}" alt="">
+	        	<?php }else{ ?>
+	        		<a href="#" style=""></a>
+	        	<?php } ?>
+	        </div>
+	        <div class="h_list">
+            	<ul class="clearfix">
+              		<li>
+              			{if condition = "$cur eq 1"}
+                  		<a href="/Index/index" class="cur">首页</a>
+                  		{else /}
+                  		<a href="/Index/index">首页</a>
+                  		{/if}
+                  		<i>|</i>
+              		</li>
+              		<li>
+              			{if condition = "$cur eq 2"}
+	                  	<a href="/Game/index" class="cur">游戏中心</a>
+	                  	{else /}
+	                  	<a href="/Game/index" class="">游戏中心</a>
+	                  	{/if}
+	                  	<i>|</i>
+	              	</li>
+	              	<li>
+	              		{if condition = "$cur eq 3"}
+	                  	<a href="/User/index" class="cur">用户中心</a>
+	                  	{else /}
+	                  	<a href="/User/index" class="">用户中心</a>
+	                  	{/if}
+	                  	<i>|</i>
+	              	</li>
+	              	<li>
+	              		{if condition = "$cur eq 4"}
+	                	<a href="/Server/index" class="cur">开服中心</a>
+	                	{else /}
+	                	<a href="/Server/index" class="">开服中心</a>
+	                	{/if}
+	                  	<i>|</i>
+	              	</li>
+	              	<li>
+	              		{if condition = "$cur eq 5"}
+	                	<a href="/Service/index" class="cur">客服中心</a>
+	                	{else /}
+	                	<a href="/Service/index" class="">客服中心</a>
+	                	{/if}
+	                  	<i>|</i>
+	              	</li>
+	              	<li>
+	              		{if condition = "$cur eq 6"}
+	                	<a href="/Recharge/index" class="cur">充值中心</a>
+	                	{else /}
+	                	<a href="/Recharge/index" class="">充值中心</a>
+	                	{/if}
+	              	</li>
+            	</ul>
+	        </div>
+      	</div>
+	    <div class="h_right clearfix fr">
+	    	<div class="menu fl">
+			  	<a class="log_btn" href="/User/Index" >登录</a> |
+			  	<a class="reg_btn" href="/User/Index" target="_blank">注册</a>
+			</div>
+				
+			<div class="h_line fl"></div>
+
+			<div class="h_addtools fl">
+				<span title="收藏" class=h_cover">
+					<i class="fa fa-star"></i>
+				</span>
+				<div class="h_layer">
+				    <a href="javascript:;" class="a_mod p1">
+				        <i class="fa fa-tv"></i>
+				      	<span>存至桌面</span>
+				    </a>
+				    <a href="javascript:;" class="a_mod p2">
+				      	<i class="fa fa-star"></i>
+				      	<span>收藏本站</span>
+				    </a>
+				    <a href="javascript:;" class="a_mod p3">
+				      	<i class="fa fa-home"></i>
+				      	<span>设为主页</span>
+				  	</a>
+				</div>
+			</div>
+
+	    	
+	    </div>
+
+    </div>
+</div>

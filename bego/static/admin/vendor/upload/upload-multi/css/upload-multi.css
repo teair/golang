@@ -1,0 +1,12 @@
+
+.picbox{ min-height:120px;float:left;}
+.filebox{ width:120px; height:90px; background: url(../images/upload-bj.png) no-repeat 0 0; margin:0; background-size:100%; position:relative; float:left;
+ border-radius:2px; margin:0 20px 0 0;} 
+.filebox:hover{ background: url(../images/upload-bj.png) no-repeat 0 -90px; }
+.filebox input{ display:block; width:100%; height:100%; opacity:0;}
+.showcol{width:120px; height:90px; line-height:90px; border-radius: 2px; margin:0 20px 20px 0; float: left; position: relative;}
+.showcol .imgcol{ width:120px; height:90px; overflow:hidden; border-radius:2px;} 
+.showcol .imgcol img{vertical-align:middle; width:100%;height:100%}
+.delete-btn{ display: block; width:50px; height:30px; border-radius:8px; line-height:30px; text-align:center; color:#fff !important;
+ background:rgba(0,0,0,0.4); cursor: pointer; position:absolute; left:50%; top:50%; margin-left: -25px; margin-top: -15px;} 
+.hide{display: none !important;} 

@@ -1,0 +1,109 @@
+<div class="sidebar">
+            <nav class="sidebar-nav">
+                <ul class="nav">
+                    <li class="nav-title">Navigation</li>
+					
+                    <li class="nav-item nav-dropdown open">
+                        <a href="#" class="nav-link nav-dropdown-toggle nav-link-one">
+                            <i class="fa fa-life-bouy"></i> <span>游戏管理</span> <i class="fa fa-caret-left"></i>
+                        </a>
+
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                            	{if condition = " $active eq 0 "}
+                                <a href="/Index/index" class="nav-link nav-link-two active">
+                            	{else /}
+                            	<a href="/Index/index" class="nav-link nav-link-two">
+                            	{/if}
+                                    <i class="fa fa-th-list"></i> <span>分发管理</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                            	{if condition = " $active eq 1 "}
+                                <a href="/Server/index" class="nav-link nav-link-two active">
+                            	{else /}
+                            	<a href="/Server/index" class="nav-link nav-link-two">
+                            	{/if}
+                                    <i class="fa fa-codepen"></i> <span>开服管理</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                            	{if condition = " $active eq 2 "}
+                                <a href="/Gift/index" class="nav-link nav-link-two active">
+                                {else /}
+                                <a href="/Gift/index" class="nav-link nav-link-two">
+                                {/if}
+                                    <i class="fa fa-gift"></i> <span>礼包管理</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                            	{if condition = " $active eq 3 "}
+                                <a href="/Tag/index" class="nav-link nav-link-two active">
+                                {else /}
+                                <a href="/Tag/index" class="nav-link nav-link-two">
+                                {/if}
+                                    <i class="fa fa-slack"></i> <span>标签管理</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+					{if condition = " $open eq 1 "}
+                    <li class="nav-item nav-dropdown open">
+                    {else /}
+                    <li class="nav-item nav-dropdown">
+                    {/if}
+                        <a href="#" class="nav-link nav-dropdown-toggle nav-link-one">
+                            <i class="fa fa-html5"></i> <span>网站管理</span> <i class="fa fa-caret-left"></i>
+                        </a>
+
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                            	{if condition = "$active eq 4" }
+                                <a href="/Recommend/index" class="nav-link nav-link-two active">
+                                {else /}
+                                <a href="/Recommend/index" class="nav-link nav-link-two">
+                                {/if}
+                                    <i class="fa fa-joomla"></i> <span>推荐管理</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                            	{if condition = "$active eq 5" }
+                                <a href="/Gamenews/index" class="nav-link nav-link-two active">
+                                {else /}
+                                <a href="/Gamenews/index" class="nav-link nav-link-two">
+                                {/if}
+                                    <i class="fa fa-newspaper-o"></i> <span>新闻管理</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                            	{if condition = "$active eq 6"}
+                                <a href="/Links/index" class="nav-link nav-link-two active">
+                                {else /}
+                                <a href="/Links/index" class="nav-link nav-link-two">
+                                {/if}
+                                    <i class="fa fa-unlink"></i> <span>友情链接</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                            	{if condition = "$active eq 7"}
+                                <a href="/Website/index" class="nav-link nav-link-two active">
+                                {else /}
+                                <a href="/Website/index" class="nav-link nav-link-two">
+                                {/if}
+                                    <i class="fa fa-cog"></i> <span>网站设置</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>

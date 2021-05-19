@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>直播-后台管理系统-创建标签</title>
+    <!-- 页面公有样式 -->    
+    <link rel="stylesheet" href="./vendor/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/sdk.css">    
+</head>
+<body>
+<div class="page-wrapper">
+    <div class="content layer-content">
+        <div class="container-fluid">
+                <!-- <div class="card-header bg-light">
+                    创建经纪人
+                </div> -->
+
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">标签等级</label>
+                                        <select class="form-control" id="gtag">
+                                            <option value="1">一级标签</option>
+                                            <option value="2">二级标签</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">父级标签</label>
+                                        <select class="form-control" id="ptag" disabled>
+                                            <option value="0">无</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label">标签名称</label>
+                                        <input type="text" class="form-control" id="tagname">
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer bg-light px-4 text-left">
+                    <button type="submit" class="btn btn-rounded btn-primary py-2 px-5" id="sub">确认创建</button>
+                </div>
+
+        </div>
+    </div>
+</div>
+<script src="./vendor/jquery/jquery-3.4.1.min.js"></script>
+<script src="./vendor/popper.js/popper.min.js"></script>
+<script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="./js/carbon.js"></script>
+<script src="./js/demo.js"></script>
+<!-- 页面外部调用JS -->
+
+<!-- 页面配置项 -->
+<script src="./js/config/config.js"></script>
+<!-- 页面公有 -->
+<script src="./js/sdk.js"></script>
+<!-- 页面私有 -->
+<script type="text/javascript">
+    // var id ;
+    // var pid ;
+    // var pname ;
+    $(function(){
+        $("#gtag").change(function(){
+            var gtagVal = $("#gtag option:selected").val();
+            if(gtagVal == '2'){
+                
+                $("#ptag").removeAttr("disabled");
+
+            }
+        });
+
+    })
+
+
+
+</script>
+
+
+</body>
+</html>

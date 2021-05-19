@@ -1,0 +1,83 @@
+
+.content{
+    width: 100%;
+    padding-bottom: 50px;
+    background-color: #f3f3f3;
+}
+
+.content .mod{ 
+    padding-top: 12px;
+}
+
+.mod-tit{
+    width: 100%;
+    color: #545454;
+    font-size: 18px;
+    font-weight: bold;
+    height: 50px;
+    padding: 0px;
+    margin: 30px 0 5px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+.mod-tit .titlename{
+	height: 50px;
+	display: flex;
+    align-items: center;
+}
+
+.mod-tit .titlename i{
+    display: inline-block;
+    width: 3px;
+    height: 18px;
+    margin-right: 10px;
+    background: #FF6600; 
+}
+
+.mod-tit .titlename span{
+	line-height: 30px;
+}
+
+.mod-tit .more{
+    font-size: 13px;
+    color: #999;
+    margin-right: 30px;
+}
+
+/*game-list*/
+.mod .mod-kaifulist{
+	width: 1200px;
+}
+
+.kaifu-list-view{
+	margin-top: 10px;
+}
+
+.kaifu_list{background:#fff;padding:30px; border-top: 3px solid #ff6600; margin-top: 10px;}
+.kaifu-table { width: 100%; border: 1px solid #d6d4d2; text-align: center; margin-bottom: 50px; font-size: 12px;}
+.kaifu-table thead { color: #9fa0a0;letter-spacing: 1px; font-size: 14px; }
+.kaifu-table tbody { color: #595757; }
+.kaifu-table a{ color: inherit; }
+.kaifu-table td { border: 1px solid #d6d4d2; line-height: 36px;}
+.kaifu-table .go {display:inline-block; width: 68px; height: 22px; line-height: 22px; text-align: center; color: #fff; background: #ff6600; border-radius: 10px;}
+.kaifu-table .go:hover { color: #fff; background: #ff8533;}
+
+
+
+
+/*pages-start*/
+.paging{height:30px;line-height:30px;text-align:center; font-size:14px;margin-top: 30px;margin-bottom: 20px;}
+.paging a,.paging span{display:inline-block;border:1px solid #dedede;height:28px;line-height:28px;padding:0 10px; margin:0 3px;  cursor:pointer;vertical-align: middle;color: #666;}
+.paging i.fa{font-size:18px;font-weight: bold;line-height: 28px;}
+
+.paging a:hover{color:#666; text-decoration:none; background:#e4e1e1;}
+.paging span{background:#ff6600;color:#fff;border:1px solid #ff6600;}
+.paging a.cur{color:#fff; text-decoration:none; background:#ff6600;border:1px solid #ff6600;}
+/*pages-end*/
+
+.kaifu-table tbody td a {cursor: hand;text-decoration: none;}
+.kaifu-table tbody td a:hover {color:red;}

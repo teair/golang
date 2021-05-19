@@ -1,0 +1,43 @@
+
+
+.login-header{overflow:hidden;padding:28px 0}
+.login-header .txt{height:42px;line-height:42px;margin:10px 0 0 24px;font-size:24px;padding-left:24px;border-left:1px solid #c5c5c5;float:left;color: #666;}
+
+.login-main{height:600px;padding: 0;background:url(../images/default/loginbg.jpg) top center no-repeat;position: relative;}
+
+.mod-login-wp{width:234px;padding:16px 34px;background:#D8DBEA;background:rgba(255,255,255,.7);position:absolute;top:50%;right:80px;margin-top: -169px;}
+.login-tab{width:100%;overflow:hidden}
+.login-tab-1 li{width: 100%;}
+.login-tab-2 li{width: 50%;}
+.login-tab li{height:37px;line-height:37px;cursor:pointer;border-bottom:1px solid #fff;text-align:center;color:#595757;font-size:14px;float:left}
+.login-tab .active{border-bottom-color:#d70023}
+.login-tab-con{}
+.login-account{margin-top:32px}
+.login-account .w-item{height:38px;margin-top:12px;position:relative}
+.login-account .w-item label{width:34px;height:38px; line-height: 38px; color: #999; position:absolute;top:0;left:0; text-align: center;}
+.login-account .w-item input{width:200px;height:14px;padding:12px 0 12px 34px;font-size:14px;color:#000;border:0 none;-webkit-border-radius:5px;border-radius:5px;background:#fff}
+.login-account .btn-tologin{display:block;width:100%;height:40px;color:#fff;font-size:16px;border:0 none;-webkit-border-radius:4px;border-radius:4px;cursor:pointer;background:#e1405a;font-family:'microsoft yahei';margin-top:35px;}
+.login-account .btn-tologin:hover {background: #f6587b;}
+.login-account .user-opt{height:14px;line-height:14px;margin:15px 0 18px; user-select:none; font-size: 12px; color: #666;}
+.login-account .user-opt .login-save i{margin-right: 3px; margin-top: 1px; font-size: 14px; float: left;}
+.login-account .user-opt a{ color: inherit; margin-top:10px;}
+.icon-cb{display:inline-block;vertical-align:top;width:13px;height:13px;margin-right: 6px;}
+.login-account .tips{height:12px;line-height:12px;color:#e1405a;margin:10px 0}
+.login-account .user-third{height:24px;margin:10px 0}
+.login-account .freereg {color:#e1405a;float: right; font-size: 12px;}
+.login-account .freereg:hover { text-decoration: underline; }
+.third-login-qq,.third-login-wx,.third-login-wb{display:inline-block;width:24px;height:24px;background:url(../images/third.png) no-repeat;margin-right:4px;}
+.third-login-wx{background-position:-27px 0}
+.third-login-wb{background-position:-53px 0}.login-account .icon-user{background-position:2px 4px}.login-account .icon-lock{background-position:-38px 4px}.icon-cb{background-position:0px -40px}.icon-cbed{background-position:-23px -40px}.login-account .icon-user,.login-account .icon-lock,.icon-cb,.icon-cbed{background-image: url(/images/2017/login_z.png?201708251703);background-repeat: no-repeat;}
+
+/*注册样式*/
+.register {display: none;}
+.forget {display: none;}
+/*免费注册样式*/
+.user-opt .freereg {color:#e1405a; float: left;}
+.loginbtn {float:left;}
+/*验证文本框*/
+/*#code {wide:50px;}*/
+.login-account .w-items input {width:128px;height:14px;padding:12px 0 12px 15px;font-size:14px;color:#000;border:0 none;-webkit-border-radius:5px;border-radius:5px;background:#fff;float:left;margin-top: 0px;}
+.login-account .btn-sendcode {display:block;width:90px;height:38px;color:#fff;font-size:12px;border:0 none;-webkit-border-radius:4px;border-radius:4px;cursor:pointer;background:#e1405a;font-family:'microsoft yahei';margin-top: 15px;padding-left:0px;}
+.error_box {width:100%; color: red; font-size:20px; text-align:center;margin-top:-50px;}

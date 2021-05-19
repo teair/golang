@@ -1,0 +1,78 @@
+
+.content{
+    width: 100%;
+    padding-bottom: 50px;
+    background-color: #f3f3f3;
+}
+
+.content .mod{ 
+    padding-top: 12px;
+}
+
+.mod-tit{
+    width: 100%;
+    color: #545454;
+    font-size: 18px;
+    font-weight: bold;
+    height: 50px;
+    padding: 0px;
+    margin: 30px 0 5px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+.mod-tit .titlename{
+	height: 50px;
+	display: flex;
+    align-items: center;
+}
+
+.mod-tit .titlename i{
+    display: inline-block;
+    width: 3px;
+    height: 18px;
+    margin-right: 10px;
+    background: #FF6600; 
+}
+
+.mod-tit .titlename span{
+	line-height: 30px;
+}
+
+.mod-tit .more{
+    font-size: 13px;
+    color: #999;
+    margin-right: 30px;
+}
+
+/*kaifu-view*/
+.service-view{
+    position: relative;height: 360px;min-width: 980px;
+}
+
+.channels{margin-top: 50px;overflow: hidden;}
+.channels ul{width: 105%;}
+.channels li{width: 255px;height: 250px;background: #fff;border-bottom: 3px solid #e8e8e8;border-radius: 2px;float: left;margin-right: 60px;display: inline;}
+.channels .channels-link{text-align: center;display: block;overflow: hidden;font-size: 18px;color: #333;}
+.channels .s-icon{width: 54px;height: 54px;margin: 53px auto 20px;display: block;background-image: url(../images/service_sprites.png);}
+.channels .i2{background-position: -59px 0;}
+.channels .i3{background-position: -118px 0;}
+.channels .i4{background-position: -177px 0;}
+.channels li p{padding-top: 42px;color: #d7d7d7;text-align: center; font-size: 12px;}
+.channels li p em{padding: 0 12px;}
+.channels li p a{color: #666;}
+.channels li p a:hover{color: #000;text-decoration: underline;}
+.channels li p a.hl{color: #e43a3a;}
+
+.problems{margin-top: 50px;overflow: hidden;}
+.problems .problems-bd{padding-top: 20px;overflow: hidden;}
+.problems .q-item{float: left;width: 25%;line-height: 26px;}
+.problems .q-item dt{font-size: 14px;font-weight: bold;padding-bottom: 5px;}
+.problems .q-item a{color: #666;}
+.problems .q-item a:hover{color: #000;text-decoration: underline;}
+.problems .icon-point{width: 7px;height: 7px;float: left;background-position: -241px 0;margin: 9px 8px 0 0;}
+
+

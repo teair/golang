@@ -1,0 +1,917 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>游戏-后台管理系统-推荐管理</title>
+    <!-- 页面公有样式 -->    
+    <link rel="stylesheet" href="/static/admin/vendor/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/static/admin/css/styles.css">
+    <link rel="stylesheet" href="/static/admin/css/sdk.css">
+        <!-- 图片上传 -->
+
+</head>
+<body>
+<div class="page-wrapper">
+    <!-- 头部引入 开始 -->  
+    {include file="public/header" /}
+    <!-- 头部引入 结束 -->
+
+    <div class="main-container">
+        <!-- 侧导航引入 开始 --> 
+        {include file="public/sidebar" /}
+        <!-- 侧导航引入 结束 -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header bg-light">
+                                游戏轮播推荐
+                            </div>
+                            <form action='/Recommend/recadd' method='post'>
+                            <div class="card-body p-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">轮播推荐图1</label>
+                                                    <select class="form-control" name='lbrec1'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'lbrec1'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">轮播推荐图2</label>
+                                                    <select class="form-control" name='lbrec2'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'lbrec2'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">轮播推荐图3</label>
+                                                    <select class="form-control" name='lbrec3'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'lbrec3'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">轮播推荐图4</label>
+                                                    <select class="form-control" name='lbrec4'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'lbrec4'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">轮播推荐图5</label>
+                                                    <select class="form-control" name='lbrec5'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'lbrec5'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-header bg-light">
+                                <!-- 平台游戏推荐 -->
+                                热门网页游戏推荐
+                            </div>
+
+                            <div class="card-body p-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">游戏推荐1</label>
+                                                    <select class="form-control" name='gamerec1'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'gamerec1'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">游戏推荐2</label>
+                                                    <select class="form-control" name='gamerec2'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'gamerec2'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">游戏推荐3</label>
+                                                    <select class="form-control" name='gamerec3'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'gamerec3'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">游戏推荐4</label>
+                                                    <select class="form-control" name='gamerec4'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'gamerec4'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">游戏推荐5</label>
+                                                    <select class="form-control" name='gamerec5'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'gamerec5'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">游戏推荐6</label>
+                                                    <select class="form-control" name='gamerec6'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'gamerec6'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">游戏推荐7</label>
+                                                    <select class="form-control" name='gamerec7'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'gamerec7'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">游戏推荐8</label>
+                                                    <select class="form-control" name='gamerec8'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'gamerec8'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">游戏推荐9</label>
+                                                    <select class="form-control" name='gamerec9'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'gamerec9'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">游戏推荐10</label>
+                                                    <select class="form-control" name='gamerec10'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'gamerec10'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">游戏推荐11</label>
+                                                    <select class="form-control" name='gamerec11'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'gamerec11'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">游戏推荐12</label>
+                                                    <select class="form-control" name='gamerec12'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'gamerec12'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">游戏推荐13</label>
+                                                    <select class="form-control" name='gamerec13'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'gamerec13'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">游戏推荐14</label>
+                                                    <select class="form-control" name='gamerec14'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'gamerec14'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">游戏推荐15</label>
+                                                    <select class="form-control" name='gamerec15'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'gamerec15'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-header bg-light">
+                                <!-- 列表推荐 -->
+                                推荐游戏
+                            </div>
+
+                            <div class="card-body p-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">列表推荐1</label>
+                                                    <select class="form-control" name='listrec1'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'listrec1'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                    <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $allrec as $v2}
+                                                            {if condition = " $v2.rectype eq 'listrec1'"}
+                                                            <input type="text" class="form-control describe" value='{$v2.describe}' name="listdesc1" placeholder="请填写推荐描述">
+                                                            <?php continue; ?>
+                                                            {/if}
+                                                        {/foreach}
+                                                    <?php }else{ ?>
+                                                            <input type="text" class="form-control describe" name="listdesc1" placeholder="请填写推荐描述">
+                                                    <?php } ?>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">列表推荐2</label>
+                                                    <select class="form-control" name='listrec2'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                            {foreach $gamelist as $listrec2}
+                                                                {foreach $allrec as $v2}
+                                                                    {if condition = "$listrec2.gid eq $v2.gid AND $v2.rectype eq 'listrec2'"}
+                                                                    <option value="{$listrec2.gid}" selected>{$listrec2.app_name}</option>
+                                                                    <?php continue 2; ?>
+                                                                    {/if}
+                                                                {/foreach}
+                                                                <option value="{$listrec2.gid}">{$listrec2.app_name}</option>
+                                                            {/foreach}
+                                                        <?php }else{ ?>
+                                                            {foreach $gamelist as $listrec2}
+                                                                <option value="{$listrec2.gid}">{$listrec2.app_name}</option>
+                                                            {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                    <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $allrec as $v2}
+                                                            {if condition = " $v2.rectype eq 'listrec2'"}
+                                                            <input type="text" class="form-control describe" value='{$v2.describe}' name="listdesc2" placeholder="请填写推荐描述">
+                                                            <?php continue ; ?>
+                                                            {/if}
+                                                        {/foreach}
+                                                    <?php }else{ ?>
+                                                            <input type="text" class="form-control describe" name="listdesc2" placeholder="请填写推荐描述">
+                                                    <?php } ?>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">列表推荐3</label>
+                                                    <select class="form-control" name='listrec3'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'listrec3'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                    <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $allrec as $v2}
+                                                            {if condition = " $v2.rectype eq 'listrec3'"}
+                                                            <input type="text" class="form-control describe" value='{$v2.describe}' name="listdesc3" placeholder="请填写推荐描述">
+                                                            <?php continue; ?>
+                                                            {/if}
+                                                        {/foreach}
+                                                    <?php }else{ ?>
+                                                            <input type="text" class="form-control describe" name="listdesc3" placeholder="请填写推荐描述">
+                                                    <?php } ?>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">列表推荐4</label>
+                                                    <select class="form-control" name='listrec4'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'listrec4'"}
+                                                                <option value="{$lbrec2.gid}" selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}">{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                    <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $allrec as $v2}
+                                                            {if condition = " $v2.rectype eq 'listrec4'"}
+                                                            <input type="text" class="form-control describe" value='{$v2.describe}' name="listdesc4" placeholder="请填写推荐描述">
+                                                            <?php continue; ?>
+                                                            {/if}
+                                                        {/foreach}
+                                                    <?php }else{ ?>
+                                                            <input type="text" class="form-control describe" name="listdesc4" placeholder="请填写推荐描述">
+                                                    <?php } ?>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="card-header bg-light">
+                                热门H5游戏推荐
+                            </div>
+
+                            <div class="card-body p-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">热门H5游戏推荐1</label>
+                                                    <select class="form-control" name='h5rec1'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $h5list as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'h5rec1'"}
+                                                                <option value="{$lbrec2.gid}" name='h5rec1' selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}" name='h5rec1'>{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $h5list as $lbrec2}
+                                                            <option value="{$lbrec2.gid}" name='h5rec1'>{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-control-label">热门H5游戏推荐2</label>
+                                                    <select class="form-control" name='h5rec2'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $h5list as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'h5rec2'"}
+                                                                <option value="{$lbrec2.gid}" name='h5rec2' selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}" name='h5rec2'>{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $h5list as $lbrec2}
+                                                            <option value="{$lbrec2.gid}" name='h5rec2'>{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-control-label">热门H5游戏推荐3</label>
+                                                    <select class="form-control" name='h5rec3'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $h5list as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'h5rec3'"}
+                                                                <option value="{$lbrec2.gid}" name='h5rec3' selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}" name='h5rec3'>{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $h5list as $lbrec2}
+                                                            <option value="{$lbrec2.gid}" name='h5rec3'>{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-control-label">热门H5游戏推荐4</label>
+                                                    <select class="form-control" name='h5rec4'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $h5list as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'h5rec4'"}
+                                                                <option value="{$lbrec2.gid}" name='h5rec4' selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}" name='h5rec4'>{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $h5list as $lbrec2}
+                                                            <option value="{$lbrec2.gid}" name='h5rec4'>{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-control-label">热门H5游戏推荐5</label>
+                                                    <select class="form-control" name='h5rec5'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $h5list as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'h5rec5'"}
+                                                                <option value="{$lbrec2.gid}" name='h5rec5' selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}" name='h5rec5'>{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $h5list as $lbrec2}
+                                                            <option value="{$lbrec2.gid}" name='h5rec5'>{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-control-label">热门H5游戏推荐6</label>
+                                                    <select class="form-control" name='h5rec6'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $h5list as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'h5rec6'"}
+                                                                <option value="{$lbrec2.gid}" name='h5rec6' selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}" name='h5rec6'>{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $h5list as $lbrec2}
+                                                            <option value="{$lbrec2.gid}" name='h5rec6'>{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-header bg-light">
+                                平台横栏推荐
+                            </div>
+
+                            <div class="card-body p-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">平台横栏推荐</label>
+                                                    <select class="form-control" name='bannerec'>
+                                                        <?php if (isset($allrec) && !empty($allrec)) { ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            {foreach $allrec as $v2}
+                                                                {if condition = "$lbrec2.gid eq $v2.gid AND $v2.rectype eq 'bannerec'"}
+                                                                <option value="{$lbrec2.gid}" name='bannerec' selected>{$lbrec2.app_name}</option>
+                                                                <?php continue 2; ?>
+                                                                {/if}
+                                                            {/foreach}
+                                                            <option value="{$lbrec2.gid}" name='bannerec'>{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php }else{ ?>
+                                                        {foreach $gamelist as $lbrec2}
+                                                            <option value="{$lbrec2.gid}" name='bannerec'>{$lbrec2.app_name}</option>
+                                                        {/foreach}
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer px-4 text-left">
+                                <button type="submit" class="btn btn-primary px-5" id="sub">确认提交</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/admin/vendor/jquery/jquery-3.4.1.min.js"></script>
+<script src="/static/admin/vendor/popper.js/popper.min.js"></script>
+<script src="/static/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/admin/js/carbon.js"></script>
+<script src="/static/admin/js/demo.js"></script>
+<!-- 页面外部调用JS -->
+
+<!-- 页面配置项 -->
+<script src="/static/admin/js/config/config.js"></script>
+<!-- 页面公有 -->
+<script src="/static/admin/js/sdk.js"></script>
+<!-- 页面私有 -->
+<script type="text/javascript">
+    // var id ;
+    $(function(){
+
+        // id = getPar("id");
+
+
+
+    })
+
+
+</script>
+
+
+</body>
+</html>

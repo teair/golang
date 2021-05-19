@@ -1,0 +1,495 @@
+<!doctype html>
+<html>
+<head>
+<!--- The site is designed by zkx,Inc 12/2016 --->
+<meta charset="utf-8">
+<title>用户中心-梦想游戏-网页游戏平台</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="网页游戏，页游平台，页游，H5游戏，新开页游，页游礼包，梦想游戏平台，游戏平台">
+<meta name="description" content="梦想游戏平台作为知名的高品质网页游戏平台，一直坚持为广大玩家提供优质的精品网页游戏，致力创造一流的游戏娱乐平台。">
+<meta name="author" content="kxin">
+<!-- 初始化样式表-->
+<link href="/static/home/css/layout.css" rel="stylesheet" type="text/css">
+<link href="/static/home/vender/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!-- Swiper's CSS -->
+<link rel="stylesheet" href="/static/home/vender/swiper/css/swiper.min.css">
+<!-- 页面公有样式-->
+<link href="/static/home/css/common.css" rel="stylesheet" type="text/css">
+<!-- 页面私有样式-->
+<link href="/static/home/css/login.css" rel="stylesheet" type="text/css">
+<!--百度云统计代码-->
+{load href="/static/home/js/tongji.js" /}
+
+</head>
+	
+<body>
+
+<div class="login-header">
+	<div class="cont">
+		<div class="login-header-main clearfix">
+			<a href="#" class="fl"><img src="/static/home/images/default/logo.png" alt="" width="124" height="62"></a>		
+			<span class="txt">登录</span>
+		</div>
+	</div>
+</div>
+
+<div class="login-main">
+	<div class="cont" style="position: relative; height: 100%;">
+
+		<div class="mod-login-wp">
+			<ul class="login-tab login-tab-1">
+				<li>账号登录</li>
+				<!-- <li>扫码登录</li> -->
+			</ul>
+			<div class="login-tab-con">
+				<div class="login-item login-account dirlogin">
+					<!-- <form method="post" action="#" class="login-form"> -->
+						<div class="w-item"> <label class="fa fa-user"></label> <input name="username" id="username" type="text" placeholder="请输入手机号..."> </div>
+						<div class="w-item"> <label class="fa fa-unlock-alt"></label> <input name="password" id="password" type="password" placeholder="请输入密码..."> </div>
+						<div class="user-opt clearfix">
+							<a href='javascript:;' class="freereg">免费注册</a>
+							<!-- <label class="login-save fl"><i class="fa fa-square-o"></i>自动登录</label> -->
+							<a href="javascript:;" class="fr" id='forget'>忘记密码</a>
+						</div>
+						<input class="btn-tologin" type="button" id='sub1' value="登录">
+						<p class="tips" id="tips"></p>
+						<div class="user-third">
+							<!-- <a target="_blank" class="freereg">免费注册<i></i></a> -->
+							
+							<!-- <a href='/Qqlogin/qIndex' target="_blank" title="QQ登录" class="third-login-qq"></a> -->
+							<!-- <a target="_blank" title="微信登录" class="third-login-wx"></a> -->
+							<!-- <a href="#" target="_blank" title="微博登录" class="third-login-wb"></a> -->
+						</div>
+					<!-- </form> -->
+				</div>
+				<div class="login-item login-account register">
+					<!-- <form method="post" action="#" class="login-form"> -->
+						<div class="w-item"> <label class="fa fa-user"></label> <input name="username1" id="username1" type="text" placeholder="请输入手机号..."> </div>
+						<div class="w-item"> <label class="fa fa-unlock-alt"></label> <input name="password1" id="password1" type="password" placeholder="请输入密码..."> </div>
+						<div class="w-items"> <input name="code" id="code" maxlength="6" type="text" placeholder="请输入验证码..."><button class="btn-sendcode registcode" id='verify'>发送验证码</button></div>
+						<div class="user-opt clearfix">
+							<!-- <label class="login-save fl"><i class="fa fa-square-o"></i>直接登录</label> -->
+							<a href='javascript:;' class='loginbtn fr'>直接登录</a>
+							<!-- <label class="login-save fl"><a href='javascript:;' class='loginbtn'>直接登录</a></label> -->
+							<a href="javascript:;" class="fr" id='forget'>忘记密码</a>
+						</div>
+						<input class="btn-tologin" type="button" id='sub2' value="注册">
+						<p class="tips" id="tips"></p>
+						<div class="user-third">
+							<!-- <a target="_blank" class="freereg">免费注册<i></i></a> -->
+							<!-- <a href='/Qqlogin/qIndex' target="_blank" title="QQ登录" class="third-login-qq"></a> -->
+							<!-- <a target="_blank" title="微信登录" class="third-login-wx"></a> -->
+							<!-- <a href="#" target="_blank" title="微博登录" class="third-login-wb"></a> -->
+						</div>
+					<!-- </form> -->
+				</div>
+				<div class="login-item login-account forget">
+					<!-- <form method="post" action="#" class="login-form"> -->
+						<div class="w-item"> <label class="fa fa-user"></label> <input name="username2" id="username2" type="text" placeholder="请输入手机号..."> </div>
+						<div class="w-item"> <label class="fa fa-unlock-alt"></label> <input name="password2" id="password2" type="password" placeholder="请输入密码..."> </div>
+						<div class="w-items"> <input name="code2" id="code" maxlength="6" type="text" placeholder="请输入验证码..."><button class="btn-sendcode forgetcode" id='verify'>发送验证码</button></div>
+						<div class="user-opt clearfix">
+							<!-- <label class="login-save fl"><i class="fa fa-square-o"></i>直接登录</label> -->
+							<a href='javascript:;' class='loginbtn fr'>直接登录</a>
+							<!-- <label class="login-save fl"><a href='javascript:;' class='loginbtn'>直接登录</a></label> -->
+							<a href="javascript:;" class="fr" id='forget'>忘记密码</a>
+						</div>
+						<input class="btn-tologin" type="button" id='sub3' value="找回密码">
+						<p class="tips" id="tips"></p>
+						<div class="user-third">
+							<!-- <a target="_blank" class="freereg">免费注册<i></i></a> -->
+							<!-- <a href='/Qqlogin/qIndex' target="_blank" title="QQ登录" class="third-login-qq"></a> -->
+							<!-- <a target="_blank" title="微信登录" class="third-login-wx"></a> -->
+							<!-- <a href="#" target="_blank" title="微博登录" class="third-login-wb"></a> -->
+						</div>
+					<!-- </form> -->
+				</div>
+				<div class="error_box">
+	            	<span class="error_login"></span>
+	            </div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!--微信弹窗-->
+<div id="wx_box">
+    <div id="wxqr" class="wxqr"></div>
+     <!--<img src="__PUBLIC__/img/H5/wxewm.jpg" class="ewm_pic"/><p class="wx_box_p2">请使用微信扫描二维码登录</p>-->
+</div>
+
+<div class="footer" style="min-height: 300px;">
+	<div class="cont">
+		<div class="links-box">
+		    <div class="remgame-box">
+		        <div class="links-list">
+		            <span>推荐游戏：</span>
+		            <div class="lbox">
+		                <a href="#" target="_blank">神戒</a>
+		                <a href="#" target="_blank">灭神</a>
+		                <a href="#" target="_blank">攻铩</a>
+		                <a href="#" target="_blank">赤月传说Ⅱ</a>
+		                <a href="#" target="_blank">武动苍穹</a>
+		                <a href="#" target="_blank">血饮传说</a>
+		                <a href="#" target="_blank">猛将天下</a>
+		                <a href="#" target="_blank">创世热血战歌</a>
+		                <a href="#" target="_blank">屠龙战记</a>
+		                <a href="#" target="_blank">剑道仙语</a>
+		                <a href="#" target="_blank">雷霆之怒</a>
+		                <a href="#" target="_blank">皇图</a>
+		                <a href="#" target="_blank">烈焰</a>
+		                <a href="#" target="_blank">蓝月传奇</a>
+		                <a href="#" target="_blank">战神风云</a>
+		                <a href="#" target="_blank">魅影传说</a>
+		                <a href="#" target="_blank">乱斗乾坤</a>
+		                <a href="#" target="_blank">传奇世界</a>
+		                <a href="#" target="_blank">赤月传说</a>
+		                <a href="#" target="_blank">传奇荣耀</a>
+		                <a href="#" target="_blank">屠龙传说</a>
+		                <a href="#" target="_blank">九阴绝学</a>
+		                <a href="#" target="_blank">传奇盛世</a>
+		                <a href="#" target="_blank">斗破苍穹2</a>
+		                <a href="#" target="_blank">红月传说</a>
+		                <a href="#" target="_blank">天书世界</a>
+		            </div>
+		        </div>
+		        <a href="javascript:;" class="more"></a>
+		    </div>
+		    <div class="friends-box">
+		        <div class="links-list">
+		            <span>友情链接：</span>
+		            <div class="lbox">
+		                <a href="#" target="_blank">网页游戏</a>
+		                <a href="#" target="_blank">9377手游</a>
+		                <a href="#" target="_blank">360游戏</a>
+		                <a href="#" target="_blank">游侠页游</a>
+		                <a href="#" target="_blank">太平洋页游</a>
+		                <a href="#" target="_blank">腾讯游戏</a>
+		                <a href="#" target="_blank">A9VG</a>
+		                <a href="#" target="_blank">9K9K开服表</a>
+		                <a href="#" target="_blank">2243手游网</a>
+		                <a href="#" target="_blank">软件侠</a>
+		                <a href="#" target="_blank">快吧游戏</a>
+		                <a href="#" target="_blank">游戏交易平台</a>
+		                <a href="#" target="_blank">手游交易</a>
+		                <a href="#" target="_blank">ns游戏</a>
+		                <a href="#" target="_blank">加速器</a>
+		                <a href="#" target="_blank">网页游戏</a>
+		                <a href="#" target="_blank">9377手游</a>
+		                <a href="#" target="_blank">360游戏</a>
+		                <a href="#" target="_blank">游侠页游</a>
+		                <a href="#" target="_blank">太平洋页游</a>
+		                <a href="#" target="_blank">腾讯游戏</a>
+		                <a href="#" target="_blank">A9VG</a>
+		                <a href="#" target="_blank">9K9K开服表</a>
+		                <a href="#" target="_blank">2243手游网</a>
+		                <a href="#" target="_blank">软件侠</a>
+		                <a href="#" target="_blank">快吧游戏</a>
+		                <a href="#" target="_blank">游戏交易平台</a>
+		                <a href="#" target="_blank">手游交易</a>
+		                <a href="#" target="_blank">ns游戏</a>
+		                <a href="#" target="_blank">加速器</a>
+		            </div>
+		        </div>
+		        <a href="javascript:;" class="more"></a>
+		    </div>
+		</div>
+
+		<div class="coinfo">
+		    <a href="#" title="网页游戏" class="logo fl">
+		        <img src="/static/home/images/default/logo.png" width="100">
+		    </a>
+		    <div class="info fl">
+		        <div class="about">
+		            <a href="#" target="_blank">关于我们</a>
+		            <!-- <a href="http://hr.9377.com/" target="_blank">人才招聘</a> -->
+		            <a href="#" target="_blank">用户协议</a>
+		            <a href="#">友情链接联系</a>
+		            <a href="#">客服中心</a>
+		            <a href="http://www.9377.com/zjjh/" target="_blank">家长监护</a>
+		        </div>
+		        <div class="copyright">
+		            <p>北京方游网络科技有限公司 （FYGAMES）&nbsp;
+		                <a href="#" target="_blank">京网文[2016]0803-075号</a>&nbsp;
+		                <a href="#" target="_blank">京ICP备15058487号-3</a></p>
+		            <p>
+		                <a href="#" target="_blank">电信增值业务经营许可证：京ICP证160501号</a>联系电话(7x24)：010-86464875-分机826</p>
+		            <p>公司地址：北京市大兴区亦庄经济开发区亦城国际A座-816</p>
+		            <!-- <p>
+		            	9377
+		                <a href="#">网页游戏</a>平台 文化部网络游戏举报和联系电子邮箱：
+		                <a href="#">wlwh@vip.sina.com</a>
+		                <span class="col1 ml10">本站适龄提示：适合18岁以上使用。</span>
+		            </p> -->
+		            <p style=" margin-top: 0px;">Copyright 2013-20120 fangyoucn.com | Fy Network Technology Co., Ltd All Rights Reserved. 北京方游网络科技有限公司 （FYGAMES）</p>
+		            <p style="color:#a1a1a1; margin-top: 10px;">抵制不良网页游戏，拒绝盗版游戏。&nbsp;注意自我保护，谨防受骗上当。&nbsp;适度游戏益脑，沉迷游戏伤身。&nbsp;合理安排时间，享受健康生活。</p>
+		        </div>
+		    </div>
+		    <!-- <div class="legal-list">
+		        <a href="#" class="legal-4" target="_blank">公共信息安全<br>网络检查</a>
+		        <a href="#" class="legal-3" target="_blank">沪公网安备<br>31011402005021</a>
+		        <a href="#" class="legal-2" target="_blank">上海工商行<br>政管理局</a>
+		        <a href="#" class="legal-1" target="_blank">互联网文化<br>经营单位</a>
+		    </div> -->
+		</div>
+
+	</div>
+</div>
+</body>
+
+
+<!-- jquery引用方式--> 
+<script src="/static/home/js/jquery-1.9.1.min.js"></script>
+<!-- 公共js --> 
+<script src="/static/home/js/common.js"></script>
+<!-- 页面私有js --> 
+<script type="text/javascript">
+
+	$(function(){
+		$(".login-save i").click(function(){
+			$(this).toggleClass('fa-square-o');
+			$(this).toggleClass('fa-check-square-o');
+		})
+	})
+
+	// 注册页
+	$('.freereg').click(function(){
+		// 清空提示内容
+		$(".error_box .error_login").empty();
+		$('.dirlogin').css('display','none');
+		$('.forget').css('display','none');
+		$('.register').css('display','block');
+	})
+
+	// 修改密码页
+	$('#forget').click(function(){
+		// 清空提示内容
+		$(".error_box .error_login").empty();
+		$('.dirlogin').css('display','none');
+		$('.register').css('display','none');
+		$('.forget').css('display','block');
+	})
+
+	// 登陆页
+	$('.loginbtn').click(function(){
+		// 清空提示内容
+		$(".error_box .error_login").empty();
+		$('.register').css('display','none');
+		$('.forget').css('display','none');
+		$('.dirlogin').css('display','block');
+	})
+
+	//点击获取验证码
+    $(document).on("click", "#verify", function () {
+    	var type = $(this).attr('class')
+    	if (type == 'registcode'){
+    		var user = $("input[name='username1']").val()
+        	var pwd = $("input[name='password1']").val()
+        	$('.registcode').attr('id','verifys')
+    	}else{
+    		var user = $("input[name='username2']").val()
+        	var pwd = $("input[name='password2']").val()
+        	$('.forgetcode').attr('id','verifys')
+    	}
+    	
+
+        if (validatemobile(user) && password(pwd)) {
+            verifys(user)
+            var second = 60;
+            var timer = null;
+            timer = setInterval(function () {
+                second -= 1;
+                if (second > 0) {
+                    $('#verifys').empty().html(second + '秒后重发');
+//                    $('#verify').addClass('code_spans');
+                    // $('#verify').removeClass('btn-sendcode');
+                } else {
+                    clearInterval(timer);
+                    $('#verifys').empty().html('获取验证码');
+                    // $('#verify').addClass('btn-sendcode');
+                }
+            }, 1000);
+        }
+    })
+
+
+    // 发送验证码
+    function verifys(user) {
+        var url = "/User/Verify";
+        $.post(url, {user: user}, function (result){})
+    }
+
+    // 直接登陆
+    $('#sub1').click(function(){
+    	var user = $("input[name='username']").val()
+	    var pwd = $("input[name='password']").val()
+	    //查看用户名密码是否符合规范
+	    if (validatemobile(user) && password(pwd)) {
+	    	login(user,pwd);
+	    }
+
+    })
+
+    // 注册登陆
+    $('#sub2').click(function(){
+    	var user = $("input[name='username1']").val()
+	    var pwd = $("input[name='password1']").val()
+	    var code = $("input[name='code']").val();
+	    //查看用户名密码是否符合规范
+	    if (validatemobile(user) && password(pwd)) {
+	        // 注册
+            if (verify(code)) {
+                registered(user, pwd)
+            }
+	    }
+    })
+
+    // 修改密码
+    $('#sub3').click(function(){
+    	var user = $("input[name='username2']").val()
+	    var pwd = $("input[name='password2']").val()
+	    var code = $("input[name='code2']").val()
+	    //查看用户名密码是否符合规范
+	    if (validatemobile(user) && password(pwd)) {
+            //忘记密码
+            if (verify(code)) {
+                editResgistered(user, pwd)
+            }
+	    }
+    })
+
+    //忘记密码
+	function editResgistered(user, pwd) {
+	//        alert('忘记密码')
+	    var code = $("input[name='code2']").val()
+	    var url = "/User/editResgistered"
+	    $.ajax({
+	    	url:url,
+	    	data:{'user':user,'pwd':pwd,'code':code},
+	    	datatype:'json',
+	    	type:'post',
+	    	success:function(result){
+		        // console.log(result)
+		        if (result.code == 1) {
+		        	 $(".error_login").html('手机号尚未注册')
+
+		        } else if (result.code == 2) {
+		        	 $(".error_login").html('验证码错误')
+
+		        } else if (result.code == 3) {
+		        	$(".error_login").html('修改失败')
+
+		        } else if (result.code == 4) {
+		        	$(".error_login").html('与原密码相同')
+
+		        } else if (result.code == 0) {
+		        	$(".error_login").html('修改成功')
+
+		            login(user, pwd)
+		        }
+	    	}
+	    })
+	}
+
+
+
+    //检测验证码
+    function verify(code) {
+        // var code = $("input[ name='code']").val();
+        if (code.length == 0) {
+            alert('请输入验证码');
+            return false;
+        }
+        return true;
+    }
+
+    //注册
+	function registered(user, pwd) {
+	//        alert('注册')
+	    // var url = "http://test.h5.cc/Index/Register";
+	    var url = '/User/Register';
+	    var code = $("input[name='code']").val();
+	    // var c = $("input[ name='c']").val();
+	    // var g = $("input[ name='g']").val();
+	    $.post(url, {user: user, pwd: pwd, code: code, chid: '', gid: ''}, function (result) {
+	        var result = eval(result)
+	        if (result.code == 1) {
+	        	$(".error_box .error_login").empty().html('注册手机号已经存在')
+	        } else if (result.code == 2) {
+	        	 $(".error_box .error_login").empty().html('验证码过期')
+	        } else if (result.code == 0) {
+	        	$(".error_box .error_login").empty().html('注册成功')
+	            login(user, pwd)
+	        }
+	    })
+	}
+
+    // 登陆
+    function login(user, pwd) {
+//        alert('登陆')
+        // var c = $("input[ name='c']").val();
+        // var g = $("input[ name='g']").val();
+        // var http_url = $("input[ name='http_url']").val();
+        // var n = $("input[ name='n']").val();
+        var url = "/User/Login";
+        // if (n) {
+        //     alert('你已经登陆')
+        //     window.location.href = http_url;
+        // }else{
+            $.post(url, {user: user, pwd: pwd, chid: '', gid:''}, function (result) {
+                var result = eval(result)
+                if (result.code == 0) {
+//					if(g && http_url != 'http://h5.ofwan.com'){
+//						http_url = http_url+'/f/'+result.uid;
+//					}
+                	window.location.href = '/Index/index';
+                }else if(result.code == 1){
+                    alert('手机号尚未注册');
+                }else if(result.code == 2){
+                    alert('密码错误');
+                }
+
+            })
+        // }
+
+
+    }
+
+	//验证账号
+    function validatemobile(mobile) {
+        if (mobile.length == 0) {
+            alert('请输入手机号码！');
+            return false;
+        }
+        if (mobile.length != 11) {
+            alert('请输入有效的手机号码！');
+            return false;
+        }
+        var myreg = /^(((13[0-9]{1})|(14[0-9]{1})|(16[0-9]{1})|(17[0-3]{1})|(17[5-9]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1})|(19[8-9]{1}))+\d{8})$/;
+        if (!myreg.test(mobile)) {
+            alert('请输入有效的手机号码！');
+            return false;
+        }
+        return true;
+    }
+
+    //验证密码
+    function password(pass) {
+        if (pass.length == 0) {
+            alert('请输入密码');
+            return false;
+        }
+        var myreg = /^[a-zA-Z0-9]{6,12}$/;
+        if (!myreg.test(pass)) {
+            alert('密码由6-12位数字或字母组成');
+            return false;
+        }
+        return true;
+    }
+
+</script>
+</html>
+
+
+

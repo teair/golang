@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>游戏-后台管理系统-资料上传</title>
+    <!-- 页面公有样式 -->    
+    <link rel="stylesheet" href="/static/admin/vendor/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/static/admin/css/styles.css">
+    <link rel="stylesheet" href="/static/admin/css/sdk.css">
+        <!-- 图片上传 -->
+    <link rel="stylesheet" href="/static/admin/vendor/upload/upload-single/css/upload-single.css" />   
+    <link rel="stylesheet" href="/static/admin/vendor/upload/upload-multi/css/upload-multi.css" />   
+    
+</head>
+<style>
+    .goback{
+        float: right;
+    }
+</style>
+<body>
+<div class="page-wrapper">
+    <!-- 头部引入 开始 -->  
+    {include file="public/header" /}
+    <!-- 头部引入 结束 -->
+
+    <div class="main-container">
+        <!-- 侧导航引入 开始 --> 
+        {include file="public/sidebar" /}
+        <!-- 侧导航引入 结束 -->
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header bg-light">
+                                <span>信息填写</span>
+                                <span class='goback'><a href="javascript:;" onclick='goback()'>返回</a></span>
+                            </div>
+
+                            <form action="/Upload/upfile" enctype='multipart/form-data' method='post' onsubmit="filecheck();">
+                                <div class="card-body p-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">游戏名称</label>
+                                                        <input type="hidden" id='gid' name="gid" value='{$gid}'>
+                                                        <input type="text" class="form-control" value='{$app_name}' readonly="readonly">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">游戏代号</label>
+                                                        <input type="text" class="form-control" value='{$app_rename}' readonly="readonly">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group seltab" id="seltab">
+                                                        <label class="form-control-label">游戏类型</label>
+                                                        <?php if (isset($gametype)){?>
+                                                            {foreach $gametype as $v}
+                                                                <?php if ( empty($curtype) ){?>
+                                                                    <a class="btn btn-outline-info"> <input type="checkbox" name="app_type[]" value="{$v.id},{$v.tag_name}">{$v.tag_name}</a>
+                                                                <?php }else{ ?>
+                                                                    <?php if (in_array($v['id'],array_column($curtype,'label_id'))) { ?>
+                                                                        <a class="btn btn-outline-info active"> <input type="checkbox" checked name="app_type[]" value="{$v['id']},{$v.tag_name}">{$v['tag_name']}</a>
+                                                                    <?php }else{ ?>
+                                                                        <a class="btn btn-outline-info"> <input type="checkbox" name="app_type[]" value="{$v['id']},{$v.tag_name}">{$v['tag_name']}</a>
+                                                                    <?php } ?>
+                                                                <?php } ?>
+                                                            {/foreach}
+                                                        <?php }else{ ?>                         
+                                                            暂无游戏类型！
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group seltab" id="seltab">
+                                                        <label class="form-control-label">游戏题材</label>
+                                                        <?php if (isset($gameticai)) { ?>
+                                                            {foreach $gameticai as $v2}
+                                                                <?php if ( empty($curtheme) ){?>
+                                                                    <a class="btn btn-outline-info">
+                                                                        <input type="checkbox" name="app_theme[]" value="{$v2.id},{$v2.tag_name}">{$v2.tag_name}
+                                                                    </a>
+                                                                <?php }else{ ?> 
+                                                                    <?php if (in_array($v2['id'],array_column($curtheme,'label_id'))) { ?> 
+                                                                        <a class="btn btn-outline-info active">
+                                                                            <input type="checkbox" name="app_theme[]" checked value="{$v2.id},{$v2.tag_name}">{$v2.tag_name}
+                                                                        </a>
+                                                                    <?php }else{ ?>
+                                                                        <a class="btn btn-outline-info">
+                                                                            <input type="checkbox" name="app_theme[]" value="{$v2.id},{$v2.tag_name}">{$v2.tag_name}
+                                                                        </a>
+                                                                    <?php } ?>
+                                                                <?php } ?>
+                                                            {/foreach} 
+                                                        <?php }else{ ?>                         
+                                                            暂无游戏题材！
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">slogan</label>
+                                                        <input type="text" class="form-control" name='publicity' value='{$slogan}'>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-header bg-light">
+                                    素材上传
+                                </div>
+
+                                <!-- mod - begin -->
+                                <div class="card-body p-4">
+                                    <div class="row">
+                                        <div class="col-md-12 uppicbox clearfix">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">LOGO</label>
+                                                        <div class="col-md-12 px-0 clearfix">
+                                                            <div class="uppic" id="uppic1">
+                                                                <input type="file" name='gamelogo' id='gamelogo' />
+                                                                <?php if (is_null($fileinfo) != true)  { ?>
+                                                                    {foreach $fileinfo as $v}
+                                                                        {if condition = " $v['type'] eq 'gamelogo' "}
+                                                                            <img src="<?php echo $v['path']; ?>" style="height: 100px; width:120px;">
+                                                                        {/if}
+                                                                    {/foreach}
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>    
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">游戏图标</label>
+                                                        <div class="col-md-12 px-0 clearfix">
+                                                            <div class="uppic" id="uppic2">
+                                                                <input type="file" name='gamethumb' id='gamethumb'/>
+                                                                <?php if (is_null($fileinfo) != true)  { ?>
+                                                                {foreach $fileinfo as $v}
+                                                                    {if condition = " $v['type'] eq 'gamethumb' "}
+                                                                        <img src="<?php echo $v['path']; ?>" style="height: 90px; width:120px;">
+                                                                    {/if}
+                                                                {/foreach}
+                                                            <?php } ?>
+                                                            </div>
+                                                        </div>  
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">首页轮播</label>
+                                                        <div class="col-md-12 px-0 clearfix">
+                                                            <div class="uppic" id="uppic3">
+                                                                <input type="file" name='gamelunbo' id='gamelunbo'/>
+                                                                <?php if (is_null($fileinfo) != true)  { ?>
+                                                                {foreach $fileinfo as $v}
+                                                                    {if condition = " $v['type'] eq 'gamelunbo' "}
+                                                                        <img src="<?php echo $v['path']; ?>" style="height: 100px; width:120px;">
+                                                                    {/if}
+                                                                {/foreach}
+                                                            <?php } ?>
+                                                            </div>
+                                                        </div>  
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">热门推荐</label>
+                                                        <div class="col-md-12 px-0 clearfix">
+                                                            <div class="uppic" id="uppic4">
+                                                                <input type="file" name='gamehotrec' id='gamehotrec'/>
+                                                                <?php if (is_null($fileinfo) != true)  { ?>
+                                                                {foreach $fileinfo as $v}
+                                                                    {if condition = " $v['type'] eq 'gamehotrec' "}
+                                                                        <img src="<?php echo $v['path']; ?>" style="height: 100px; width:120px;">
+                                                                    {/if}
+                                                                {/foreach}
+                                                            <?php } ?>
+                                                            </div>
+                                                        </div>  
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">正常推荐</label>
+                                                        <div class="col-md-12 px-0 clearfix">
+                                                            <div class="uppic" id="uppic5">
+                                                                <input type="file" name='gamenormrec' id='gamenormrec'/>
+                                                                <?php if (is_null($fileinfo) != true)  { ?>
+                                                                {foreach $fileinfo as $v}
+                                                                    {if condition = " $v['type'] eq 'gamenormrec' "}
+                                                                        <img src="<?php echo $v['path']; ?>" style="height: 100px; width:120px;">
+                                                                    {/if}
+                                                                {/foreach}
+                                                            <?php } ?>
+                                                            </div>
+                                                        </div>  
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">官网背景</label>
+                                                        <div class="col-md-12 px-0 clearfix">
+                                                            <div class="uppic" id="uppic6">
+                                                                <input type="file" name='gameofficalbg' id='gameofficalbg'/>
+                                                                <?php if (is_null($fileinfo) != true)  { ?>
+                                                                {foreach $fileinfo as $v}
+                                                                    {if condition = " $v['type'] eq 'gameofficalbg' "}
+                                                                        <img src="<?php echo $v['path']; ?>" style="height: 100px; width:120px;">
+                                                                    {/if}
+                                                                {/foreach}
+                                                            <?php } ?>
+                                                            </div>
+                                                            
+                                                        </div>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <?php if ($source == '3' ) { ?>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">游戏二维码</label>
+                                                        <div class="col-md-12 px-0 clearfix">
+                                                            <div class="uppic" id="uppic12">
+                                                                <input type="file" name='gameqrcode' id='gameqrcode'/>
+                                                                <?php if (is_null($fileinfo) != true)  { ?>
+                                                                {foreach $fileinfo as $v}
+                                                                    {if condition = " $v['type'] eq 'gameqrcode' "}
+                                                                        <img src="<?php echo $v['path']; ?>" style="height: 90px; width:120px;">
+                                                                    {/if}
+                                                                {/foreach}
+                                                            <?php } ?>
+                                                            </div>
+                                                        </div>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php } ?>
+
+                                            <div class="row width-1">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">游戏截图</label>
+                                                         <div class="col-md-12 px-0 clearfix">
+                                                            <div class="uppic" id="uppic7">
+                                                                <input type="file" name='gamecut1' id='gamecut1'/>
+                                                                <?php if (is_null($fileinfo) != true)  { ?>
+                                                                    {foreach $fileinfo as $v}
+                                                                        {if condition = " $v['type'] eq 'gamecut1'"}
+                                                                            <img src="<?php echo $v['path']; ?>" style="height: 100px; width:120px;">
+                                                                        {/if}
+                                                                    {/foreach}
+                                                                <?php } ?>
+                                                            </div>
+                                                            <div class="uppic" id="uppic8">
+                                                                <input type="file" name='gamecut2' id='gamecut2'/>
+                                                                <?php if (is_null($fileinfo) != true)  { ?>
+                                                                    {foreach $fileinfo as $v}
+                                                                        {if condition = " $v['type'] eq 'gamecut2'"}
+                                                                            <img src="<?php echo $v['path']; ?>" style="height: 100px; width:120px;">
+                                                                        {/if}
+                                                                    {/foreach}
+                                                                <?php } ?>
+                                                            </div>
+                                                            <div class="uppic" id="uppic9">
+                                                                <input type="file" name='gamecut3' id='gamecut3'/>
+                                                                <?php if (is_null($fileinfo) != true)  { ?>
+                                                                    {foreach $fileinfo as $v}
+                                                                        {if condition = " $v['type'] eq 'gamecut3'"}
+                                                                            <img src="<?php echo $v['path']; ?>" style="height: 100px; width:120px;">
+                                                                        {/if}
+                                                                    {/foreach}
+                                                                <?php } ?>
+                                                            </div>
+                                                            <div class="uppic" id="uppic10">
+                                                                <input type="file" name='gamecut4' id='gamecut4'/>
+                                                                <?php if (is_null($fileinfo) != true)  { ?>
+                                                                    {foreach $fileinfo as $v}
+                                                                        {if condition = " $v['type'] eq 'gamecut4'"}
+                                                                            <img src="<?php echo $v['path']; ?>" style="height: 100px; width:120px;">
+                                                                        {/if}
+                                                                    {/foreach}
+                                                                <?php } ?>
+                                                            </div>
+                                                            <div class="uppic" id="uppic11">
+                                                                <input type="file" name='gamecut5' id='gamecut5'/>
+                                                                <?php if (is_null($fileinfo) != true)  { ?>
+                                                                    {foreach $fileinfo as $v}
+                                                                        {if condition = " $v['type'] eq 'gamecut5'"}
+                                                                            <img src="<?php echo $v['path']; ?>" style="height: 100px; width:120px;">
+                                                                        {/if}
+                                                                    {/foreach}
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- mod - end -->
+
+                                <div class="card-footer px-4 text-left">
+                                    <button type="submit" class="btn btn-primary px-4" id="sub">确认提交</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/admin/vendor/jquery/jquery-3.4.1.min.js"></script>
+<script src="/static/admin/vendor/popper.js/popper.min.js"></script>
+<script src="/static/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/admin/js/carbon.js"></script>
+<script src="/static/admin/js/demo.js"></script>
+<!-- 页面外部调用JS -->
+    <!-- 图片上传 -->
+<script src="/static/admin/vendor/upload/upload-single/js/upload-single.js"></script>
+<script src="/static/admin/vendor/upload/upload-multi/js/upload-multi.js"></script>
+<!-- 页面配置项 -->
+<script src="/static/admin/js/config/config.js"></script>
+<!-- 页面公有 -->
+<script src="/static/admin/js/sdk.js"></script>
+
+<!-- 页面私有 -->
+<script src="/static/admin/js/jqueryFileUpload/js/vendor/jquery.ui.widget.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="/static/admin/js/jqueryFileUpload/js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="/static/admin/js/jqueryFileUpload/js/jquery.fileupload.js"></script>
+
+<!--弹窗层-->
+<script src="/static/admin/vendor/layer/layer.js"></script>
+<script src="/static/admin/js/config/layer-config.js"></script>
+<script>
+    function filecheck(){
+        // 游戏类型
+        // var apptype = $('input[name="app_type"]:checked').val();
+        // 游戏主题
+        // var apptheme = $('input[name="app_theme"]:checked').val();
+        // 游戏标语
+        var slogan = $('input[name="publicity"]').val();
+
+        // alert(apptype);
+        // return false;
+
+        // if (apptype.length < 1 ){
+        //     layer.alert('请选择游戏类型');
+        //     window.event.returnValue=false;
+        //     return false;
+        // }
+        // if (apptheme.length < 1 ){
+        //     layer.alert('请选择游戏主题');
+        //     window.event.returnValue=false;
+        //     return false;
+        // }
+        if (slogan.length < 1){
+            layer.alert('请选择游戏标语');
+            window.event.returnValue=false;
+            return false;
+        }
+        if ($('#uppic1').children('img').length < 1){
+            layer.alert('请选择游戏logo');
+            window.event.returnValue=false;
+            return false;
+        }
+        if ($('#uppic2').children('img').length < 1){
+            layer.alert('请选择游戏图标');
+            window.event.returnValue=false;
+            return false;
+        }
+        if ($('#uppic3').children('img').length < 1){
+            layer.alert('请选择游戏轮播图');
+            window.event.returnValue=false;
+            return false;
+        }
+        if ($('#uppic4').children('img').length < 1){
+            layer.alert('请选择游戏热门推荐图');
+            window.event.returnValue=false;
+            return false;
+        }
+        if ($('#uppic5').children('img').length < 1){
+            layer.alert('请选择游戏正常推荐图');
+            window.event.returnValue=false;
+            return false;
+        }
+        if ($('#uppic6').children('img').length < 1){
+            layer.alert('请选择游戏官网背景图');
+            window.event.returnValue=false;
+            return false;
+        }
+        if ($('#uppic7').children('img').length < 1){
+            layer.alert('请选择游戏截图1');
+            window.event.returnValue=false;
+            return false;
+        }
+        if ($('#uppic8').children('img').length < 1){
+            layer.alert('请选择游戏截图2');
+            window.event.returnValue=false;
+            return false;
+        }
+        if ($('#uppic9').children('img').length < 1){
+            layer.alert('请选择游戏截图3');
+            window.event.returnValue=false;
+            return false;
+        }
+        if ($('#uppic10').children('img').length < 1){
+            layer.alert('请选择游戏截图4');
+            window.event.returnValue=false;
+            return false;
+        }
+        if ($('#uppic11').children('img').length < 1){
+            layer.alert('请选择游戏截图5');
+            window.event.returnValue=false;
+            return false;
+        }
+        if ( "<?php echo $source; ?>" == 3){
+            if ($('#uppic12').children('img').length < 1){
+                layer.alert('请选择游戏二维码!');
+                window.event.returnValue=false;
+                return false;
+            }
+        }
+    }
+</script>
+
+<script>
+    //  上传游戏LOGO
+    $(function () {
+        var url = "/Upload/ajax";
+        $('#gamelogo').fileupload({
+            url: url,
+            dataType: 'json',
+            // data:{'operate':'gamelogo'},
+            done: function (evt, data) {
+                // console.log(data);
+                // 预览
+                if (data.result.error == 0) {
+                    $('#uppic1').empty().append('<img src="' + data.result.data.path + '" style="height: 90px; width:120px;">');
+                }
+            }
+        });
+    });
+    //文件上传前触发事件
+    $('#gamelogo').bind('fileuploadsubmit', function (e, data) {
+
+        var gid = $("#gid").attr("value");
+        data.formData = {gid:$("#gid").attr("value"),'operate':'gamelogo'};  //如果需要额外添加参数可以在这里添加
+    });
+</script>
+<script>
+    //  上传游戏图标
+    $(function () {
+        var url = "/Upload/ajax";
+        $('#gamethumb').fileupload({
+            url: url,
+            dataType: 'json',
+            done: function (evt, data) {
+                // console.log(data);
+                // 预览
+                if (data.result.error == 0) {
+                    $('#uppic2').empty().append('<img src="' + data.result.data.path + '" style="height: 90px; width:120px;">');
+                }
+            }
+        });
+    });
+    //文件上传前触发事件
+    $('#gamethumb').bind('fileuploadsubmit', function (e, data) {
+
+        var gid = $("#gid").attr("value");
+        data.formData = {gid:$("#gid").attr("value"),'operate':'gamethumb'};  //如果需要额外添加参数可以在这里添加
+    });
+</script>
+<script>
+    //  上传首页轮播
+    $(function () {
+        var url = "/Upload/ajax";
+        $('#gamelunbo').fileupload({
+            url: url,
+            dataType: 'json',
+            done: function (evt, data) {
+                // console.log(data);
+                // 预览
+                if (data.result.error == 0) {
+                    $('#uppic3').empty().append('<img src="' + data.result.data.path + '" style="height: 90px; width:120px;">');
+                }
+            }
+        });
+    });
+    //文件上传前触发事件
+    $('#gamelunbo').bind('fileuploadsubmit', function (e, data) {
+        var gid = $("#gid").attr("value");
+        data.formData = {gid:$("#gid").attr("value"),'operate':'gamelunbo'};  //如果需要额外添加参数可以在这里添加
+    });
+</script>
+<script>
+    //  上传热门推荐
+    $(function () {
+        var url = "/Upload/ajax";
+        $('#gamehotrec').fileupload({
+            url: url,
+            dataType: 'json',
+            done: function (evt, data) {
+                // console.log(data);
+                // 预览
+                if (data.result.error == 0) {
+                    $('#uppic4').empty().append('<img src="' + data.result.data.path + '" style="height: 90px; width:120px;">');
+                }
+            }
+        });
+    });
+    //文件上传前触发事件
+    $('#gamehotrec').bind('fileuploadsubmit', function (e, data) {
+        var gid = $("#gid").attr("value");
+        data.formData = {gid:$("#gid").attr("value"),'operate':'gamehotrec'};  //如果需要额外添加参数可以在这里添加
+    });
+</script>
+<script>
+    //  上传正常推荐
+    $(function () {
+        var url = "/Upload/ajax";
+        $('#gamenormrec').fileupload({
+            url: url,
+            dataType: 'json',
+            done: function (evt, data) {
+                // console.log(data);
+                // 预览
+                if (data.result.error == 0) {
+                    $('#uppic5').empty().append('<img src="' + data.result.data.path + '" style="height: 90px; width:120px;">');
+                }
+            }
+        });
+    });
+    //文件上传前触发事件
+    $('#gamenormrec').bind('fileuploadsubmit', function (e, data) {
+        var gid = $("#gid").attr("value");
+        data.formData = {gid:$("#gid").attr("value"),'operate':'gamenormrec'};  //如果需要额外添加参数可以在这里添加
+    });
+</script>
+<script>
+    //  上传官网背景
+    $(function () {
+        var url = "/Upload/ajax";
+        $('#gameofficalbg').fileupload({
+            url: url,
+            dataType: 'json',
+            done: function (evt, data) {
+                // console.log(data);
+                // 预览
+                if (data.result.error == 0) {
+                    $('#uppic6').empty().append('<img src="' + data.result.data.path + '" style="height: 90px; width:120px;">');
+                }
+            }
+        });
+    });
+    //文件上传前触发事件
+    $('#gameofficalbg').bind('fileuploadsubmit', function (e, data) {
+        var gid = $("#gid").attr("value");
+        data.formData = {gid:$("#gid").attr("value"),'operate':'gameofficalbg'};  //如果需要额外添加参数可以在这里添加
+    });
+</script>
+<script>
+    //  上传游戏截图1
+    $(function () {
+        var url = "/Upload/ajax";
+        $('#gamecut1').fileupload({
+            url: url,
+            dataType: 'json',
+            done: function (evt, data) {
+                // console.log(data);
+                // 预览
+                if (data.result.error == 0) {
+                    $('#uppic7').empty().append('<img src="' + data.result.data.path + '" style="height: 90px; width:120px;">');
+                }
+            }
+        });
+    });
+    //文件上传前触发事件
+    $('#gamecut1').bind('fileuploadsubmit', function (e, data) {
+        var gid = $("#gid").attr("value");
+        data.formData = {gid:$("#gid").attr("value"),'operate':'gamecut1'};  //如果需要额外添加参数可以在这里添加
+    });
+</script>
+<script>
+    //  上传游戏截图2
+    $(function () {
+        var url = "/Upload/ajax";
+        $('#gamecut2').fileupload({
+            url: url,
+            dataType: 'json',
+            done: function (evt, data) {
+                // console.log(data);
+                // 预览
+                if (data.result.error == 0) {
+                    $('#uppic8').empty().append('<img src="' + data.result.data.path + '" style="height: 90px; width:120px;">');
+                }
+            }
+        });
+    });
+    //文件上传前触发事件
+    $('#gamecut2').bind('fileuploadsubmit', function (e, data) {
+        var gid = $("#gid").attr("value");
+        data.formData = {gid:$("#gid").attr("value"),'operate':'gamecut2'};  //如果需要额外添加参数可以在这里添加
+    });
+</script>
+<script>
+    //  上传游戏截图3
+    $(function () {
+        var url = "/Upload/ajax";
+        $('#gamecut3').fileupload({
+            url: url,
+            dataType: 'json',
+            done: function (evt, data) {
+                // console.log(data);
+                // 预览
+                if (data.result.error == 0) {
+                    $('#uppic9').empty().append('<img src="' + data.result.data.path + '" style="height: 90px; width:120px;">');
+                }
+            }
+        });
+    });
+    //文件上传前触发事件
+    $('#gamecut3').bind('fileuploadsubmit', function (e, data) {
+        var gid = $("#gid").attr("value");
+        data.formData = {gid:$("#gid").attr("value"),'operate':'gamecut3'};  //如果需要额外添加参数可以在这里添加
+    });
+</script>
+<script>
+    //  上传游戏截图4
+    $(function () {
+        var url = "/Upload/ajax";
+        $('#gamecut4').fileupload({
+            url: url,
+            dataType: 'json',
+            done: function (evt, data) {
+                // console.log(data);
+                // 预览
+                if (data.result.error == 0) {
+                    $('#uppic10').empty().append('<img src="' + data.result.data.path + '" style="height: 90px; width:120px;">');
+                }
+            }
+        });
+    });
+    //文件上传前触发事件
+    $('#gamecut4').bind('fileuploadsubmit', function (e, data) {
+        var gid = $("#gid").attr("value");
+        data.formData = {gid:$("#gid").attr("value"),'operate':'gamecut4'};  //如果需要额外添加参数可以在这里添加
+    });
+</script>
+<script>
+    //  上传游戏截图5
+    $(function () {
+        var url = "/Upload/ajax";
+        $('#gamecut5').fileupload({
+            url: url,
+            dataType: 'json',
+            done: function (evt, data) {
+                // console.log(data);
+                // 预览
+                if (data.result.error == 0) {
+                    $('#uppic11').empty().append('<img src="' + data.result.data.path + '" style="height: 90px; width:120px;">');
+                }
+            }
+        });
+    });
+    //文件上传前触发事件
+    $('#gamecut5').bind('fileuploadsubmit', function (e, data) {
+        var gid = $("#gid").attr("value");
+        data.formData = {gid:$("#gid").attr("value"),'operate':'gamecut5'};  //如果需要额外添加参数可以在这里添加
+    });
+</script>
+<script>
+    //  上传游戏二维码
+    $(function () {
+        var url = "/Upload/ajax";
+        $('#gameqrcode').fileupload({
+            url: url,
+            dataType: 'json',
+            done: function (evt, data) {
+                // console.log(data);
+                // 预览
+                if (data.result.error == 0) {
+                    $('#uppic12').empty().append('<img src="' + data.result.data.path + '" style="height: 90px; width:120px;">');
+                }
+            }
+        });
+    });
+    //文件上传前触发事件
+    $('#gameqrcode').bind('fileuploadsubmit', function (e, data) {
+        var gid = $("#gid").attr("value");
+        data.formData = {gid:$("#gid").attr("value"),'operate':'gameqrcode'};  //如果需要额外添加参数可以在这里添加
+    });
+</script>
+
+<script type="text/javascript">
+    // var id ;
+    $(function(){
+
+        $("#seltab a").click(function(){
+            // console.log(JSON.stringify($(this).children('input').attr('checked')));
+
+            if($(this).hasClass("active")){
+            // if($(this).children('input').attr('checked') == 'checked'){
+                $(this).find('input').prop("checked",false)
+                $(this).find('input').removeAttr("checked")
+            }else{
+                $(this).find('input').prop("checked",true)
+                $(this).find('input').attr("checked","checked")
+            }
+            $(this).toggleClass("active"); 
+        })
+
+        var upimg = $('.uppic img');
+        if (upimg.length > 0){
+            $('.uppic').attr('class','uppic1');
+        }
+        // console.log(upimg);return false;
+
+        // id = getPar("id");
+
+        // 定义单图上传
+        // var logofile1 = new ImgUpload('#uppic1',120,90,90);
+        // var logofile2 = new ImgUpload('#uppic2',120,90,90);
+        // var logofile3 = new ImgUpload('#uppic3',120,90,90);
+        // var logofile4 = new ImgUpload('#uppic4',120,90,90);
+        // var logofile5 = new ImgUpload('#uppic5',120,90,90);
+        // var logofile6 = new ImgUpload('#uppic6',120,90,90);
+        // var logofile7 = new ImgUpload('#uppic7',120,90,90);
+        // var logofile8 = new ImgUpload('#uppic8',120,90,90);
+        // var logofile9 = new ImgUpload('#uppic9',120,90,90);
+        // var logofile10 = new ImgUpload('#uppic10',120,90,90);
+        // var logofile11 = new ImgUpload('#uppic11',120,90,90);
+
+        // $(document).on('change',"#uppic1 input",function(e){
+        //     //模拟后台返回url
+        //     var url = window.URL.createObjectURL(e.target.files[0]);
+        //     $(this).parent().css('background','url('+url+')0% 0% / cover')
+        //     console.log(window.URL.createObjectURL(e.target.files[0]))
+            
+        //     logofile1.setSpan(this)
+        // })
+
+        // $(document).on('change',"#uppic2 input",function(e){
+        //     //模拟后台返回url
+        //     var url = window.URL.createObjectURL(e.target.files[0]);
+        //     $(this).parent().css('background','url('+url+')0% 0% / cover')
+        //     console.log(window.URL.createObjectURL(e.target.files[0]))
+            
+        //     logofile2.setSpan(this)
+        // })
+
+        // $(document).on('change',"#uppic3 input",function(e){
+        //     //模拟后台返回url
+        //     var url = window.URL.createObjectURL(e.target.files[0]);
+        //     $(this).parent().css('background','url('+url+')0% 0% / cover')
+        //     console.log(window.URL.createObjectURL(e.target.files[0]))
+            
+        //     logofile3.setSpan(this)
+        // })
+
+        // $(document).on('change',"#uppic4 input",function(e){
+        //     //模拟后台返回url
+        //     var url = window.URL.createObjectURL(e.target.files[0]);
+        //     $(this).parent().css('background','url('+url+')0% 0% / cover')
+        //     console.log(window.URL.createObjectURL(e.target.files[0]))
+            
+        //     logofile4.setSpan(this)
+        // })
+
+        // $(document).on('change',"#uppic5 input",function(e){
+        //     //模拟后台返回url
+        //     var url = window.URL.createObjectURL(e.target.files[0]);
+        //     $(this).parent().css('background','url('+url+')0% 0% / cover')
+        //     console.log(window.URL.createObjectURL(e.target.files[0]))
+            
+        //     logofile5.setSpan(this)
+        // })
+
+        // $(document).on('change',"#uppic6 input",function(e){
+        //     //模拟后台返回url
+        //     var url = window.URL.createObjectURL(e.target.files[0]);
+        //     $(this).parent().css('background','url('+url+')0% 0% / cover')
+        //     console.log(window.URL.createObjectURL(e.target.files[0]))
+            
+        //     logofile6.setSpan(this)
+        // })
+
+        // $(document).on('change',"#uppic7 input",function(e){
+        //     //模拟后台返回url
+        //     var url = window.URL.createObjectURL(e.target.files[0]);
+        //     $(this).parent().css('background','url('+url+')0% 0% / cover')
+        //     console.log(window.URL.createObjectURL(e.target.files[0]))
+            
+        //     logofile7.setSpan(this)
+        // })
+
+        // $(document).on('change',"#uppic8 input",function(e){
+        //     //模拟后台返回url
+        //     var url = window.URL.createObjectURL(e.target.files[0]);
+        //     $(this).parent().css('background','url('+url+')0% 0% / cover')
+        //     console.log(window.URL.createObjectURL(e.target.files[0]))
+            
+        //     logofile8.setSpan(this)
+        // })
+
+        // $(document).on('change',"#uppic9 input",function(e){
+        //     //模拟后台返回url
+        //     var url = window.URL.createObjectURL(e.target.files[0]);
+        //     $(this).parent().css('background','url('+url+')0% 0% / cover')
+        //     console.log(window.URL.createObjectURL(e.target.files[0]))
+            
+        //     logofile9.setSpan(this)
+        // })
+
+        // $(document).on('change',"#uppic10 input",function(e){
+        //     //模拟后台返回url
+        //     var url = window.URL.createObjectURL(e.target.files[0]);
+        //     $(this).parent().css('background','url('+url+')0% 0% / cover')
+        //     console.log(window.URL.createObjectURL(e.target.files[0]))
+            
+        //     logofile10.setSpan(this)
+        // })
+
+        // $(document).on('change',"#uppic11 input",function(e){
+        //     //模拟后台返回url
+        //     var url = window.URL.createObjectURL(e.target.files[0]);
+        //     $(this).parent().css('background','url('+url+')0% 0% / cover')
+        //     console.log(window.URL.createObjectURL(e.target.files[0]))
+            
+        //     logofile11.setSpan(this)
+        // })    
+    })
+
+    // 返回上一级
+    function goback(){
+        window.history.back(-1);
+    }
+</script>
+
+</body>
+</html>
