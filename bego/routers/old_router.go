@@ -50,7 +50,7 @@ func init() {
 	//ns :=
 	//	beego.NewNamespace("v1",
 	//		// 支持满足条件的就执行该namespace
-	//		/*beego.NSCond(func(b *context.Context) bool  {
+	//		beego.NSCond(func(b *context.Context) bool  {
 	//			if b.Input.Domain() == "www.wsst.vip" {
 	//				b.WriteString("1")
 	//				return true
@@ -60,7 +60,7 @@ func init() {
 	//		}),
 	//		beego.NSBefore(func(this *context.Context) {
 	//			this.WriteString("this is before")
-	//		}),*/
+	//		}),
 	//		beego.NSGet("/notallowed", func(ctx *context.Context) {
 	//			//ctx.Output.Body([]byte("notAllowed"))
 	//			ctx.WriteString("notAllowed")
