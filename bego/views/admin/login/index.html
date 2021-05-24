@@ -17,29 +17,28 @@
         <div class="row justify-content-center">
             <div class="col-md-5">
 
-            	<form action="/Login/checklogin" method='post'>
-            		{:token()}
+            	<form onsubmit="return false;">
+            		{{ .xsrfdata }}
 	                <div class="card p-4">
 	                    <div class="card-header text-center text-uppercase h4 font-weight-light">
 	                        登录
 	                    </div>
-
 	                    <div class="card-body py-5">
 	                        <div class="form-group">
 	                            <label class="form-control-label">账号</label>
-	                            <input type="username" name="username" class="form-control">
+	                            <input type="username" name="username" value="admin" class="form-control">
 	                        </div>
 
 	                        <div class="form-group">
 	                            <label class="form-control-label">密码</label>
-	                            <input type="password" name="password" class="form-control">
+	                            <input type="password" name="password" value="123456" class="form-control">
 	                        </div>
 	                    </div>
 
 	                    <div class="card-footer">
 	                        <div class="row">
 	                            <div class="col-6">
-	                                <button type="submit" class="btn btn-primary px-5 logbtn" id="logbtn">登录</button>
+	                                <button type="button" class="btn btn-primary px-5 logbtn" id="logbtn">登录</button>
 	                            </div>
 	                        </div>
 	                    </div>
@@ -61,5 +60,25 @@
 <!-- 页面公有 -->
 <script src="/static/admin/js/sdk.js"></script>
 
+<script>
+	$("#logbtn").click(function () {
+		var username = $("input[name='username']").val()
+		var password = $("input[name='password']").val()
+		var xsrf = $("input[name='_xsrf']").val()
+		$.ajax({
+			url:"/admin/login",
+			datatype:"json",
+			type:"post",
+			data:{"username":username,"password":password,"_xsrf":xsrf},
+			success:function (a) {
+				if (a.Code == 200) {
+					window.location.href="/admin/Index.html"
+				} else {
+					alert(a.Info)
+				}
+			}
+		})
+	})
+</script>
 </body>
 </html>
