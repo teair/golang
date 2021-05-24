@@ -9,13 +9,6 @@ import (
 
 // 后台路由配置文件
 func init() {
-
-	/*web.Get("/", func(ctx *context.Context) {
-		if ctx.Input.Domain() != "admin.wsst.vip" {
-			ctx.Redirect(401,"/")
-		}
-	})*/
-
 	// 注册后台命名空间
 	ns := web.NewNamespace("/admin",
 		web.NSCond(func(ctx *context.Context) bool {
