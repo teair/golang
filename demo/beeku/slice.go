@@ -39,6 +39,15 @@ func InSlice(val string, slice []string) bool {
 	return false
 }
 
+func InSliceInt(val int, slice []int) bool {
+	for _, v := range slice {
+		if v == val {
+			return true
+		}
+	}
+	return false
+}
+
 // SliceReduce 去除数组某个元素
 func SliceReduce(slice []interface{}, a reducetype) (dslice []interface{}) {
 	for _, v := range slice {
@@ -77,6 +86,21 @@ func SliceDiff(slice1, slice2 []string) (diffslice []string) {
 	for _, v := range slice1 {
 		if !InSlice(v, slice2) {
 			diffslice = append(diffslice, v)
+		}
+	}
+	return
+}
+
+// SliceDiffInt
+func SliceDiffInt(slice1,slice2 []int) (diffslice []int) {
+	for _, v := range slice1 {
+		if !InSliceInt(v, slice2) {
+			diffslice = append(diffslice, v)
+		}
+	}
+	for _, v1 := range slice2 {
+		if !InSliceInt(v1,slice1) {
+			diffslice = append(diffslice, v1)
 		}
 	}
 	return
