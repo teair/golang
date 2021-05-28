@@ -31,13 +31,7 @@ func GameList() {
 
 // 获取分发游戏信息
 func GetMsg(where interface{}) {
-	/*if where != nil {
-		o := orm.NewOrm()
-		var fy_game_info []FyGameInfo
-		num, _ := o.QueryTable("fy_game_info").All(&fy_game_info)
-		log.Println("查询出的数据:",fy_game_info)
-		log.Println("总记录数:",num)
-	}*/
+	
 }
 
 // 获取所有游戏列表
