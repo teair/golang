@@ -1,7 +1,8 @@
 package main
 
 import (
-	web "demo/web"
+	"fmt"
+	"sort"
 )
 
 func main() {
@@ -21,5 +22,38 @@ func main() {
 	// 盒子对象
 	// gostruct.ExtendMethod()
 
-	web.Webmain()
+	a := []int{1,2,3,6}
+	b := []int{1,3,4}
+
+	dfa,dfb := test(a,b)
+	fmt.Println(dfa,dfb)
+	//web.Webmain()
+}
+
+func test(a,b []int) (diffA, diffB []int) {
+	sort.Ints(a)
+	sort.Ints(b)
+	i,n := 0, len(a)
+	j,m := 0, len(b)
+	for {
+		if i == n {
+			diffB = append(diffB,b[j:]...)
+			return
+		}
+		if j == m {
+			diffA = append(diffA,a[i:]...)
+			return
+		}
+		x , y := a[i], b[j]
+		if x < y {
+			diffA = append(diffA,x)
+			i++
+		} else if x > y {
+			diffB = append(diffB,y)
+			j++
+		} else {
+			i++
+			j++
+		}
+	}
 }
