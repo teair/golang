@@ -1,19 +1,13 @@
 package admin
 
 import (
+	"github.com/beego/beego/v2/core/utils"
 	"github.com/beego/beego/v2/server/web"
 )
 
 // 基类控制器
 type baseController struct {
 	web.Controller
-}
-
-// 定义返回数据格式
-type ReturnData struct {
-	Code int
-	Data []interface{}
-	Info string
 }
 
 func (b *baseController) Prepare() {
@@ -24,4 +18,11 @@ func (b *baseController) Prepare() {
 		b.Ctx.Redirect(302, "/admin")
 		return
 	}
+}
+
+// 公共分页操作
+func (this *baseController) SetPaginator(per int, nums int64) *utils.Paginator {
+	p := utils.NewPaginator(this.Ctx.Request, per, nums)
+	this.Data["paginator"] = p
+	return p
 }
