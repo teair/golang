@@ -76,3 +76,9 @@ func (this *LoginController) AdminLogin() {
 	this.Data["json"] = ReturnData{Code: 200, Data: nil, Info: fmt.Sprintf("%x", "登陆成功!")}
 	this.ServeJSON()
 }
+
+// 注销登陆
+func (this *LoginController) AdminLogout() {
+	this.DestroySession()
+	this.Redirect("/admin", 302)
+}
