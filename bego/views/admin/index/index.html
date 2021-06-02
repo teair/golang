@@ -86,32 +86,13 @@
                             <div class="table-top-form" style="overflow: visible;">
                                 <div class="fl clearfix table-top-btn">
                                     <button type="button" class="btn btn-primary" id="add">创建分发</button>
-                                </div>  
-                                
-                                <?php if(!isset($mark_online) || $mark_online == '2') { ?>
-                                <div class="fl clearfix table-top-btn query-tabs">
-                                    <button type="button" class="btn btn-outline-secondary" id="typeoff">下线游戏</button>
-                                    <button type="button" class="btn btn-outline-secondary" id="typeon">上线游戏</button>
-                                    <button type="button" class="btn btn-info" id="all">全部游戏</button>
                                 </div>
-                                <?php } ?>
-                                <!--上线游戏样式-->
-                                <?php if(isset($mark_online) && $mark_online == '1' ) { ?>
                                 <div class="fl clearfix table-top-btn query-tabs">
-                                    <button type="button" class="btn" id="typeoff">下线游戏</button>
-                                    <button type="button" class="btn btn-info" id="typeon">上线游戏</button>
-                                    <button type="button" class="btn" id="all">全部游戏</button>
-                                </div>  
-                                <?php } ?>
-                                <!--下线游戏样式-->
-                                <?php if(isset($mark_online) && $mark_online == '0' ) { ?>
-                                <div class="fl clearfix table-top-btn query-tabs">
-                                    <button type="button" class="btn btn-info" id="typeoff">下线游戏</button>
-                                    <button type="button" class="btn" id="typeon">上线游戏</button>
-                                    <button type="button" class="btn" id="all">全部游戏</button>
-                                </div>  
-                                <?php } ?>
-                                
+                                    <button type="button" class="{{if .Index.Underline}} btn btn-info btn-outline-secondary {{else}} btn btn-outline-secondary {{end}}" id="typeoff">下线游戏</button>
+                                    <button type="button" class="{{if .Index.Online}} btn btn-info btn-outline-secondary {{else}} btn btn-outline-secondary {{end}}" id="typeon">上线游戏</button>
+                                    <button type="button" class="{{if .Index.Quanbu}} btn btn-info {{else}} btn {{end}}" id="all">全部游戏</button>
+                                </div>
+
                                 <div class="fr clearfix table-top-btn">
                                     <button type="button" class="btn btn-success" id="query" style="margin-right: 20px;">查询</button>
                                 </div>
@@ -128,10 +109,10 @@
                                 <div class="fr clearfix table-top-btn">
                                     <button type="button" class="btn btn-success" style="margin-right: 20px;" id='subgame'>创建分发</button>
                                 </div>
-                                <div class="fr clearfix col-md-3 table-top-col searchnone">
+                                <!--<div class="fr clearfix col-md-3 table-top-col searchnone">
                                     <h6 class="col-md-4 fl">待分发游戏</h6>
                                     <input type="text" placeholder="请输入游戏名称或拼音简写..." class="form-control col-md-8 fl" id="no-fenfa">
-                                </div> 
+                                </div> -->
 
                             </div>
                             <div class="table-responsive">
@@ -147,41 +128,38 @@
                                     </tr>
                                     </thead>
                                     <tbody id="list">
-                                        <?php if (empty($data)) { ?>
-                                            暂无游戏信息!
-                                        <?php } else { ?>
-                                            {foreach $data as $k1=>$vo}
-                                                {if condition="$vo.mark_online eq '0'"}
+                                        {{range .Index.Gamedata}}
+                                            {{if eq 0 .MarkOnline}}
                                                 <tr>
-                                                    <td>{$vo.id}</td>
-                                                    <td>{$vo.app_name}</td>
-                                                    <td>{$vo.gid}</td>
-                                                    <td>{$vo.app_rename}</td>
-                                                    <td>{$vo.create_time}</td>
+                                                    <td>{{.Id}}</td>
+                                                    <td>{{.AppName}}</td>
+                                                    <td>{{.Gid}}</td>
+                                                    <td>{{.AppRename}}</td>
+                                                    <td>{{.CreateTime}}</td>
                                                     <td>
-                                                        <button type="button" id='{$vo.gid}' class="btn btn-outline-success upload" >资料上传</button>
+                                                        <button type="button" id='{{.Gid}}' class="btn btn-outline-success upload" >资料上传</button>
                                                         <!-- <button type="button" class="btn btn-outline-warning">修改</button> -->
-                                                        <button type="button" id='{$vo.gid},1' class="btn btn-outline-secondary stateoff">上线</button>
-                                                        <button type="button" id='{$vo.gid}' class="btn btn-outline-danger del">删除</button>
+                                                        <button type="button" id='{{.Gid}},1' class="btn btn-outline-secondary stateoff">上线</button>
+                                                        <button type="button" id='{{.Gid}}' class="btn btn-outline-danger del">删除</button>
                                                     </td>
                                                 </tr>
-                                                {else /}
+                                            {{else}}
                                                 <tr>
-                                                    <td>{$vo.id}</td>
-                                                    <td>{$vo.app_name}</td>
-                                                    <td>{$vo.gid}</td>
-                                                    <td>{$vo.app_rename}</td>
-                                                    <td>{$vo.create_time}</td>
+                                                    <td>{{.Id}}</td>
+                                                    <td>{{.AppName}}</td>
+                                                    <td>{{.Gid}}</td>
+                                                    <td>{{.AppRename}}</td>
+                                                    <td>{{.CreateTime}}</td>
                                                     <td>
-                                                        <button type="button" id='{$vo.gid}' class="btn btn-outline-success upload" >资料上传</button>
+                                                        <button type="button" id='{{.Gid}}' class="btn btn-outline-success upload" >资料上传</button>
                                                         <!-- <button type="button" class="btn btn-outline-warning">修改</button> -->
-                                                        <button type="button" id='{$vo.gid},0' class="btn btn-outline-secondary stateoff" >下线</button>
-                                                        <button type="button" id='{$vo.gid}' class="btn btn-outline-danger del">删除</button>
-                                                    </td>
+                                                        <button type="button" id='{{.Gid}},0' class="btn btn-outline-secondary stateoff" >下线</button>
+                                                        <button type="button" id='{{.Gid}}' class="btn btn-outline-danger del">删除</button>                                               </td>
                                                 </tr>
-                                                {/if}
-                                            {/foreach}
-                                        <?php } ?>
+                                            {{end}}
+                                        {{else}}
+                                        暂无游戏信息!
+                                        {{end}}
                                     </tbody>
                                 </table>
                             </div>
@@ -189,7 +167,7 @@
                             <!--分页样式公共部分-->
                             <div class="re-page clearfix" >
                                 <dl>
-                                    {$data->render()}
+                                    分页
                                 </dl>
                             </div>
                             <!--分页样式公共部分-->
@@ -213,21 +191,11 @@
                             <div class="form-group">
                                 <label class="form-control-label">选择游戏</label>
                                 <select class="form-control" id="guipia" name='msg'>
-                                    <?php if (empty($gamelist)) { ?>
-                                        <option >暂无可创建分发的游戏</option>
-                                    <?php } else { ?>
-                                        {foreach $gamelist as $v}
-                                            <!-- <input type="hidden" name="gid" value='{$v.gid}'>
-                                            <input type="hidden" name="app_name" value='{$v.app_name_cn}'>
-                                            <input type="hidden" name="app_rename" value='{$v.app_name}'>
-                                            <input type="hidden" name="game_size" value='{$v.game_size}'>
-                                            <input type="hidden" name="publicity" value='{$v.publicity}'>
-                                            <input type="hidden" name="fuli" value='{$v.fuli}'>
-                                            <input type="hidden" name="game_introduce" value='{$v.game_introduce}'>
-                                            <input type="hidden" name="source" value='{$v.source}'> -->
-                                            <option value="{$v.gid}`{$v.app_name_cn}`{$v.app_name}`{$v.game_size}`{$v.publicity}`{$v.fuli}`{$v.source}`{$v.game_introduce}">{$v.app_name_cn}</option>
-                                        {/foreach}
-                                    <?php } ?>
+                                    {{range .Index.Gamelist}}
+                                        <option value="{{.Gid}}`{{.AppNameCn}}`{{.AppName}}`{{.GameSize}}`{{.Publicity}}`{{.Fuli}}`{{.Source}}`{{.GameIntroduce}}">{{.AppNameCn}}</option>
+                                    {{else}}
+                                    暂无可创建分发的游戏
+                                    {{end}}
                                 </select>
                             </div>
                         </div>
