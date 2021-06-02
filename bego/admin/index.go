@@ -10,8 +10,21 @@ type IndexController struct {
 	baseController
 }
 
+type IndexData struct {
+	MarkOnline                string
+	Gamedata                  []admin.GameInfo
+	Gamelist                  []admin.AppProvider
+	Selname                   string
+	Quanbu, Online, Underline bool
+	Active, Open              int
+}
+
 // 后台首页
 func (this *IndexController) Index() {
+	var index IndexData
+	index.Active = 0
+	index.Open = 0
+
 	// 接收参数
 	data := this.Ctx.Input.Params()
 
@@ -32,13 +45,13 @@ func (this *IndexController) Index() {
 
 	gamemsg := admin.GetGid(listenFirst, strings.Join(alreadyGid, ","))
 
-	this.Data["gamelist"] = gamemsg
+	index.Gamelist = gamemsg
 
 	// 获取全部游戏数据
 	if data["mark_online"] == "" || data["app_name"] == "" {
 		// 获取全部创建分发的游戏与分页
 		fenfa := admin.FindAll()
-		this.Data["data"] = fenfa
+		index.Gamedata = fenfa
 	} else {
 		if data["mark_online"] != "" {
 			// 验证 mark_online 参数是否合法
@@ -60,13 +73,13 @@ func (this *IndexController) Index() {
 			if data["mark_online"] == "2" {
 				// 获取全部游戏
 				datainfo := admin.FindAll()
-				this.Data["data"] = datainfo
+				index.Gamedata = datainfo
 			} else {
 				// 获取上线/下线游戏
 				datainfo := admin.FindGame("mark_online", data["mark_online"])
-				this.Data["data"] = datainfo
+				index.Gamedata = datainfo
 			}
-			this.Data["mark_onlilne"] = data["mark_online"]
+			index.MarkOnline = data["mark_online"]
 		}
 
 		if data["app_name"] != "" {
@@ -85,10 +98,33 @@ func (this *IndexController) Index() {
 				}
 			}
 			gamedata := admin.FindGame("app_name", data["app_name"])
-			this.Data["data"] = gamedata
-			this.Data["selname"] = data["app_name"]
+			index.Gamedata = gamedata
+			index.Selname = data["app_name"]
 		}
 	}
 
+	// 模板逻辑
+	if index.MarkOnline == "2" || index.MarkOnline != "" {
+		index.Quanbu = true
+	}
+
+	if index.MarkOnline == "1" && index.MarkOnline != "" {
+		index.Online = true
+	}
+
+	if index.MarkOnline == "0" && index.MarkOnline != "" {
+		index.Underline = true
+	}
+
+	this.Data["Index"] = index
+
 	this.TplName = "admin/index/index.html"
+}
+
+// 监听用户是否为第一次登录(游戏下拉)
+func (this *IndexController) Listen() {
+	data := this.Ctx.Input.Param("isfirst")
+	if data != "" {
+		this.SetSession("listenfirst", data)
+	}
 }
