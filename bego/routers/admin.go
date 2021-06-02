@@ -34,6 +34,7 @@ func init() {
 		web.NSRouter("/logout", &admin.LoginController{}, "get:AdminLogout"),
 		// 首页
 		web.NSRouter("/Index", &admin.IndexController{}, "get:Index"),
+		web.NSRouter("/listen", &admin.IndexController{}, "post:Listen"),
 	)
 	web.AddNamespace(ns)
 }
