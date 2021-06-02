@@ -10,9 +10,7 @@ type ApiController struct {
 }
 
 func (this *ApiController) TestApi() {
-	var num int64
-	num, lists := admin.GameInfoSelect()
-	this.Data["num"] = num
+	lists := admin.GameInfoSelect()
 	this.Data["json"] = lists
 	this.ServeJSON()
 }
