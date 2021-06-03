@@ -33,7 +33,7 @@ func init() {
 		// 注销登陆
 		web.NSRouter("/logout", &admin.LoginController{}, "get:AdminLogout"),
 		// 首页
-		web.NSRouter("/Index", &admin.IndexController{}, "get:Index"),
+		web.NSRouter("/index/?:mark_online:string", &admin.IndexController{}, "get:Index"),
 		web.NSRouter("/listen", &admin.IndexController{}, "post:Listen"),
 	)
 	web.AddNamespace(ns)
