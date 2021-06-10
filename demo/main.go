@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 	"sort"
 )
 
@@ -22,12 +23,26 @@ func main() {
 	// 盒子对象
 	// gostruct.ExtendMethod()
 
-	a := []int{1,2,3,6}
-	b := []int{1,3,4}
+	//a := []int{1,2,3,6}
+	//b := []int{1,3,4}
 
-	dfa,dfb := test(a,b)
-	fmt.Println(dfa,dfb)
+	//dfa,dfb := test(a,b)
+	//fmt.Println(dfa,dfb)
 	//web.Webmain()
+
+	c := app()
+	fmt.Println(reflect.TypeOf(c))
+}
+
+func app() func(string) string {
+	t := "Hi"
+	c := func(b string) string {
+		t = t + " " + b
+		return t
+	}
+	fmt.Println(reflect.TypeOf(t))
+	fmt.Println(reflect.TypeOf(c))
+	return c
 }
 
 func test(a,b []int) (diffA, diffB []int) {
@@ -57,3 +72,4 @@ func test(a,b []int) (diffA, diffB []int) {
 		}
 	}
 }
+
