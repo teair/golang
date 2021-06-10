@@ -1,7 +1,6 @@
 package admin
 
 import (
-	"bego/models/admin"
 	"github.com/beego/beego/v2/server/web"
 )
 
@@ -10,7 +9,7 @@ type ApiController struct {
 }
 
 func (this *ApiController) TestApi() {
-	lists := admin.GameInfoSelect()
+	/*lists := admin.GameInfoSelect()
 	this.Data["json"] = lists
-	this.ServeJSON()
+	this.ServeJSON()*/
 }
