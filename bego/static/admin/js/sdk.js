@@ -29,7 +29,7 @@ function state(){
         var arr = str.split(',');   //增加上下线标识
         $.ajax({
             type:'post',
-            url:'/Index/markonline',
+            url:'/admin/markonline',
             datatype:'json',
             data:{gid:arr[0],mark_online:arr[1]},
             // contentType:"application/x-www-form-urlencoded",
@@ -83,14 +83,13 @@ function del(){
         },function(index,layero){
             $.ajax({
                 type:'post',
-                url:'/Index/gamedel',
+                url:'/admin/gamedel',
                 datatype:'json',
                 data:{gid:gid},
-                // contentType:"application/x-www-form-urlencoded",
                 success:function(a){
-                    if (a.code == '200'){
+                    if (a.Code == '200'){
                         // layer.alert('删除成功!',{icon:1});
-                        window.location.href='/Index/index';
+                        window.location.href='/admin/index';
                     }else{
                         layer.alert('系统繁忙...',{icon:5});
                     }
@@ -100,11 +99,6 @@ function del(){
                 }
             });
         });
-        /*var r=confirm("是否确认删除")
-        if (r==true){
-          alert("删除成功");
-        }else{ }*/
-
     })
 }
 
