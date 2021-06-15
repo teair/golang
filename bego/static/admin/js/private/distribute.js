@@ -30,14 +30,6 @@ $(function(){
      $("#query").on('click',function(){
        // alert("游戏名称查询")
        var app_name = $('#query-name').val();
-       /*var btn_info = $(".btn-info").attr("id");
-       if (btn_info == "typeon") {
-           mark_online = 1;
-       } else if (btn_info == "typeoff") {
-           mark_online = 0;
-       } else {
-            mark_online = 2;
-       }*/
        // window.location.href='/Index/index/app_name/' + encodeURIComponent(app_name);
        window.location.href='/admin/index?app_name=' + app_name;
      })
