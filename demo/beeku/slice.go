@@ -48,6 +48,15 @@ func InSliceInt(val int, slice []int) bool {
 	return false
 }
 
+func InSliceString(val string, slice []string) bool {
+	for _, v := range slice {
+		if v == val {
+			return true
+		}
+	}
+	return false
+}
+
 // SliceReduce 去除数组某个元素
 func SliceReduce(slice []interface{}, a reducetype) (dslice []interface{}) {
 	for _, v := range slice {
