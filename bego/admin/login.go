@@ -4,6 +4,7 @@ import (
 	"bego/models/admin"
 	"encoding/base64"
 	"fmt"
+	"github.com/beego/beego/v2/client/orm"
 	"github.com/beego/beego/v2/core/validation"
 	"github.com/beego/beego/v2/server/web"
 	"html/template"
@@ -16,7 +17,7 @@ type LoginController struct {
 // 定义返回数据格式
 type ReturnData struct {
 	Code int
-	Data []interface{}
+	Data []orm.Params
 	Info string
 }
 
