@@ -35,6 +35,12 @@ func init() {
 		// 首页
 		web.NSRouter("/index/?:mark_online/?:p/?:app_name", &admin.IndexController{}, "get:Index"),
 		web.NSRouter("/listen", &admin.IndexController{}, "post:Listen"),
+		web.NSRouter("/gamesel", &admin.IndexController{}, "post:Gamesel"),
+		web.NSRouter("/gamedel", &admin.IndexController{}, "post:Gamedel"),
+		web.NSRouter("/markonline", &admin.IndexController{}, "post:MarkOnline"),
+		web.NSRouter("/gameadd", &admin.GameController{}, "post:GameAdd"),
+		// 上传页
+		web.NSRouter("/upindex/:gid", &admin.UploadController{}, "get:UpIndex"),
 	)
 	web.AddNamespace(ns)
 }
