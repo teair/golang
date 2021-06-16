@@ -6,6 +6,7 @@ import (
 	"github.com/beego/beego/v2/core/utils"
 	"github.com/beego/beego/v2/core/validation"
 	"github.com/beego/beego/v2/server/web"
+	"html/template"
 	"strconv"
 	"strings"
 )
@@ -41,13 +42,8 @@ func (this *IndexController) Index() {
 		p = (p - 1) * per
 	}
 
-	fmt.Println("the p is:", p)
-	fmt.Println("the per is:", per)
-	fmt.Println("the mark_online is:", mark_online)
-	fmt.Println("the app_name is:", app_name)
-
 	// 获取全部分发游戏
-	gameList, num = admin.GameInfoSelect(p, per)
+	gameList, num = admin.FindAll(p, per)
 	alreadyGid := []string{}
 	for i := range gameList {
 		alreadyGid = append(alreadyGid, gameList[i].Gid)
@@ -138,7 +134,7 @@ func (this *IndexController) Index() {
 		index.Underline = true
 	}
 
-	fmt.Println("the num is:", num)
+	this.Data["xsrfdata"] = template.HTML(this.XSRFFormHTML())
 
 	// 前台显示分页
 	this.Data["paginator"] = this.SetPaginator(per, num)
@@ -146,10 +142,79 @@ func (this *IndexController) Index() {
 	this.TplName = "admin/index/index.html"
 }
 
+func (this *IndexController) Gamedel() {
+	gid := this.Ctx.Input.Query("gid")
+	if gid == "" {
+		this.Data["json"] = ReturnData{
+			Code: 402,
+			Data: nil,
+			Info: "参数异常...",
+		}
+		this.ServeJSON()
+	}
+	num := admin.Gamedel(gid)
+	if num == 0 {
+		this.Data["json"] = ReturnData{
+			Code: 500,
+			Data: nil,
+			Info: "删除失败...",
+		}
+		this.ServeJSON()
+	}
+	this.Data["json"] = ReturnData{
+		Code: 200,
+		Data: nil,
+		Info: "删除成功!",
+	}
+	this.ServeJSON()
+}
+
+func (this *IndexController) Gamesel() {
+	this.EnableXSRF = false
+	gamelist := admin.GameInfoSelect()
+	this.Data["json"] = ReturnData{
+		Code: 200,
+		Data: gamelist,
+		Info: "请求成功!",
+	}
+	this.ServeJSON()
+}
+
 // 监听用户是否为第一次登录(游戏下拉)
 func (this *IndexController) Listen() {
-	data := this.Ctx.Input.Param("isfirst")
+	this.EnableXSRF = false
+	data := this.Ctx.Input.Query("isfirst")
+	fmt.Println("this is first?", data)
 	if data != "" {
 		this.SetSession("listenfirst", data)
+		this.Data["json"] = ReturnData{
+			Code: 200,
+			Data: nil,
+			Info: "success",
+		}
+		this.ServeJSON()
+	} else {
+		this.Data["json"] = ReturnData{
+			Code: -1,
+			Data: nil,
+			Info: "Unexpected error",
+		}
+		this.ServeJSON()
+	}
+}
+
+func (this *IndexController) MarkOnline() {
+	gid := this.Ctx.Input.Query("gid")
+	mark_online := this.Ctx.Input.Query("mark_online")
+	imk, _ := strconv.Atoi(mark_online)
+
+	// 验证参数
+	valid := validation.Validation{}
+	valid.Required(gid, "gid").Message("参数异常...")
+	valid.Length(gid, 16, "gid").Message("参数异常...")
+	valid.Range(imk, 0, 2, "mark_online").Message("参数异常...")
+
+	if mark_online == "1" {
+
 	}
 }
