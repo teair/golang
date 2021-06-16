@@ -36,7 +36,8 @@ $(function(){
 
      $(".upload").on('click',function(){
         var gid = $(this).attr('id');
-        window.location.href="/Upload/index/gid/" + gid;
+        // window.location.href="/Upload/index/gid/" + gid;
+        window.location.href="/admin/upindex/" + gid;
      })
 
      
