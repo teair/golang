@@ -13,10 +13,12 @@
 	    /*已创建游戏搜索提示样式*/
 	    #searchTips{
 	        position: absolute;
-	        left: 135px;
-	        width:  241px;
+	        /* left: 135px;*/
+	        left: 103px;
+	        /*width:  241px;*/
+	        width:  177px;
 	        right: 15px;
-	        top: 33px;
+	        top: 31px;
 	        border: solid 1px #e0e0e0;
 	        background-color: white;
 	    }
@@ -88,9 +90,9 @@
                                     <button type="button" class="btn btn-primary" id="add">创建分发</button>
                                 </div>
                                 <div class="fl clearfix table-top-btn query-tabs">
-                                    <button type="button" class="{{if .Index.Underline}} btn btn-info btn-outline-secondary {{else}} btn btn-outline-secondary {{end}}" id="typeoff">下线游戏</button>
-                                    <button type="button" class="{{if .Index.Online}} btn btn-info btn-outline-secondary {{else}} btn btn-outline-secondary {{end}}" id="typeon">上线游戏</button>
-                                    <button type="button" class="{{if .Index.Quanbu}} btn btn-info {{else}} btn {{end}}" id="all">全部游戏</button>
+                                    <button type="button" class="{{if .Index.Underline}} btn btn-info{{else}} btn btn-outline-secondary {{end}}" id="typeoff">下线游戏</button>
+                                    <button type="button" class="{{if .Index.Online}} btn btn-info {{else}} btn btn-outline-secondary  {{end}}" id="typeon">上线游戏</button>
+                                    <button type="button" class="{{if .Index.Quanbu}} btn btn-info {{else}} btn btn-outline-secondary {{end}}" id="all">全部游戏</button>
                                 </div>
 
                                 <div class="fr clearfix table-top-btn">
@@ -98,21 +100,12 @@
                                 </div>
                                 <div class="fr clearfix col-md-3 table-top-col search">
                                     <h6 class="col-md-4 fl">游戏名称</h6>
-                                    <input type="text" placeholder="请输入游戏名称或拼音简写..."  name="app_name" class="form-control col-md-8 fl" id="query-name">
+                                    {{if .Index.Selname}}
+                                    <input type="text" value='{{.Index.Selname}}' name="app_name" class="form-control col-md-8 fl" id="query-name">
+                                    {{else}}
+                                    <input type="text" name="app_name" class="form-control col-md-8 fl" id="query-name">
+                                    {{end}}
                                 </div>
-
-                                <!-- <div class="fr clearfix col-md-3 table-top-col">
-                                    <h6 class="col-md-4 fl">游戏名称</h6>
-                                    <input type="text" name="app_name" class="form-control col-md-8 fl" id="query-name" onblur='gamesel();'>
-                                </div>  -->
-                                
-                                <div class="fr clearfix table-top-btn">
-                                    <button type="button" class="btn btn-success" style="margin-right: 20px;" id='subgame'>创建分发</button>
-                                </div>
-                                <!--<div class="fr clearfix col-md-3 table-top-col searchnone">
-                                    <h6 class="col-md-4 fl">待分发游戏</h6>
-                                    <input type="text" placeholder="请输入游戏名称或拼音简写..." class="form-control col-md-8 fl" id="no-fenfa">
-                                </div> -->
 
                             </div>
                             <div class="table-responsive">
@@ -135,7 +128,7 @@
                                                     <td>{{.AppName}}</td>
                                                     <td>{{.Gid}}</td>
                                                     <td>{{.AppRename}}</td>
-                                                    <td>{{.CreateTime}}</td>
+                                                    <td>{{date .CreateTime "Y-m-d H:i:s"}}</td>
                                                     <td>
                                                         <button type="button" id='{{.Gid}}' class="btn btn-outline-success upload" >资料上传</button>
                                                         <!-- <button type="button" class="btn btn-outline-warning">修改</button> -->
@@ -149,7 +142,7 @@
                                                     <td>{{.AppName}}</td>
                                                     <td>{{.Gid}}</td>
                                                     <td>{{.AppRename}}</td>
-                                                    <td>{{.CreateTime}}</td>
+                                                    <td>{{date .CreateTime "Y-m-d H:i:s"}}</td>
                                                     <td>
                                                         <button type="button" id='{{.Gid}}' class="btn btn-outline-success upload" >资料上传</button>
                                                         <!-- <button type="button" class="btn btn-outline-warning">修改</button> -->
@@ -165,10 +158,30 @@
                             </div>
 
                             <!--分页样式公共部分-->
-                            <div class="re-page clearfix" >
-                                <dl>
-                                    分页
-                                </dl>
+                            <div class="re-page clearfix" style="align:'center';" >
+                                {{if gt .paginator.PageNums 1}}
+                                <ul class="pagination pagination-sm">
+                                    {{if .paginator.HasPrev}}
+                                    <li><a href="{{.paginator.PageLinkFirst}}">首页</a></li>
+                                    <li><a href="{{.paginator.PageLinkPrev}}">&lt;</a></li>
+                                    {{else}}
+                                    <li class="disabled"><a>首页</a></li>
+                                    <li class="disabled"><a>&lt;</a></li>
+                                    {{end}}
+                                    {{range $index, $page := .paginator.Pages}}
+                                    <li{{if $.paginator.IsActive .}} class="active"{{end}}>
+                                    <a href="{{$.paginator.PageLink $page}}">{{$page}}</a>
+                                    </li>
+                                    {{end}}
+                                    {{if .paginator.HasNext}}
+                                    <li><a href="{{.paginator.PageLinkNext}}">&gt;</a></li>
+                                    <li><a href="{{.paginator.PageLinkLast}}">最后一页</a></li>
+                                    {{else}}
+                                    <li class="disabled"><a>&gt;</a></li>
+                                    <li class="disabled"><a>末页</a></li>
+                                    {{end}}
+                                </ul>
+                                {{end}}
                             </div>
                             <!--分页样式公共部分-->
                         </div>
@@ -182,17 +195,18 @@
 
 <div class="popup" id="popup" style="display: none;">
     <!-- 表单 -->
-    <form class="col-md-12" action='/Game/gameadd' method='post'>
+    <form class="col-md-12" action='/admin/gameadd' method='post'>
         <div class="card-body p-4">
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
+                                {{.xsrfdata}}
                                 <label class="form-control-label">选择游戏</label>
                                 <select class="form-control" id="guipia" name='msg'>
                                     {{range .Index.Gamelist}}
-                                        <option value="{{.Gid}}`{{.AppNameCn}}`{{.AppName}}`{{.GameSize}}`{{.Publicity}}`{{.Fuli}}`{{.Source}}`{{.GameIntroduce}}">{{.AppNameCn}}</option>
+                                        <option value="{{.Gid}}^{{.AppNameCn}}^{{.AppName}}^{{.GameSize}}^{{.Publicity}}^{{.Fuli}}^{{.Source}}^{{.GameIntroduce}}">{{.AppNameCn}}</option>
                                     {{else}}
                                     暂无可创建分发的游戏
                                     {{end}}
@@ -239,14 +253,15 @@ function ListenerSearch(){
     var name = [];
     // 游戏代号
     $.ajax({
-        url:'/Index/gamesel',
+        url:'/admin/gamesel',
         datatype:'json',
         type:'post',
         success:function(a,b){
-            if (a.code=='200'){
-                $.each(a.data,function(index, el) {
-                    name.push(el.app_name);
-                    name.push(el.app_rename);
+            if (a.Code=='200'){
+                $.each(a.Data,function(index, el) {
+                    console.log(el.AppName)
+                    name.push(el.AppName);
+                    name.push(el.AppRename);
                 });
             }
         }
@@ -260,7 +275,7 @@ function ListenerSearch(){
         QueryKeyword($(this).val(),name);
     });
     
-    var name1 = [];
+    /*var name1 = [];
     window.data1 = [];
     // 游戏代号
     $.ajax({
@@ -276,7 +291,7 @@ function ListenerSearch(){
                 });
             }
         }
-    });
+    });*/
     //实时监控未创建分发文本输入
     $("#no-fenfa").bind('input propertychange',function () {
         QueryKeyword1($(this).val(),name1);
