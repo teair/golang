@@ -38,7 +38,7 @@ function state(){
                 // console.log(a.code);
                 // return false;
                 if (a.code == '200'){
-                    window.location.href='/Index/index/mark_online/' + a.data.mark_online;
+                    window.location.href='/admin/markonline?mark_online=' + a.data.mark_online;
                 }
                 if (a.code == '1000'){
                     layer.open({
@@ -47,7 +47,7 @@ function state(){
                       ,btn: ['确认']
                       ,yes: function(index, layero){
                         //按钮【按钮一】的回调
-                        window.location.href="/Upload/index/gid/" + a.data.gid;
+                        window.location.href="/admin/upindex/" + a.data.gid;
                       }
                       ,cancel: function(){ 
                         //右上角关闭回调
