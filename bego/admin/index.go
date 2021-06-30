@@ -1,7 +1,8 @@
 package admin
 
 import (
-	"bego/models/admin"
+	"bego/models/admin/approvider"
+	"bego/models/admin/gameinfo"
 	"fmt"
 	"github.com/beego/beego/v2/core/utils"
 	"github.com/beego/beego/v2/core/validation"
@@ -17,8 +18,8 @@ type IndexController struct {
 
 type IndexData struct {
 	MarkOnline                string
-	Gamedata                  []admin.GameInfo
-	Gamelist                  []admin.AppProvider
+	Gamedata                  []gameinfo.GameInfo
+	Gamelist                  []approvider.AppProvider
 	Selname                   string
 	Quanbu, Online, Underline bool
 	Active, Open              int
@@ -26,7 +27,7 @@ type IndexData struct {
 
 // 后台首页
 func (this *IndexController) Index() {
-	var gameList, fenfa, datainfo, gamedata []admin.GameInfo
+	var gameList, fenfa, datainfo, gamedata []gameinfo.GameInfo
 	var num int64
 	var index IndexData
 	index.Active = 0
@@ -43,7 +44,7 @@ func (this *IndexController) Index() {
 	}
 
 	// 获取全部分发游戏
-	gameList, num = admin.FindAll(p, per)
+	gameList, num = gameinfo.FindAll(p, per)
 	alreadyGid := []string{}
 	for i := range gameList {
 		alreadyGid = append(alreadyGid, gameList[i].Gid)
@@ -56,8 +57,7 @@ func (this *IndexController) Index() {
 	} else {
 		listenFirst = true
 	}
-
-	gamemsg := admin.GetGid(listenFirst, strings.Join(alreadyGid, ","))
+	gamemsg := approvider.GetGid(listenFirst, strings.Join(alreadyGid, ","))
 
 	index.Gamelist = gamemsg
 
@@ -65,7 +65,7 @@ func (this *IndexController) Index() {
 	if mark_online == "" && app_name == "" {
 		// 获取全部创建分发的游戏与分页
 		//fenfa := admin.FindAll(p,per)
-		fenfa, num = admin.FindAll(p, per)
+		fenfa, num = gameinfo.FindAll(p, per)
 		index.Gamedata = fenfa
 	} else {
 		if mark_online != "" {
@@ -82,18 +82,21 @@ func (this *IndexController) Index() {
 						Data: nil,
 						Info: err.Message,
 					}
-					this.ServeJSON()
+					err := this.ServeJSON()
+					if err != nil {
+						return
+					}
 				}
 			}
 			if mark_online == "2" {
 				// 获取全部游戏
 				//datainfo := admin.FindAll(p,per)
-				datainfo, num = admin.FindAll(p, per)
+				datainfo, num = gameinfo.FindAll(p, per)
 				index.Gamedata = datainfo
 			} else {
 				// 获取上线/下线游戏
 				//datainfo := admin.FindGame("mark_online", mark_online,p,per)
-				datainfo, num = admin.FindGame("mark_online", mark_online, p, per)
+				datainfo, num = gameinfo.FindGame("mark_online", mark_online, p, per)
 				index.Gamedata = datainfo
 			}
 			index.MarkOnline = mark_online
@@ -111,11 +114,14 @@ func (this *IndexController) Index() {
 						Data: nil,
 						Info: err.Message,
 					}
-					this.ServeJSON()
+					err := this.ServeJSON()
+					if err != nil {
+						return
+					}
 				}
 			}
 			//gamedata := admin.FindGame("app_name", app_name,p,per)
-			gamedata, num = admin.FindGame("app_name", app_name, p, per)
+			gamedata, num = gameinfo.FindGame("app_name", app_name, p, per)
 			index.Gamedata = gamedata
 			index.Selname = app_name
 		}
@@ -126,11 +132,11 @@ func (this *IndexController) Index() {
 		index.Quanbu = true
 	}
 
-	if mark_online == "1" && mark_online != "" {
+	if mark_online == "1" {
 		index.Online = true
 	}
 
-	if mark_online == "0" && mark_online != "" {
+	if mark_online == "0" {
 		index.Underline = true
 	}
 
@@ -150,34 +156,46 @@ func (this *IndexController) Gamedel() {
 			Data: nil,
 			Info: "参数异常...",
 		}
-		this.ServeJSON()
+		err := this.ServeJSON()
+		if err != nil {
+			return
+		}
 	}
-	num := admin.Gamedel(gid)
+	num := gameinfo.Gamedel(gid)
 	if num == 0 {
 		this.Data["json"] = ReturnData{
 			Code: 500,
 			Data: nil,
 			Info: "删除失败...",
 		}
-		this.ServeJSON()
+		err := this.ServeJSON()
+		if err != nil {
+			return
+		}
 	}
 	this.Data["json"] = ReturnData{
 		Code: 200,
 		Data: nil,
 		Info: "删除成功!",
 	}
-	this.ServeJSON()
+	err := this.ServeJSON()
+	if err != nil {
+		return
+	}
 }
 
 func (this *IndexController) Gamesel() {
 	this.EnableXSRF = false
-	gamelist := admin.GameInfoSelect()
+	gamelist := gameinfo.GameInfoSelect()
 	this.Data["json"] = ReturnData{
 		Code: 200,
 		Data: gamelist,
 		Info: "请求成功!",
 	}
-	this.ServeJSON()
+	err := this.ServeJSON()
+	if err != nil {
+		return
+	}
 }
 
 // 监听用户是否为第一次登录(游戏下拉)
@@ -186,20 +204,29 @@ func (this *IndexController) Listen() {
 	data := this.Ctx.Input.Query("isfirst")
 	fmt.Println("this is first?", data)
 	if data != "" {
-		this.SetSession("listenfirst", data)
+		err := this.SetSession("listenfirst", data)
+		if err != nil {
+			return
+		}
 		this.Data["json"] = ReturnData{
 			Code: 200,
 			Data: nil,
 			Info: "success",
 		}
-		this.ServeJSON()
+		err = this.ServeJSON()
+		if err != nil {
+			return
+		}
 	} else {
 		this.Data["json"] = ReturnData{
 			Code: -1,
 			Data: nil,
 			Info: "Unexpected error",
 		}
-		this.ServeJSON()
+		err := this.ServeJSON()
+		if err != nil {
+			return
+		}
 	}
 }
 
