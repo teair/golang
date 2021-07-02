@@ -89,7 +89,7 @@ function del(){
                 success:function(a){
                     if (a.Code == '200'){
                         // layer.alert('删除成功!',{icon:1});
-                        window.location.href='/admin/index';
+                        window.location.href='../../../routers/admin/index';
                     }else{
                         layer.alert('系统繁忙...',{icon:5});
                     }
