@@ -1,7 +1,7 @@
 package admin
 
 import (
-	"bego/models/admin"
+	"bego/models/adminmodel"
 	"strings"
 )
 
@@ -22,7 +22,7 @@ func (this *baseController) GameAdd() {
 	}
 	gid, app_name, app_rename, game_size, publicity, fuli, source, game_introduce := exp[0], exp[1], exp[2], exp[3], exp[4], exp[5], exp[6], exp[7]
 
-	gameinfo := admin.GameInfo{
+	gamedata := adminmodel.GameInfo{
 		Gid:           gid,
 		AppName:       app_name,
 		AppRename:     app_rename,
@@ -34,7 +34,8 @@ func (this *baseController) GameAdd() {
 	}
 
 	// 入库
-	id := admin.GameAdd(gameinfo)
+
+	id := adminmodel.GameAdd(gamedata)
 
 	if id == 0 {
 		this.Data["json"] = ReturnData{
