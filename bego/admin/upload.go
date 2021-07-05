@@ -3,9 +3,9 @@ package admin
 import (
 	"bego/common"
 	"bego/models/adminmodel"
+	"bego/service/attachment"
 	"fmt"
-	"github.com/beego/beego/v2/server/web"
-	"strings"
+	"time"
 )
 
 type UploadController struct {
@@ -101,25 +101,42 @@ func (this *UploadController) UpFile() {
 			var fileinfo adminmodel.FileInfo
 
 			// 接收文件
-			f, h, _ := this.GetFile("gamelogo")
-			fmt.Println("the filename is:", h.Filename)
-			fileinfo.Filename = h.Filename
-			arr := strings.Split(h.Filename, ":")
-			if len(arr) > 1 {
-				index := len(arr) - 1
-				fileinfo.Filename = arr[index]
+			f, h, err := this.Ctx.Request.FormFile("gamelogo")
+			if err != nil {
+				return
 			}
-
 			// 关闭上传的文件,不然会出现临时文件不能删除的情况
-			f.Close()
+			defer f.Close()
+
+			// get mime type
+			mime := h.Header.Get("Content-Type")
+
+			// save and resize image
+			fmt.Println("the filetype is:", mime)
+
+			t := time.Now()
+
+			// FileInfo 数据
+			data := make(map[string]string)
+			data["gid"] = gid
+			data["type"] = "gamelogo"
+			attachment.SaveImage(&fileinfo, f, mime, h.Filename, t, data)
+
+			//fmt.Println("the filename is:", h.Filename)
+			//fileinfo.Filename = h.Filename
+			//arr := strings.Split(h.Filename, ":")
+			//if len(arr) > 1 {
+			//	index := len(arr) - 1
+			//	fileinfo.Filename = arr[index]
+			//}
 
 			// 保存文件到指定位置
-			upath, _ := web.AppConfig.String("upload::upDir")
-			fmt.Println("上传文件的目录为:", upath)
+			//upath, _ := web.AppConfig.String("upload::upDir")
+			//fmt.Println("上传文件的目录为:", upath)
 			break
 		}
-		fmt.Println("the gid is:", gid)
-		fmt.Println("the operate is:", operate)
+		//fmt.Println("the gid is:", gid)
+		//fmt.Println("the operate is:", operate)
 		this.Ctx.WriteString("?????")
 	}
 }
