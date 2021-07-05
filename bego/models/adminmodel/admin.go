@@ -1,4 +1,4 @@
-package admin
+package adminmodel
 
 import (
 	"crypto/md5"
@@ -19,11 +19,8 @@ type SystemUser struct {
 
 func init() {
 	// 设置表前缀
+	orm.RegisterDataBase("default", "mysql", "webgame:123456@tcp(182.92.149.107:3306)/webgame?charset=utf8")
 	orm.RegisterModelWithPrefix("fy_", new(SystemUser))
-	err := orm.RegisterDataBase("default", "mysql", "webgame:123456@tcp(182.92.149.107:3306)/webgame?charset=utf8")
-	if err != nil {
-		return
-	}
 }
 
 // 判断账号密码是否正确

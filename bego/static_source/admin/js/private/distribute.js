@@ -14,17 +14,17 @@ $(function(){
 
      $("#all").on('click',function(){
        // alert("查询全部游戏")
-       window.location.href='../../../../routers/admin/index?mark_online=2';
+       window.location.href='../../../../admin/index?mark_online=2';
      })
 
      $("#typeon").on('click',function(){
         // 上线
-        window.location.href='../../../../routers/admin/index?mark_online=1';
+        window.location.href='../../../../admin/index?mark_online=1';
      })
 
      $("#typeoff").on('click',function(){
         // 下线
-        window.location.href='../../../../routers/admin/index?mark_online=0';
+        window.location.href='../../../../admin/index?mark_online=0';
      })
 
      $("#query").on('click',function(){
