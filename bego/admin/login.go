@@ -63,17 +63,14 @@ func (this *LoginController) AdminLogin() {
 	}
 
 	flg, err := adminmodel.CheckAdmin(username, password)
-
 	if err != nil && flg {
 		this.Data["json"] = ReturnData{Code: 400, Data: nil, Info: fmt.Sprintf("%x", err)}
 		this.ServeJSON()
 	}
-
 	// 储存session
 	this.SetSession("username", username)
 	b64 := base64.StdEncoding.EncodeToString([]byte(password))
 	this.SetSession("password", b64)
-
 	this.Data["json"] = ReturnData{Code: 200, Data: nil, Info: fmt.Sprintf("%x", "登陆成功!")}
 	this.ServeJSON()
 }
