@@ -26,7 +26,7 @@ func init() {
 			ctx.WriteString("注册模型已重置!")
 		}),
 		// 测试控制器
-		web.NSRouter("/test", &admin.ApiController{}, "get:TestApi"),
+		web.NSRouter("/test", &admin.ApiController{}, "get:GetSaveName"),
 		// 登录页
 		web.NSRouter("/", &admin.LoginController{}, "get:Index"),
 		web.NSRouter("/login", &admin.LoginController{}, "post:AdminLogin"),
@@ -41,6 +41,8 @@ func init() {
 		web.NSRouter("/gameadd", &admin.GameController{}, "post:GameAdd"),
 		// 上传页
 		web.NSRouter("/upindex/:gid", &admin.UploadController{}, "get:UpIndex"),
+		web.NSRouter("/upfile", &admin.UploadController{}, "post:UpFile"),
+		web.NSRouter("/upsubmit", &admin.UploadController{}, "post:UpSubmit"),
 	)
 	web.AddNamespace(ns)
 }
