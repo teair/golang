@@ -49,6 +49,7 @@
                                                     <div class="form-group">
                                                         <label class="form-control-label">游戏名称</label>
                                                         <input type="hidden" id='gid' name="gid" value='{{.Data.Gid}}'>
+                                                        <input type="hidden" name="id" value="{{.Data.Id}}">
                                                         <input type="text" class="form-control" value='{{.Data.AppName}}' readonly="readonly">
                                                     </div>
                                                 </div>
@@ -64,10 +65,10 @@
                                                     <div class="form-group seltab" id="seltab">
                                                         <label class="form-control-label">游戏类型</label>
                                                         {{range $gametype := .Data.GameType}}
-                                                            {{if map_get $.isactive "curtype" $gametype.Id}}
-                                                            <a class="btn btn-outline-info active"> <input type="checkbox" checked name="app_type[]" value="{{$gametype.Id}},{{$gametype.TagName}}">{{$gametype.TagName}}</a>
+                                                            {{if map_get $.isActive "curtype" $gametype.Id}}
+                                                            <a class="btn btn-outline-info active"> <input type="checkbox" checked name="appType" value="{{$gametype.Id}},{{$gametype.TagName}}">{{$gametype.TagName}}</a>
                                                             {{else}}
-                                                            <a class="btn btn-outline-info"> <input type="checkbox" name="app_type[]" value="{{$gametype.Id}},{{$gametype.TagName}}">{{$gametype.TagName}}</a>
+                                                            <a class="btn btn-outline-info"> <input type="checkbox" name="appType" value="{{$gametype.Id}},{{$gametype.TagName}}">{{$gametype.TagName}}</a>
                                                             {{end}}
                                                         {{else}}
                                                         暂无游戏类型!
@@ -79,10 +80,12 @@
                                                     <div class="form-group seltab" id="seltab">
                                                         <label class="form-control-label">游戏题材</label>
                                                         {{range $gameticai := .Data.GameTicai}}
-                                                            {{if map_get $.isactive "curtheme" $gameticai.Id}}
-                                                            <a class="btn btn-outline-info active"><input type="checkbox" name="app_theme[]" checked value="{{$gameticai.Id}},{{$gameticai.TagName}}">{{$gameticai.TagName}}</a>
+                                                            {{if map_get $.isActive "curtheme" $gameticai.Id}}
+                                                            <a class="btn btn-outline-info active">
+                                                                <input type="checkbox" name="appTheme" checked value="{{$gameticai.Id}},{{$gameticai.TagName}}" >{{$gameticai.TagName}}
+                                                            </a>
                                                             {{else}}
-                                                            <a class="btn btn-outline-info"><input type="checkbox" name="app_theme[]" value="{{$gameticai.Id}},{{$gameticai.TagName}}">{{$gameticai.TagName}}</a>
+                                                            <a class="btn btn-outline-info"><input type="checkbox" name="appTheme" value="{{$gameticai.Id}},{{$gameticai.TagName}}">{{$gameticai.TagName}}</a>
                                                             {{end}}
                                                         {{else}}
                                                         暂无游戏题材!
