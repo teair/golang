@@ -108,16 +108,16 @@ func (this *UploadController) UpFile() {
 		num, filelist := adminmodel.FindFile(gid)
 
 		switch operate {
-		case "gamelogo":
+		case common.GAME_LOGO:
 
 			// 删除旧文件
-			attachment.DelOldFile(num, filelist, "gamelogo")
+			attachment.DelOldFile(num, filelist, common.GAME_LOGO)
 
 			// 上传文件信息
 			var fileinfo adminmodel.FileInfo
 
 			// 接收文件
-			f, h, err := this.Ctx.Request.FormFile("gamelogo")
+			f, h, err := this.Ctx.Request.FormFile(common.GAME_LOGO)
 			if err != nil {
 				return
 			}
@@ -130,7 +130,7 @@ func (this *UploadController) UpFile() {
 			// FileInfo 数据
 			data := make(map[string]string)
 			data["gid"] = gid
-			data["type"] = "gamelogo"
+			data["type"] = common.GAME_LOGO
 
 			if returnFileinfo, err = attachment.SaveImage(&fileinfo, f, mime, h.Filename, t, data, h.Size); err != nil {
 				this.Data["json"] = ReturnData{
@@ -144,15 +144,15 @@ func (this *UploadController) UpFile() {
 			// 保存文件到指定位置
 			this.SaveToFile("gamelogo", strings.Trim(fileinfo.Path, "/"))
 			break
-		case "gamethumb":
+		case common.GAME_THUMB:
 			// 删除该游戏对应的图片信息
-			attachment.DelOldFile(num, filelist, "gamethumb")
+			attachment.DelOldFile(num, filelist, common.GAME_THUMB)
 
 			// 上传文件信息
 			var fileinfo adminmodel.FileInfo
 
 			// 接收文件
-			f, h, err := this.Ctx.Request.FormFile("gamethumb")
+			f, h, err := this.Ctx.Request.FormFile(common.GAME_THUMB)
 			if err != nil {
 				return
 			}
@@ -166,7 +166,7 @@ func (this *UploadController) UpFile() {
 			// FileInfo 数据
 			data := make(map[string]string)
 			data["gid"] = gid
-			data["type"] = "gamethumb"
+			data["type"] = common.GAME_THUMB
 
 			if returnFileinfo, err = attachment.SaveImage(&fileinfo, f, mime, h.Filename, t, data, h.Size); err != nil {
 				this.Data["json"] = ReturnData{
@@ -568,5 +568,5 @@ func (this *UploadController) UpSubmit() {
 		(*adminmodel.GameLabel).Insert(&labelinfo)
 	}
 
-	this.Ctx.WriteString("submit!")
+	this.Redirect("/admin/index", 302)
 }
