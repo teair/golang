@@ -26,7 +26,7 @@ func init() {
 			ctx.WriteString("注册模型已重置!")
 		}),
 		// 测试控制器
-		web.NSRouter("/test", &admin.ApiController{}, "get:GetSaveName"),
+		web.NSRouter("/test", &admin.ApiController{}, "get:TestApi"),
 		// 登录页
 		web.NSRouter("/", &admin.LoginController{}, "get:Index"),
 		web.NSRouter("/login", &admin.LoginController{}, "post:AdminLogin"),
