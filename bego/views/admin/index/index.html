@@ -122,34 +122,22 @@
                                     </thead>
                                     <tbody id="list">
                                         {{range .Index.Gamedata}}
-                                            {{if eq 0 .MarkOnline}}
-                                                <tr>
-                                                    <td>{{.Id}}</td>
-                                                    <td>{{.AppName}}</td>
-                                                    <td>{{.Gid}}</td>
-                                                    <td>{{.AppRename}}</td>
-                                                    <td>{{date .CreateTime "Y-m-d H:i:s"}}</td>
-                                                    <td>
-                                                        <button type="button" id='{{.Gid}}' class="btn btn-outline-success upload" >资料上传</button>
-                                                        <!-- <button type="button" class="btn btn-outline-warning">修改</button> -->
-                                                        <button type="button" id='{{.Gid}},1' class="btn btn-outline-secondary stateoff">上线</button>
-                                                        <button type="button" id='{{.Gid}}' class="btn btn-outline-danger del">删除</button>
-                                                    </td>
-                                                </tr>
-                                            {{else}}
-                                                <tr>
-                                                    <td>{{.Id}}</td>
-                                                    <td>{{.AppName}}</td>
-                                                    <td>{{.Gid}}</td>
-                                                    <td>{{.AppRename}}</td>
-                                                    <td>{{date .CreateTime "Y-m-d H:i:s"}}</td>
-                                                    <td>
-                                                        <button type="button" id='{{.Gid}}' class="btn btn-outline-success upload" >资料上传</button>
-                                                        <!-- <button type="button" class="btn btn-outline-warning">修改</button> -->
-                                                        <button type="button" id='{{.Gid}},0' class="btn btn-outline-secondary stateoff" >下线</button>
-                                                        <button type="button" id='{{.Gid}}' class="btn btn-outline-danger del">删除</button>                                               </td>
-                                                </tr>
-                                            {{end}}
+                                            <tr>
+                                                <td>{{.Id}}</td>
+                                                <td>{{.AppName}}</td>
+                                                <td>{{.Gid}}</td>
+                                                <td>{{.AppRename}}</td>
+                                                <td>{{date .CreateTime "Y-m-d H:i:s"}}</td>
+                                                <td>
+                                                    <button type="button" id='{{.Gid}}' class="btn btn-outline-success upload" >资料上传</button>
+                                                    {{if eq 0 .MarkOnline}}
+                                                    <button type="button" data='{{.Gid}},1,{{.Id}}' class="btn btn-outline-secondary stateoff">上线</button>
+                                                    {{else}}
+                                                    <button type="button" data='{{.Gid}},0,{{.Id}}' class="btn btn-outline-secondary stateoff" >下线</button>
+                                                    {{end}}
+                                                    <button type="button" id='{{.Gid}}' class="btn btn-outline-danger del">删除</button>
+                                                </td>
+                                            </tr>
                                         {{else}}
                                         暂无游戏信息!
                                         {{end}}
@@ -157,33 +145,10 @@
                                 </table>
                             </div>
 
-                            <!--分页样式公共部分-->
-                            <div class="re-page clearfix" style="align:'center';" >
-                                {{if gt .paginator.PageNums 1}}
-                                <ul class="pagination pagination-sm">
-                                    {{if .paginator.HasPrev}}
-                                    <li><a href="{{.paginator.PageLinkFirst}}">首页</a></li>
-                                    <li><a href="{{.paginator.PageLinkPrev}}">&lt;</a></li>
-                                    {{else}}
-                                    <li class="disabled"><a>首页</a></li>
-                                    <li class="disabled"><a>&lt;</a></li>
-                                    {{end}}
-                                    {{range $index, $page := .paginator.Pages}}
-                                    <li{{if $.paginator.IsActive .}} class="active"{{end}}>
-                                    <a href="{{$.paginator.PageLink $page}}">{{$page}}</a>
-                                    </li>
-                                    {{end}}
-                                    {{if .paginator.HasNext}}
-                                    <li><a href="{{.paginator.PageLinkNext}}">&gt;</a></li>
-                                    <li><a href="{{.paginator.PageLinkLast}}">最后一页</a></li>
-                                    {{else}}
-                                    <li class="disabled"><a>&gt;</a></li>
-                                    <li class="disabled"><a>末页</a></li>
-                                    {{end}}
-                                </ul>
-                                {{end}}
-                            </div>
-                            <!--分页样式公共部分-->
+                            <!--分页开始-->
+                            {{template "admin/public/paginator.html" .}}
+                            <!--分页结束-->
+
                         </div>
                     </div>
                 </div>
@@ -259,7 +224,6 @@ function ListenerSearch(){
         success:function(a,b){
             if (a.Code=='200'){
                 $.each(a.Data,function(index, el) {
-                    console.log(el.AppName)
                     name.push(el.AppName);
                     name.push(el.AppRename);
                 });
