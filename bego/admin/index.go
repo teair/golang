@@ -1,6 +1,7 @@
 package admin
 
 import (
+	"bego/common"
 	"bego/models/adminmodel"
 	"fmt"
 	"github.com/beego/beego/v2/core/utils"
@@ -230,17 +231,56 @@ func (this *IndexController) Listen() {
 }
 
 func (this *IndexController) MarkOnline() {
-	gid := this.Ctx.Input.Query("gid")
-	mark_online := this.Ctx.Input.Query("mark_online")
-	imk, _ := strconv.Atoi(mark_online)
+
+	// 返回数据
+	result := map[string]interface{}{
+		"success": false,
+	}
+	defer func() {
+		this.Data["json"] = result
+		this.ServeJSON()
+	}()
+
+	gid := this.GetString("gid")
+	intMarkOnline, _ := this.GetInt("mark_online")
+	id, _ := this.GetInt("id")
 
 	// 验证参数
 	valid := validation.Validation{}
 	valid.Required(gid, "gid").Message("参数异常...")
 	valid.Length(gid, 16, "gid").Message("参数异常...")
-	valid.Range(imk, 0, 2, "mark_online").Message("参数异常...")
+	valid.Range(intMarkOnline, 0, 2, "mark_online").Message("参数异常...")
 
-	if mark_online == "1" {
+	// 上线前判断游戏数据是否完整
+	if intMarkOnline == 1 {
+		var m []adminmodel.FileInfo
+		_, m = adminmodel.FindFile(gid)
 
+		fileType := []string{
+			common.GAME_LOGO, common.GAME_THUMB, common.GMAE_LUNBO, common.GAME_HOTREC,
+			common.GAME_NORMREC, common.GAME_OFFICALRBG, common.GAME_CUT1, common.GAME_CUT2,
+			common.GAME_CUT3, common.GAME_CUT4, common.GAME_CUT5,
+		}
+
+		var tmpSlice []string
+		for _, v := range m {
+			tmpSlice = append(tmpSlice, v.Type)
+		}
+
+		for _, v := range fileType {
+			if !utils.InSlice(v, tmpSlice) {
+				result["code"] = 1000
+				result["info"] = "请上传游戏资料!"
+				result["data"] = gid
+				return
+			}
+		}
 	}
+
+	m := adminmodel.GameInfo{Gid: gid, MarkOnline: int8(intMarkOnline), Id: id}
+	(*adminmodel.GameInfo).Update(&m, "MarkOnline")
+
+	result["code"] = 200
+	result["data"] = intMarkOnline
+	result["success"] = true
 }
