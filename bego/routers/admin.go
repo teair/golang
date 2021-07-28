@@ -43,6 +43,8 @@ func init() {
 		web.NSRouter("/upindex/:gid", &admin.UploadController{}, "get:UpIndex"),
 		web.NSRouter("/upfile", &admin.UploadController{}, "post:UpFile"),
 		web.NSRouter("/upsubmit", &admin.UploadController{}, "post:UpSubmit"),
+		// 区服页
+		web.NSRouter("/serverlist", &admin.ServerController{}, "get:ServerIndex"),
 	)
 	web.AddNamespace(ns)
 }
