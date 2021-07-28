@@ -14,7 +14,7 @@ type baseController struct {
 func (this *baseController) Prepare() {
 	// 取消xsrf验证的控制器和方法
 	nc := []string{"IndexController", "GameController", "UploadController"}
-	na := []string{"Gamesel", "Listen", "Gamedel", "GameAdd", "UpFile", "UpSubmit"}
+	na := []string{"Gamesel", "Listen", "Gamedel", "GameAdd", "UpFile", "UpSubmit", "MarkOnline"}
 	c, a := this.GetControllerAndAction()
 	if utils.InSlice(c, nc) && utils.InSlice(a, na) {
 		this.EnableXSRF = false
