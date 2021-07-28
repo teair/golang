@@ -18,29 +18,26 @@ $(function(){
      })
 
      $("#typeon").on('click',function(){
-        // 上线
-        window.location.href='../../../../admin/index?mark_online=1';
+        var data = $(this).data()
+        window.location.href='/admin/index?mark_online=1';
      })
 
      $("#typeoff").on('click',function(){
         // 下线
-        window.location.href='../../../../admin/index?mark_online=0';
+        var data = $(this).data()
+        window.location.href='/admin/index?mark_online=0';
      })
 
      $("#query").on('click',function(){
-       // alert("游戏名称查询")
        var app_name = $('#query-name').val();
-       // window.location.href='/Index/index/app_name/' + encodeURIComponent(app_name);
        window.location.href='/admin/index?app_name=' + app_name;
      })
 
      $(".upload").on('click',function(){
         var gid = $(this).attr('id');
-        // window.location.href="/Upload/index/gid/" + gid;
         window.location.href="/admin/upindex/" + gid;
      })
 
-     
 })
 
 
