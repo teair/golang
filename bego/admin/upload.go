@@ -179,15 +179,15 @@ func (this *UploadController) UpFile() {
 			// 保存文件到指定位置
 			this.SaveToFile("gamethumb", strings.Trim(fileinfo.Path, "/"))
 			break
-		case "gamelunbo":
+		case common.GMAE_LUNBO:
 			// 删除该游戏对应的图片信息
-			attachment.DelOldFile(num, filelist, "gamelunbo")
+			attachment.DelOldFile(num, filelist, common.GMAE_LUNBO)
 
 			// 上传文件信息
 			var fileinfo adminmodel.FileInfo
 
 			// 接收文件
-			f, h, err := this.Ctx.Request.FormFile("gamelunbo")
+			f, h, err := this.Ctx.Request.FormFile(common.GMAE_LUNBO)
 			if err != nil {
 				return
 			}
@@ -201,7 +201,7 @@ func (this *UploadController) UpFile() {
 			// FileInfo 数据
 			data := make(map[string]string)
 			data["gid"] = gid
-			data["type"] = "gamelunbo"
+			data["type"] = common.GMAE_LUNBO
 
 			if returnFileinfo, err = attachment.SaveImage(&fileinfo, f, mime, h.Filename, t, data, h.Size); err != nil {
 				this.Data["json"] = ReturnData{
@@ -212,17 +212,17 @@ func (this *UploadController) UpFile() {
 				this.ServeJSON()
 			}
 			// 保存文件到指定位置
-			this.SaveToFile("gamelunbo", strings.Trim(fileinfo.Path, "/"))
+			this.SaveToFile(common.GMAE_LUNBO, strings.Trim(fileinfo.Path, "/"))
 			break
-		case "gamehotrec":
+		case common.GAME_HOTREC:
 			// 删除该游戏对应的图片信息
-			attachment.DelOldFile(num, filelist, "gamehotrec")
+			attachment.DelOldFile(num, filelist, common.GAME_HOTREC)
 
 			// 上传文件信息
 			var fileinfo adminmodel.FileInfo
 
 			// 接收文件
-			f, h, err := this.Ctx.Request.FormFile("gamehotrec")
+			f, h, err := this.Ctx.Request.FormFile(common.GAME_HOTREC)
 			if err != nil {
 				return
 			}
@@ -236,7 +236,7 @@ func (this *UploadController) UpFile() {
 			// FileInfo 数据
 			data := make(map[string]string)
 			data["gid"] = gid
-			data["type"] = "gamehotrec"
+			data["type"] = common.GAME_HOTREC
 
 			if returnFileinfo, err = attachment.SaveImage(&fileinfo, f, mime, h.Filename, t, data, h.Size); err != nil {
 				this.Data["json"] = ReturnData{
@@ -247,17 +247,17 @@ func (this *UploadController) UpFile() {
 				this.ServeJSON()
 			}
 			// 保存文件到指定位置
-			this.SaveToFile("gamehotrec", strings.Trim(fileinfo.Path, "/"))
+			this.SaveToFile(common.GAME_HOTREC, strings.Trim(fileinfo.Path, "/"))
 			break
-		case "gamenormrec":
+		case common.GAME_NORMREC:
 			// 删除该游戏对应的图片信息
-			attachment.DelOldFile(num, filelist, "gamenormrec")
+			attachment.DelOldFile(num, filelist, common.GAME_NORMREC)
 
 			// 上传文件信息
 			var fileinfo adminmodel.FileInfo
 
 			// 接收文件
-			f, h, err := this.Ctx.Request.FormFile("gamenormrec")
+			f, h, err := this.Ctx.Request.FormFile(common.GAME_NORMREC)
 			if err != nil {
 				return
 			}
@@ -271,7 +271,7 @@ func (this *UploadController) UpFile() {
 			// FileInfo 数据
 			data := make(map[string]string)
 			data["gid"] = gid
-			data["type"] = "gamenormrec"
+			data["type"] = common.GAME_NORMREC
 
 			if returnFileinfo, err = attachment.SaveImage(&fileinfo, f, mime, h.Filename, t, data, h.Size); err != nil {
 				this.Data["json"] = ReturnData{
@@ -282,17 +282,17 @@ func (this *UploadController) UpFile() {
 				this.ServeJSON()
 			}
 			// 保存文件到指定位置
-			this.SaveToFile("gamenormrec", strings.Trim(fileinfo.Path, "/"))
+			this.SaveToFile(common.GAME_NORMREC, strings.Trim(fileinfo.Path, "/"))
 			break
-		case "gameofficalbg":
+		case common.GAME_OFFICALRBG:
 			// 删除该游戏对应的图片信息
-			attachment.DelOldFile(num, filelist, "gameofficalbg")
+			attachment.DelOldFile(num, filelist, common.GAME_OFFICALRBG)
 
 			// 上传文件信息
 			var fileinfo adminmodel.FileInfo
 
 			// 接收文件
-			f, h, err := this.Ctx.Request.FormFile("gameofficalbg")
+			f, h, err := this.Ctx.Request.FormFile(common.GAME_OFFICALRBG)
 			if err != nil {
 				return
 			}
@@ -306,7 +306,7 @@ func (this *UploadController) UpFile() {
 			// FileInfo 数据
 			data := make(map[string]string)
 			data["gid"] = gid
-			data["type"] = "gameofficalbg"
+			data["type"] = common.GAME_OFFICALRBG
 
 			if returnFileinfo, err = attachment.SaveImage(&fileinfo, f, mime, h.Filename, t, data, h.Size); err != nil {
 				this.Data["json"] = ReturnData{
@@ -317,17 +317,17 @@ func (this *UploadController) UpFile() {
 				this.ServeJSON()
 			}
 			// 保存文件到指定位置
-			this.SaveToFile("gameofficalbg", strings.Trim(fileinfo.Path, "/"))
+			this.SaveToFile(common.GAME_OFFICALRBG, strings.Trim(fileinfo.Path, "/"))
 			break
-		case "gamecut1":
+		case common.GAME_CUT1:
 			// 删除该游戏对应的图片信息
-			attachment.DelOldFile(num, filelist, "gamecut1")
+			attachment.DelOldFile(num, filelist, common.GAME_CUT1)
 
 			// 上传文件信息
 			var fileinfo adminmodel.FileInfo
 
 			// 接收文件
-			f, h, err := this.Ctx.Request.FormFile("gamecut1")
+			f, h, err := this.Ctx.Request.FormFile(common.GAME_CUT1)
 			if err != nil {
 				return
 			}
@@ -341,7 +341,7 @@ func (this *UploadController) UpFile() {
 			// FileInfo 数据
 			data := make(map[string]string)
 			data["gid"] = gid
-			data["type"] = "gamecut1"
+			data["type"] = common.GAME_CUT1
 
 			if returnFileinfo, err = attachment.SaveImage(&fileinfo, f, mime, h.Filename, t, data, h.Size); err != nil {
 				this.Data["json"] = ReturnData{
@@ -352,17 +352,17 @@ func (this *UploadController) UpFile() {
 				this.ServeJSON()
 			}
 			// 保存文件到指定位置
-			this.SaveToFile("gamecut1", strings.Trim(fileinfo.Path, "/"))
+			this.SaveToFile(common.GAME_CUT1, strings.Trim(fileinfo.Path, "/"))
 			break
-		case "gamecut2":
+		case common.GAME_CUT2:
 			// 删除该游戏对应的图片信息
-			attachment.DelOldFile(num, filelist, "gamecut2")
+			attachment.DelOldFile(num, filelist, common.GAME_CUT2)
 
 			// 上传文件信息
 			var fileinfo adminmodel.FileInfo
 
 			// 接收文件
-			f, h, err := this.Ctx.Request.FormFile("gamecut2")
+			f, h, err := this.Ctx.Request.FormFile(common.GAME_CUT2)
 			if err != nil {
 				return
 			}
@@ -387,17 +387,17 @@ func (this *UploadController) UpFile() {
 				this.ServeJSON()
 			}
 			// 保存文件到指定位置
-			this.SaveToFile("gamecut2", strings.Trim(fileinfo.Path, "/"))
+			this.SaveToFile(common.GAME_CUT2, strings.Trim(fileinfo.Path, "/"))
 			break
-		case "gamecut3":
+		case common.GAME_CUT3:
 			// 删除该游戏对应的图片信息
-			attachment.DelOldFile(num, filelist, "gamecut3")
+			attachment.DelOldFile(num, filelist, common.GAME_CUT3)
 
 			// 上传文件信息
 			var fileinfo adminmodel.FileInfo
 
 			// 接收文件
-			f, h, err := this.Ctx.Request.FormFile("gamecut3")
+			f, h, err := this.Ctx.Request.FormFile(common.GAME_CUT3)
 			if err != nil {
 				return
 			}
@@ -411,7 +411,7 @@ func (this *UploadController) UpFile() {
 			// FileInfo 数据
 			data := make(map[string]string)
 			data["gid"] = gid
-			data["type"] = "gamecut3"
+			data["type"] = common.GAME_CUT3
 
 			if returnFileinfo, err = attachment.SaveImage(&fileinfo, f, mime, h.Filename, t, data, h.Size); err != nil {
 				this.Data["json"] = ReturnData{
@@ -422,17 +422,17 @@ func (this *UploadController) UpFile() {
 				this.ServeJSON()
 			}
 			// 保存文件到指定位置
-			this.SaveToFile("gamecut3", strings.Trim(fileinfo.Path, "/"))
+			this.SaveToFile(common.GAME_CUT3, strings.Trim(fileinfo.Path, "/"))
 			break
-		case "gamecut4":
+		case common.GAME_CUT4:
 			// 删除该游戏对应的图片信息
-			attachment.DelOldFile(num, filelist, "gamecut4")
+			attachment.DelOldFile(num, filelist, common.GAME_CUT4)
 
 			// 上传文件信息
 			var fileinfo adminmodel.FileInfo
 
 			// 接收文件
-			f, h, err := this.Ctx.Request.FormFile("gamecut4")
+			f, h, err := this.Ctx.Request.FormFile(common.GAME_CUT4)
 			if err != nil {
 				return
 			}
@@ -446,7 +446,7 @@ func (this *UploadController) UpFile() {
 			// FileInfo 数据
 			data := make(map[string]string)
 			data["gid"] = gid
-			data["type"] = "gamecut4"
+			data["type"] = common.GAME_CUT4
 
 			if returnFileinfo, err = attachment.SaveImage(&fileinfo, f, mime, h.Filename, t, data, h.Size); err != nil {
 				this.Data["json"] = ReturnData{
@@ -457,17 +457,17 @@ func (this *UploadController) UpFile() {
 				this.ServeJSON()
 			}
 			// 保存文件到指定位置
-			this.SaveToFile("gamecut4", strings.Trim(fileinfo.Path, "/"))
+			this.SaveToFile(common.GAME_CUT4, strings.Trim(fileinfo.Path, "/"))
 			break
-		case "gamecut5":
+		case common.GAME_CUT5:
 			// 删除该游戏对应的图片信息
-			attachment.DelOldFile(num, filelist, "gamecut5")
+			attachment.DelOldFile(num, filelist, common.GAME_CUT5)
 
 			// 上传文件信息
 			var fileinfo adminmodel.FileInfo
 
 			// 接收文件
-			f, h, err := this.Ctx.Request.FormFile("gamecut5")
+			f, h, err := this.Ctx.Request.FormFile(common.GAME_CUT5)
 			if err != nil {
 				return
 			}
@@ -481,7 +481,7 @@ func (this *UploadController) UpFile() {
 			// FileInfo 数据
 			data := make(map[string]string)
 			data["gid"] = gid
-			data["type"] = "gamecut5"
+			data["type"] = common.GAME_CUT5
 
 			if returnFileinfo, err = attachment.SaveImage(&fileinfo, f, mime, h.Filename, t, data, h.Size); err != nil {
 				this.Data["json"] = ReturnData{
@@ -492,7 +492,7 @@ func (this *UploadController) UpFile() {
 				this.ServeJSON()
 			}
 			// 保存文件到指定位置
-			this.SaveToFile("gamecut5", strings.Trim(fileinfo.Path, "/"))
+			this.SaveToFile(common.GAME_CUT5, strings.Trim(fileinfo.Path, "/"))
 			break
 		default:
 			this.Data["json"] = returnUpload{
