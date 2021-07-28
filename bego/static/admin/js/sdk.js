@@ -25,29 +25,29 @@ $(function(){
 //上线-下线
 function state(){
     $(".stateoff").on('click',function(e){
-        var str = $(this).attr('id');
-        var arr = str.split(',');   //增加上下线标识
+        var str = $(this).attr('data');
+        var arr = new Array()   // 定义一组数组
+        arr = str.split(",")
         $.ajax({
             type:'post',
             url:'/admin/markonline',
             datatype:'json',
-            data:{gid:arr[0],mark_online:arr[1]},
+            data:{gid:arr[0],mark_online:arr[1],id:arr[2]},
             // contentType:"application/x-www-form-urlencoded",
             // headers:{'Content-Type':'application/x-www-form-urlencoded','token':token},
             success:function(a){
-                // console.log(a.code);
-                // return false;
-                if (a.code == '200'){
-                    window.location.href='/admin/markonline?mark_online=' + a.data.mark_online;
+                if (a.code == 200){
+                    window.location.href='/admin/index?mark_online=' + a.data;
+                    return false;
                 }
-                if (a.code == '1000'){
+                if (a.code == 1000){
                     layer.open({
                       content: '请上传游戏资料!'
                       ,title:'提示'
                       ,btn: ['确认']
                       ,yes: function(index, layero){
                         //按钮【按钮一】的回调
-                        window.location.href="/admin/upindex/" + a.data.gid;
+                        window.location.href="/admin/upindex/" + a.data;
                       }
                       ,cancel: function(){ 
                         //右上角关闭回调
@@ -66,9 +66,7 @@ function state(){
     })
 
     $(".stateon").on('click',function(){
-       
           alert("解禁成功");
-        
     })
 }
 
