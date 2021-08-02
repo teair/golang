@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"github.com/beego/beego/v2/core/utils"
 	"github.com/beego/beego/v2/core/validation"
-	"github.com/beego/beego/v2/server/web"
 	"html/template"
 	"strconv"
 	"strings"
@@ -34,14 +33,10 @@ func (this *IndexController) Index() {
 	index.Open = 0
 
 	// 接收参数
-	per, _ := web.AppConfig.Int("page::perPage")
-	p, _ := utils.StrTo(this.Ctx.Input.Query("p")).Int()
+	p, per := this.Paginator()
+
 	mark_online := this.Ctx.Input.Query("mark_online")
 	app_name := this.Ctx.Input.Query("app_name")
-
-	if p > 0 {
-		p = (p - 1) * per
-	}
 
 	// 获取全部分发游戏
 	gameList, num = models.FindAll(p, per)
