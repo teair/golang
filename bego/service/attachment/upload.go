@@ -1,7 +1,7 @@
 package attachment
 
 import (
-	"bego/models/adminmodel"
+	"bego/models"
 	"crypto/md5"
 	"encoding/hex"
 	"errors"
@@ -18,7 +18,7 @@ import (
 	"github.com/astaxie/beego"
 )
 
-func SaveImage(m *adminmodel.FileInfo, tmp multipart.File, mime string, filename string, created time.Time, data map[string]string, size int64) (updata *adminmodel.FileInfo, err error) {
+func SaveImage(m *models.FileInfo, tmp multipart.File, mime string, filename string, created time.Time, data map[string]string, size int64) (updata *models.FileInfo, err error) {
 
 	m.Gid = data["gid"]
 	m.Type = data["type"]
@@ -51,7 +51,7 @@ func SaveImage(m *adminmodel.FileInfo, tmp multipart.File, mime string, filename
 	return m, nil
 }
 
-func GenImagePath(img *adminmodel.FileInfo) string {
+func GenImagePath(img *models.FileInfo) string {
 	updir, _ := web.AppConfig.String("upload::upImg")
 	return updir + beego.Date(img.CreateTime, "20060102")
 }
@@ -106,11 +106,11 @@ func CheckFileType(filename, mime string) (err error, s string) {
 }
 
 // DelOldFile 删除该游戏对应的图片信息
-func DelOldFile(num int64, filelist []adminmodel.FileInfo, types string) {
+func DelOldFile(num int64, filelist []models.FileInfo, types string) {
 	if num != 0 {
 		for _, v := range filelist {
 			if v.Type == types {
-				adminmodel.DelFile(v.Id)
+				models.DelFile(v.Id)
 				os.Remove(strings.Trim(v.Path, "/"))
 			}
 		}
