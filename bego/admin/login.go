@@ -1,7 +1,7 @@
 package admin
 
 import (
-	"bego/models/adminmodel"
+	"bego/models"
 	"encoding/base64"
 	"fmt"
 	"github.com/beego/beego/v2/client/orm"
@@ -62,7 +62,7 @@ func (this *LoginController) AdminLogin() {
 		}
 	}
 
-	flg, err := adminmodel.CheckAdmin(username, password)
+	flg, err := models.CheckAdmin(username, password)
 	if err != nil && flg {
 		this.Data["json"] = ReturnData{Code: 400, Data: nil, Info: fmt.Sprintf("%x", err)}
 		this.ServeJSON()

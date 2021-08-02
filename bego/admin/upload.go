@@ -2,7 +2,7 @@ package admin
 
 import (
 	"bego/common"
-	"bego/models/adminmodel"
+	"bego/models"
 	"bego/service/attachment"
 	"fmt"
 	"html/template"
@@ -25,10 +25,10 @@ type UploadInfo struct {
 	Id                  int
 	AppName, AppRename  string
 	Source              string
-	GameType, GameTicai []adminmodel.TagInfo
-	Curtype, Curtheme   []adminmodel.GameLabel
+	GameType, GameTicai []models.TagInfo
+	Curtype, Curtheme   []models.GameLabel
 	Slogan, Gid         string
-	FileInfo            []adminmodel.FileInfo
+	FileInfo            []models.FileInfo
 }
 
 func (this *UploadController) UpIndex() {
@@ -43,9 +43,9 @@ func (this *UploadController) UpIndex() {
 	gid := this.Ctx.Input.Param(":gid")
 	if gid != "" {
 		var slogan string
-		var gameinfo []adminmodel.GameInfo
+		var gameinfo []models.GameInfo
 		// 查看该游戏来源
-		gameinfo, _ = adminmodel.FindGame("Gid", gid, 0, 0)
+		gameinfo, _ = models.FindGame("Gid", gid, 0, 0)
 		for _, v := range gameinfo {
 			data.Source = v.Source
 			data.AppName = v.AppName
@@ -57,17 +57,17 @@ func (this *UploadController) UpIndex() {
 		// 存储标语
 		this.Ctx.SetCookie("slogan", slogan, 0)
 		// 获取所有游戏题材和游戏类型标签
-		data.GameType = adminmodel.GetGameTag(87)
-		data.GameTicai = adminmodel.GetGameTag(88)
+		data.GameType = models.GetGameTag(87)
+		data.GameTicai = models.GetGameTag(88)
 
 		// 查看当前游戏是否存在标签
-		data.Curtype = adminmodel.CurLabel(gid, common.GAME_TYPE)
-		data.Curtheme = adminmodel.CurLabel(gid, common.GAME_THEME)
+		data.Curtype = models.CurLabel(gid, common.GAME_TYPE)
+		data.Curtheme = models.CurLabel(gid, common.GAME_THEME)
 
 		data.Gid = gid
 
 		// 获取该游戏的图片信息
-		_, data.FileInfo = adminmodel.FindFile(gid)
+		_, data.FileInfo = models.FindFile(gid)
 	}
 
 	// 游戏题材与类型多选是否选中
@@ -105,7 +105,7 @@ func (this *UploadController) UpFile() {
 		operate := this.Ctx.Input.Query("operate")
 
 		// 判断当前游戏是否存在上传文件
-		num, filelist := adminmodel.FindFile(gid)
+		num, filelist := models.FindFile(gid)
 
 		switch operate {
 		case common.GAME_LOGO:
@@ -114,7 +114,7 @@ func (this *UploadController) UpFile() {
 			attachment.DelOldFile(num, filelist, common.GAME_LOGO)
 
 			// 上传文件信息
-			var fileinfo adminmodel.FileInfo
+			var fileinfo models.FileInfo
 
 			// 接收文件
 			f, h, err := this.Ctx.Request.FormFile(common.GAME_LOGO)
@@ -149,7 +149,7 @@ func (this *UploadController) UpFile() {
 			attachment.DelOldFile(num, filelist, common.GAME_THUMB)
 
 			// 上传文件信息
-			var fileinfo adminmodel.FileInfo
+			var fileinfo models.FileInfo
 
 			// 接收文件
 			f, h, err := this.Ctx.Request.FormFile(common.GAME_THUMB)
@@ -184,7 +184,7 @@ func (this *UploadController) UpFile() {
 			attachment.DelOldFile(num, filelist, common.GMAE_LUNBO)
 
 			// 上传文件信息
-			var fileinfo adminmodel.FileInfo
+			var fileinfo models.FileInfo
 
 			// 接收文件
 			f, h, err := this.Ctx.Request.FormFile(common.GMAE_LUNBO)
@@ -219,7 +219,7 @@ func (this *UploadController) UpFile() {
 			attachment.DelOldFile(num, filelist, common.GAME_HOTREC)
 
 			// 上传文件信息
-			var fileinfo adminmodel.FileInfo
+			var fileinfo models.FileInfo
 
 			// 接收文件
 			f, h, err := this.Ctx.Request.FormFile(common.GAME_HOTREC)
@@ -254,7 +254,7 @@ func (this *UploadController) UpFile() {
 			attachment.DelOldFile(num, filelist, common.GAME_NORMREC)
 
 			// 上传文件信息
-			var fileinfo adminmodel.FileInfo
+			var fileinfo models.FileInfo
 
 			// 接收文件
 			f, h, err := this.Ctx.Request.FormFile(common.GAME_NORMREC)
@@ -289,7 +289,7 @@ func (this *UploadController) UpFile() {
 			attachment.DelOldFile(num, filelist, common.GAME_OFFICALRBG)
 
 			// 上传文件信息
-			var fileinfo adminmodel.FileInfo
+			var fileinfo models.FileInfo
 
 			// 接收文件
 			f, h, err := this.Ctx.Request.FormFile(common.GAME_OFFICALRBG)
@@ -324,7 +324,7 @@ func (this *UploadController) UpFile() {
 			attachment.DelOldFile(num, filelist, common.GAME_CUT1)
 
 			// 上传文件信息
-			var fileinfo adminmodel.FileInfo
+			var fileinfo models.FileInfo
 
 			// 接收文件
 			f, h, err := this.Ctx.Request.FormFile(common.GAME_CUT1)
@@ -359,7 +359,7 @@ func (this *UploadController) UpFile() {
 			attachment.DelOldFile(num, filelist, common.GAME_CUT2)
 
 			// 上传文件信息
-			var fileinfo adminmodel.FileInfo
+			var fileinfo models.FileInfo
 
 			// 接收文件
 			f, h, err := this.Ctx.Request.FormFile(common.GAME_CUT2)
@@ -394,7 +394,7 @@ func (this *UploadController) UpFile() {
 			attachment.DelOldFile(num, filelist, common.GAME_CUT3)
 
 			// 上传文件信息
-			var fileinfo adminmodel.FileInfo
+			var fileinfo models.FileInfo
 
 			// 接收文件
 			f, h, err := this.Ctx.Request.FormFile(common.GAME_CUT3)
@@ -429,7 +429,7 @@ func (this *UploadController) UpFile() {
 			attachment.DelOldFile(num, filelist, common.GAME_CUT4)
 
 			// 上传文件信息
-			var fileinfo adminmodel.FileInfo
+			var fileinfo models.FileInfo
 
 			// 接收文件
 			f, h, err := this.Ctx.Request.FormFile(common.GAME_CUT4)
@@ -464,7 +464,7 @@ func (this *UploadController) UpFile() {
 			attachment.DelOldFile(num, filelist, common.GAME_CUT5)
 
 			// 上传文件信息
-			var fileinfo adminmodel.FileInfo
+			var fileinfo models.FileInfo
 
 			// 接收文件
 			f, h, err := this.Ctx.Request.FormFile(common.GAME_CUT5)
@@ -523,19 +523,19 @@ func (this *UploadController) UpSubmit() {
 	publicity := this.GetString("publicity")
 
 	// 修改游戏标语
-	gameinfo := adminmodel.GameInfo{Id: id, Publicity: publicity}
-	(*adminmodel.GameInfo).Update(&gameinfo, "Publicity")
+	gameinfo := models.GameInfo{Id: id, Publicity: publicity}
+	(*models.GameInfo).Update(&gameinfo, "Publicity")
 
 	// 删除当前游戏类型与主题
-	curtype := adminmodel.CurLabel(gid, common.GAME_TYPE)
-	curtheme := adminmodel.CurLabel(gid, common.GAME_THEME)
+	curtype := models.CurLabel(gid, common.GAME_TYPE)
+	curtheme := models.CurLabel(gid, common.GAME_THEME)
 	for _, v := range curtype {
-		gamelabel := adminmodel.GameLabel{Id: v.Id}
-		(*adminmodel.GameLabel).Delete(&gamelabel)
+		gamelabel := models.GameLabel{Id: v.Id}
+		(*models.GameLabel).Delete(&gamelabel)
 	}
 	for _, v := range curtheme {
-		gamelabel := adminmodel.GameLabel{Id: v.Id}
-		(*adminmodel.GameLabel).Delete(&gamelabel)
+		gamelabel := models.GameLabel{Id: v.Id}
+		(*models.GameLabel).Delete(&gamelabel)
 	}
 
 	for _, v := range appType {
@@ -543,14 +543,14 @@ func (this *UploadController) UpSubmit() {
 		labelId, _ := strconv.Atoi(labelSlice[0])
 
 		// 添加当前游戏类型
-		labelinfo := adminmodel.GameLabel{
+		labelinfo := models.GameLabel{
 			Gid:        gid,
 			Type:       common.GAME_TYPE,
 			LabelId:    strconv.Itoa(labelId),
 			LabelName:  labelSlice[1],
 			CreateTime: time.Time{},
 		}
-		(*adminmodel.GameLabel).Insert(&labelinfo)
+		(*models.GameLabel).Insert(&labelinfo)
 	}
 
 	for _, v := range appTheme {
@@ -558,14 +558,14 @@ func (this *UploadController) UpSubmit() {
 		labelId, _ := strconv.Atoi(labelSlice[0])
 
 		// 添加当前游戏主题
-		labelinfo := adminmodel.GameLabel{
+		labelinfo := models.GameLabel{
 			Gid:        gid,
 			Type:       common.GAME_THEME,
 			LabelId:    strconv.Itoa(labelId),
 			LabelName:  labelSlice[1],
 			CreateTime: time.Time{},
 		}
-		(*adminmodel.GameLabel).Insert(&labelinfo)
+		(*models.GameLabel).Insert(&labelinfo)
 	}
 
 	this.Redirect("/admin/index", 302)

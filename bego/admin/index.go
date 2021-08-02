@@ -2,7 +2,7 @@ package admin
 
 import (
 	"bego/common"
-	"bego/models/adminmodel"
+	"bego/models"
 	"fmt"
 	"github.com/beego/beego/v2/core/utils"
 	"github.com/beego/beego/v2/core/validation"
@@ -18,8 +18,8 @@ type IndexController struct {
 
 type IndexData struct {
 	MarkOnline                string
-	Gamedata                  []adminmodel.GameInfo
-	Gamelist                  []adminmodel.AppProvider
+	Gamedata                  []models.GameInfo
+	Gamelist                  []models.AppProvider
 	Selname                   string
 	Quanbu, Online, Underline bool
 	Active, Open              int
@@ -27,7 +27,7 @@ type IndexData struct {
 
 // 后台首页
 func (this *IndexController) Index() {
-	var gameList, fenfa, datainfo, gamedata []adminmodel.GameInfo
+	var gameList, fenfa, datainfo, gamedata []models.GameInfo
 	var num int64
 	var index IndexData
 	index.Active = 0
@@ -44,7 +44,7 @@ func (this *IndexController) Index() {
 	}
 
 	// 获取全部分发游戏
-	gameList, num = adminmodel.FindAll(p, per)
+	gameList, num = models.FindAll(p, per)
 	alreadyGid := []string{}
 	for i := range gameList {
 		alreadyGid = append(alreadyGid, gameList[i].Gid)
@@ -57,7 +57,7 @@ func (this *IndexController) Index() {
 	} else {
 		listenFirst = true
 	}
-	gamemsg := adminmodel.GetGid(listenFirst, strings.Join(alreadyGid, ","))
+	gamemsg := models.GetGid(listenFirst, strings.Join(alreadyGid, ","))
 
 	index.Gamelist = gamemsg
 
@@ -65,7 +65,7 @@ func (this *IndexController) Index() {
 	if mark_online == "" && app_name == "" {
 		// 获取全部创建分发的游戏与分页
 		//fenfa := admin.FindAll(p,per)
-		fenfa, num = adminmodel.FindAll(p, per)
+		fenfa, num = models.FindAll(p, per)
 		index.Gamedata = fenfa
 	} else {
 		if mark_online != "" {
@@ -91,12 +91,12 @@ func (this *IndexController) Index() {
 			if mark_online == "2" {
 				// 获取全部游戏
 				//datainfo := admin.FindAll(p,per)
-				datainfo, num = adminmodel.FindAll(p, per)
+				datainfo, num = models.FindAll(p, per)
 				index.Gamedata = datainfo
 			} else {
 				// 获取上线/下线游戏
 				//datainfo := admin.FindGame("mark_online", mark_online,p,per)
-				datainfo, num = adminmodel.FindGame("mark_online", mark_online, p, per)
+				datainfo, num = models.FindGame("mark_online", mark_online, p, per)
 				index.Gamedata = datainfo
 			}
 			index.MarkOnline = mark_online
@@ -121,7 +121,7 @@ func (this *IndexController) Index() {
 				}
 			}
 			//gamedata := admin.FindGame("app_name", app_name,p,per)
-			gamedata, num = adminmodel.FindGame("app_name", app_name, p, per)
+			gamedata, num = models.FindGame("app_name", app_name, p, per)
 			index.Gamedata = gamedata
 			index.Selname = app_name
 		}
@@ -161,7 +161,7 @@ func (this *IndexController) Gamedel() {
 			return
 		}
 	}
-	num := adminmodel.Gamedel(gid)
+	num := models.Gamedel(gid)
 	if num == 0 {
 		this.Data["json"] = ReturnData{
 			Code: 500,
@@ -186,7 +186,7 @@ func (this *IndexController) Gamedel() {
 
 func (this *IndexController) Gamesel() {
 	this.EnableXSRF = false
-	gamelist := adminmodel.GameInfoSelect()
+	gamelist := models.GameInfoSelect()
 	this.Data["json"] = ReturnData{
 		Code: 200,
 		Data: gamelist,
@@ -253,8 +253,8 @@ func (this *IndexController) MarkOnline() {
 
 	// 上线前判断游戏数据是否完整
 	if intMarkOnline == 1 {
-		var m []adminmodel.FileInfo
-		_, m = adminmodel.FindFile(gid)
+		var m []models.FileInfo
+		_, m = models.FindFile(gid)
 
 		fileType := []string{
 			common.GAME_LOGO, common.GAME_THUMB, common.GMAE_LUNBO, common.GAME_HOTREC,
@@ -277,8 +277,8 @@ func (this *IndexController) MarkOnline() {
 		}
 	}
 
-	m := adminmodel.GameInfo{Gid: gid, MarkOnline: int8(intMarkOnline), Id: id}
-	(*adminmodel.GameInfo).Update(&m, "MarkOnline")
+	m := models.GameInfo{Gid: gid, MarkOnline: int8(intMarkOnline), Id: id}
+	(*models.GameInfo).Update(&m, "MarkOnline")
 
 	result["code"] = 200
 	result["data"] = intMarkOnline
