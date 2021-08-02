@@ -3,8 +3,6 @@ package admin
 import (
 	"bego/models"
 	"fmt"
-	"github.com/beego/beego/v2/core/utils"
-	"github.com/beego/beego/v2/server/web"
 )
 
 type ServerController struct {
@@ -24,16 +22,13 @@ func (this *ServerController) ServerIndex() {
 	// 模板数据
 	serverData := ServerData{Active: 1, Open: 0}
 
-	per, _ := web.AppConfig.Int("page::perPage")
-	p, _ := utils.StrTo(this.Ctx.Input.Query("p")).Int()
-	if p > 0 {
-		p = (p - 1) * per
-	}
+	p, per := this.Paginator()
 
 	serverData.ServerList, total = models.Select(p, per)
 
 	// 前台分页
 	this.Data["paginator"] = this.SetPaginator(per, total)
+
 	this.Data["Index"] = serverData
 
 	this.TplName = "admin/server/serverlist.html"
