@@ -29,9 +29,31 @@ func (this *baseController) Prepare() {
 	}
 }
 
-// 公共分页操作
+// SetPaginator 公共分页操作
 func (this *baseController) SetPaginator(per int, nums int64) *pagination.Paginator {
 	p := pagination.NewPaginator(this.Ctx.Request, per, nums)
 	this.Data["paginator"] = p
 	return p
+}
+
+// Paginator 分页
+func (this *baseController) Paginator() (p, per int) {
+	per, _ = web.AppConfig.Int("page::perPage")
+	p, _ = utils.StrTo(this.Ctx.Input.Query("p")).Int()
+
+	switch {
+	case per > 100:
+		per = 100
+	case per <= 0:
+		per = 10
+	}
+
+	if p == 0 || p < 0 {
+		p = 1
+	}
+
+	if p > 0 {
+		p = (p - 1) * per
+	}
+	return p, per
 }
