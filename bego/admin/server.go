@@ -35,10 +35,26 @@ func (this *ServerController) ServerIndex() {
 }
 
 func (this *ServerController) EditServer() {
-	id, _ := this.GetInt("id")
-	gid := this.GetString("gid")
-	fmt.Println("the id is:", id)
-	fmt.Println("the gid is:", gid)
-	this.Ctx.WriteString("??????????")
-	//this.TplName = "admin/server/editserver.html"
+
+	// 模板数据
+	serverData := ServerData{Active: 1, Open: 0}
+	this.Data["Index"] = serverData
+
+	if this.Ctx.Request.Method == "POST" {
+
+	} else {
+		id, _ := this.GetInt("id")
+		gid := this.GetString("gid")
+		var m = models.GameServer{Id: id}
+		(*models.GameServer).Find(&m)
+
+		this.Data["ServerData"] = m
+
+		fmt.Println("the gameserver is:", m)
+		fmt.Println("the id is:", id)
+		fmt.Println("the gid is:", gid)
+
+		this.TplName = "admin/server/editserver.html"
+	}
+
 }
