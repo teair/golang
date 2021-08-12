@@ -45,6 +45,8 @@ func init() {
 		web.NSRouter("/upsubmit", &admin.UploadController{}, "post:UpSubmit"),
 		// 区服页
 		web.NSRouter("/serverlist", &admin.ServerController{}, "get:ServerIndex"),
+		web.NSRouter("/editserver", &admin.ServerController{}, "get,post:EditServer"),
+		web.NSRouter("/addserver", &admin.ServerController{}, "get,post:AddServer"),
 	)
 	web.AddNamespace(ns)
 }
