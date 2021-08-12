@@ -58,3 +58,14 @@ func (this *ServerController) EditServer() {
 	}
 
 }
+
+func (this *ServerController) AddServer() {
+	// 公共模板数据
+	serverData := ServerData{Active: 1, Open: 0}
+	this.Data["Index"] = serverData
+	if this.Ctx.Request.Method == "POST" {
+
+	} else {
+		this.TplName = "admin/server/editserver.html"
+	}
+}
