@@ -36,26 +36,26 @@
                             <div class="card-header bg-light">
                                 修改开服表信息
                             </div>
-                    
-                        <?php if (isset($servermsg)) { ?>
-                            <form action='/Server/editserver' method="post">
+
+
+                            <form action='/admin/editserver' method="post">
                                 <div class="row p-5">
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label">开服日期</label>
-                                                    <input type="hidden" name="id" value='{$servermsg["id"]}' >
+                                                    <input type="hidden" name="id" value="" >
                                                     <input type="text" class="form-control" size="16" placeholder="请选择日期" name='server_time' id="datetime" style="cursor: pointer;">
                                                 </div>
                                             </div>
-                                        </div>    
+                                        </div>
 
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label">区服ID</label>
-                                                    <input type="text" name='serverid' value="{$servermsg['serverid']}" class="form-control">
+                                                    <input type="text" name='serverid' {{if .ServerData}} value="{{.ServerData.Sid}}" {{end}} class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -64,7 +64,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label">区服名称</label>
-                                                    <input type="text" name='servername' value="{$servermsg['servername']}" class="form-control" >
+                                                    <input type="text" name='servername' {{if .ServerData}} value="{{.ServerData.ServerName}}" {{end}} class="form-control" >
                                                 </div>
                                             </div>
                                         </div>
@@ -73,67 +73,19 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label">游戏GID</label>
-                                                    <input type="text" name='gid' value="{$servermsg['gid']}" class="form-control">
+                                                    <input type="text" name='gid' {{if .ServerData}} value="{{.ServerData.Gid}}" {{end}} class="form-control">
                                                 </div>
                                             </div>
                                         </div>
 
-                                    </div>  
+                                    </div>
                                 </div>
 
                                 <div class="card-footer px-5 text-left">
                                     <button type="submit" class="btn btn-primary px-5" id="sub">确认提交</button>
                                 </div>
                             </form>
-                        <?php }else{ ?>
-                            <form action='/Server/editserver' method="post">
-                                <div class="row p-5">
-                                    <div class="col-md-12">
 
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="form-control-label">开服日期</label>
-                                                    <input type="text" class="form-control" size="16" placeholder="请选择日期" name='server_time' id="datetime" style="cursor: pointer;">
-                                                </div>
-                                            </div>
-                                        </div>    
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="form-control-label">区服ID</label>
-                                                    <input type="text" name='serverid' class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="form-control-label">区服名称</label>
-                                                    <input type="text" name='servername' class="form-control" >
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="form-control-label">游戏GID</label>
-                                                    <input type="text" name='gid' class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>  
-                                </div>
-
-                                <div class="card-footer px-5 text-left">
-                                    <button type="submit" class="btn btn-primary px-5" id="sub">确认提交</button>
-                                </div>
-                            </form>
-                        <?php } ?>
                             <hr class="my-5">
 
                             <div class="d-flex flex-row-reverse bg-dark text-white p-4"></div>
@@ -160,6 +112,7 @@
     <script src="/static/admin/vendor/laydate/laydate.js"></script>
     <script type="text/javascript">
         $(function(){
+            var curdate = "{{if .ServerData.ServerDate}} "+ {{date .ServerData.ServerDate "Y-m-d H:i:s"}} + "{{else}}"+formatDates(new Date())+" {{end}}";
             //执行一个laydate实例
             laydate.render({
               elem: '#datetime' ,//指定元素
@@ -167,16 +120,39 @@
               trigger: 'click',
               format : 'yyyy-MM-dd HH:mm:ss',
               // value: new Date(),
-            <?php if (isset($servermsg['server_time'])) { ?>
-              value: "<?php echo $servermsg['server_time']; ?>",  
-            <?php }else{ ?>
-              value: new Date,
-            <?php } ?>
+              value: curdate,
               showBottom: true,
               btns: ['clear', 'confirm'],
               theme: '#393D49'
             });  
         })
+        //格式化日期：yyyy-MM-dd
+        function formatDates(date) {
+            var myyear = date.getFullYear();
+            var mymonth = date.getMonth() + 1;
+            var myweekday = date.getDate();
+
+            var myhour = date.getHours();        // 获取当前小时数(0-23)
+            var myminute = date.getMinutes();    // 获取当前分钟
+            var mysecond = date.getSeconds();    // 获取当前秒数
+
+            if (mymonth < 10) {
+                mymonth = "0" + mymonth;
+            }
+            if (myweekday < 10) {
+                myweekday = "0" + myweekday;
+            }
+            if (myhour < 10) {
+                myhour = "0" + myhour;
+            }
+            if (myminute < 10) {
+                myminute = "0" + myminute;
+            }
+            if (mysecond < 10) {
+                mysecond = "0" + mysecond;
+            }
+            return (myyear + "-" + mymonth + "-" + myweekday + " " + myhour + ":" + myminute + ":" + mysecond); //想要什么格式都可以随便自己拼
+        }
     </script>
 <!-- 页面配置项 -->
 <script src="/static/admin/js/config/config.js"></script>
