@@ -3,7 +3,10 @@ package immok
 import (
 	"bufio"
 	"fmt"
+	"math"
 	"os"
+	"reflect"
+	"runtime"
 	"strconv"
 )
 
@@ -71,4 +74,43 @@ func tconvertToBin() {
 		convertToBin(1),
 		convertToBin(2),
 	)
+}
+
+func eval(a, b int, op string) int {
+	switch op {
+	case "+":
+		return a + b
+	case "-":
+		return a - b
+	case "*":
+		return a * b
+	case "/":
+		return a / b
+	default:
+		panic("unsupported operation:" + op)
+	}
+}
+
+// 返回 a 的 b 次方(相当于幂函数)
+func pow(a, b int) int {
+	return int(math.Pow(float64(a), float64(b)))
+}
+
+//func apply(op func(int,int,string)  int, a,b int, c string) int {
+func apply(op func(int, int) int, a, b int) int {
+	// 通过 reflect 包获取到该函数的指针
+	p := reflect.ValueOf(op).Pointer()
+	// 通过 runtime 包与指针获取到该函数的名称
+	opName := runtime.FuncForPC(p).Name()
+	fmt.Printf("Calling function %s with args "+
+		"(%d,%d)\n", opName, a, b)
+	return op(a, b)
+	//return op(a,b,c)
+}
+
+func sum(numbers ...int) (n int) {
+	for _, v := range numbers {
+		n += v
+	}
+	return
 }
