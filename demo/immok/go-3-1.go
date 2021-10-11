@@ -60,7 +60,7 @@ func printSlice(slice []int) {
 	fmt.Printf("%v, len:%d,cap:%d\n", slice, len(slice), cap(slice))
 }
 
-func defindSlice() {
+func definedSlice() {
 
 	// 定义切片
 	var slice []int // Zero value for slice is nil
@@ -111,5 +111,5 @@ func Amain() {
 	// 切片操作
 	//Slices()
 
-	defindSlice()
+	definedSlice()
 }
