@@ -39,9 +39,9 @@ func lengthOfNonRepeatingSubStr(s string) int {
 
 	maxLength := 0 // 最长不重复子串的长度
 
-	var lastOccured = make(map[byte]int) // 最后一次遇到起始字符的位置
+	var lastOccured = make(map[rune]int) // 最后一次遇到起始字符的位置
 
-	for i, chr := range []byte(s) {
+	for i, chr := range []rune(s) { // rune => int32
 
 		// 如果最后遇到的字符索引大于最长不重复子串的起始位置
 		if lastI, ok := lastOccured[chr]; ok && lastI >= start {
