@@ -8,7 +8,8 @@ type Queue []interface{}
 //func (q *Queue) Push(i int) {
 // 这种写法编译可以运行时报错
 func (q *Queue) Push(i interface{}) {
-	*q = append(*q, i.(int))
+	*q = append(*q, i)
+	//*q = append(*q, i.(int))
 }
 
 // Pop func (q *Queue) Pop() interface{} {
@@ -19,7 +20,8 @@ func (q *Queue) Pop() interface{} {
 
 	//return head
 	// 如果想限定返回类型
-	return head.(int)
+	return head
+	//return head.(int)
 }
 
 func (q *Queue) IsEmpty() bool {
