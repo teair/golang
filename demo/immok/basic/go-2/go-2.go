@@ -1,4 +1,4 @@
-package immok
+package go_2
 
 import (
 	"fmt"
