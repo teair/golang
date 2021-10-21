@@ -1,7 +1,7 @@
 package entry
 
 import (
-	"demo/immok/queue"
+	"demo/immok/basic/queue"
 	"fmt"
 )
 
@@ -20,4 +20,10 @@ func QueueMain() {
 	fmt.Println("the Queue IsEmpty:", q.IsEmpty())
 
 	fmt.Println("the Queue is:", q)
+	fmt.Println(q.Pop())
+	fmt.Println(q.Pop())
+
+	q.Push("abc") // interface 表示可以接受任何类型
+	fmt.Println(q.Pop())
+
 }
