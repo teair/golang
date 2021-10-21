@@ -11,18 +11,47 @@ type Retriever interface {
 	Get(string) string
 }
 
+type Poster interface {
+	Post(url string, form map[string]string) string
+}
+
+// PostRetriever 组合接口
+type PostRetriever interface {
+	Retriever
+	Poster
+}
+
+const url = "https://www.imooc.com"
+
 // 接口的使用着
 func downloader(r Retriever) string {
-	return r.Get("http://www.imooc.com")
+	return r.Get(url)
+}
+
+func session(s PostRetriever) string {
+	s.Post(url, map[string]string{
+		"contents": "another faked imooc.com",
+	})
+	return s.Get(url)
+}
+
+func post(post Poster) {
+	post.Post(url, map[string]string{
+		"name":   "ccmouse",
+		"course": "golang",
+	})
 }
 
 func UseMain() {
 	var r Retriever
-	r = &mock.Retriever{Contents: "this is a fake retriever"}
+	retriever := &mock.Retriever{
+		Contents: "this is a fake immoc.com",
+	}
+	r = retriever
 	inspect(r)
 
 	// Type assertion	断言
-	if mockRetriever, ok := r.(mock.Retriever); ok {
+	if mockRetriever, ok := r.(*mock.Retriever); ok {
 		fmt.Println(mockRetriever)
 	} else {
 		fmt.Println("not a mockRetriever!")
@@ -44,12 +73,16 @@ func UseMain() {
 		fmt.Println("not a realRetriever!")
 	}
 
+	fmt.Println("Try a session")
+
+	fmt.Println(session(retriever))
+
 }
 
 func inspect(r Retriever) {
 	fmt.Printf("%T , %v\n", r, r) // 看 r 是什么类型、值是什么
 	switch v := r.(type) {
-	case mock.Retriever:
+	case *mock.Retriever:
 		fmt.Println("Contents:", v.Contents)
 	case *real.Retriever:
 		fmt.Println("real retriever:", v.UserAgent)
