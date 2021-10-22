@@ -3,6 +3,7 @@ package go_2
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"math"
 	"os"
 	"reflect"
@@ -47,8 +48,8 @@ func convertToBin(n int) string {
 	return res
 }
 
-func printFile() {
-	filename := "immok/abc.txt"
+func PrintFile() {
+	filename := "immok/basic/go-2/abc.txt"
 
 	// 打开并获取到关联文件
 	file, err := os.Open(filename)
@@ -56,8 +57,13 @@ func printFile() {
 		panic("open error")
 	}
 
+	printFileContents(file)
+}
+
+// printFileContents 读取文件内容
+func printFileContents(reader io.Reader) {
 	// 创建并返回一个对操作文件的扫描器,默认的分割函数是 ScanLines
-	scanner := bufio.NewScanner(file)
+	scanner := bufio.NewScanner(reader)
 
 	// 逐行扫描文件
 	for scanner.Scan() {
