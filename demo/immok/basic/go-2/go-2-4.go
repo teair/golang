@@ -9,6 +9,7 @@ import (
 	"reflect"
 	"runtime"
 	"strconv"
+	"strings"
 )
 
 func read() {
@@ -58,6 +59,16 @@ func PrintFile() {
 	}
 
 	printFileContents(file)
+
+	s := `aaa
+		bbbb
+		ccc
+
+		ddd
+		我是自定义字符串
+		`
+	// 字符串转Reader类型
+	printFileContents(strings.NewReader(s))
 }
 
 // printFileContents 读取文件内容
