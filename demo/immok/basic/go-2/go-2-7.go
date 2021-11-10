@@ -9,7 +9,7 @@ func swap(a, b int) (int, int) {
 	return b, a
 }
 
-// 测试指针入口
+// Pmain 测试指针入口
 func Pmain() {
 	a, b := 3, 4
 	//swap(&a,&b)	// 通过指针的方式交换数据
