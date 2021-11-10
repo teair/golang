@@ -41,15 +41,21 @@ func TreeMain() {
 	root.Right.Left.SetValue(4)
 
 	// 包中实现中序遍历
-	root.Traverse() // root 本身的 Traverse
-	fmt.Println()
+	//root.Traverse() // root 本身的 Traverse
+	//fmt.Println()
 
 	root.Node.Traverse() // root.Node的 Traverse,他们虽然看起来一样,其实是个语法糖
 
-	fmt.Println()
+	nodeCount := 0
+	root.TraverseFunc(func(node *tree.Node) {
+		nodeCount++
+	})
+	fmt.Println(nodeCount)
+
+	//fmt.Println()
 
 	// 自定义实现后序遍历
 	//myRoot := myTreeNode{&root}
 	//myRoot.postOrder()
-	root.postOrder()
+	//root.postOrder()
 }
