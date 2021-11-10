@@ -1,17 +1,20 @@
 package tree
 
+import "fmt"
+
 // Traverse 遍历结构体(中序遍历)
 func (node *Node) Traverse() {
+	node.TraverseFunc(func(n *Node) {
+		n.Print()
+	})
+	fmt.Println()
+}
+
+func (node *Node) TraverseFunc(f func(*Node)) {
 	if node == nil {
 		return
 	}
-
-	// 中序遍历=>先左、再中、再右
-	// 遍历左子树
-	node.Left.Traverse()
-
-	node.Print()
-
-	// 遍历右子树
-	node.Right.Traverse()
+	node.Left.TraverseFunc(f)
+	f(node)
+	node.Right.TraverseFunc(f)
 }
