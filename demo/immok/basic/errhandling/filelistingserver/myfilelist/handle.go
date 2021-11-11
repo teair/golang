@@ -13,7 +13,9 @@ func wrapperHandle(handle appHandle) func(http.ResponseWriter, *http.Request) {
 	return func(writer http.ResponseWriter, request *http.Request) {
 		err := handle(writer, request)
 		if err != nil {
-			log.Warn("Error handle request:", err.Error())
+			//log.Warn("Error handle request:", err.Error())
+			// 默认的log
+			log.Printf("Error occured "+"handle request:%s", err.Error())
 			code := http.StatusOK
 			switch {
 			case os.IsNotExist(err):
