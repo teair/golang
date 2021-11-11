@@ -26,8 +26,17 @@ func calcDefer() {
 }
 
 func writeFile(filename string) {
-	file, err := os.Create(filename)
+	//file, err := os.Create(filename)
+	// 直接打开必须不存在的文件【相当于直接创建不存在的文件】
+	file, err := os.OpenFile(filename, os.O_EXCL|os.O_CREATE, 0666)
+	//err = errors.New("this is a custom error")	// 用户自定义 error
 	if err != nil {
+		//fmt.Println(err)	//	由于返回的错误是一个interface类型,且Error()方法返回的是string所以可直接输出
+		if pathError, ok := err.(*os.PathError); !ok {
+			panic(err) // 如果这个错误不是os.PathError就直接panic
+		} else {
+			fmt.Printf("%s, %s, %s\n", pathError.Op, pathError.Path, pathError.Err) // 如果是 os.PathError则输出详细信息
+		}
 		return
 	}
 	defer file.Close()
@@ -43,7 +52,7 @@ func writeFile(filename string) {
 
 // Main 测试defer
 func Main() {
-	tryDefer()
-	//writeFile("fib.txt")
+	//tryDefer()
+	writeFile("fib.txt")
 	//calcDefer()
 }
