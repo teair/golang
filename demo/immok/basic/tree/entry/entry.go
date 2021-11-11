@@ -48,7 +48,7 @@ func TreeMain() {
 
 	nodeCount := 0
 	root.TraverseFunc(func(node *tree.Node) {
-		nodeCount++
+		nodeCount++ // 遍历树节点的同时计算节点数量
 	})
 	fmt.Println(nodeCount)
 
