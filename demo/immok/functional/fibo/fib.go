@@ -2,6 +2,7 @@ package fibo
 
 import (
 	"bufio"
+	"demo/immok/functional/fib"
 	"fmt"
 	"io"
 	"strings"
@@ -37,8 +38,6 @@ func printFileContents(reader io.Reader) {
 
 //FibMain 斐波那契数列
 func FibMain() {
-
-	f := fibonacci()
-
+	var f intGen = fib.Fibonacci()
 	printFileContents(f)
 }
