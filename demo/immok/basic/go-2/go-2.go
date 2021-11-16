@@ -24,13 +24,15 @@ func euler() {
 	fmt.Printf("%.3f\n", cmplx.Exp(1i*math.Pi)+1)
 }
 
-func trangle() {
+func triangle() {
 	var a, b int = 3, 4
-	//var c float64
+	fmt.Println(CalcTriangle(a, b))
+}
+
+func CalcTriangle(a, b int) (c int) {
 	// 强制类型转换(将返回的float64强制转换a为int类型)
-	var c int = int(math.Sqrt(float64(a*a + b*b)))
-	//c = math.Sqrt(float64(a * a + b * b))
-	fmt.Println(c)
+	c = int(math.Sqrt(float64(a*a + b*b)))
+	return c
 }
 
 func consts() {
