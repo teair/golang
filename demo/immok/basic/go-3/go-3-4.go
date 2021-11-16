@@ -32,6 +32,8 @@ func mapMain() {
 	fmt.Println(m["Java"])
 }
 
+var lastOccured = make([]int, 0xffff) // 六进制
+
 // 寻找最长不重复子串
 func lengthOfNonRepeatingSubStr(s string) int {
 
@@ -39,13 +41,20 @@ func lengthOfNonRepeatingSubStr(s string) int {
 
 	maxLength := 0 // 最长不重复子串的长度
 
-	var lastOccured = make(map[rune]int) // 最后一次遇到起始字符的位置
+	//var lastOccured = make(map[rune]int) // 最后一次遇到起始字符的位置
+	//lastOccured := make([]int,0xffff)	// 优化
+
+	for j := range lastOccured {
+		lastOccured[j] = -1
+	}
 
 	for i, chr := range []rune(s) { // rune => int32
 
 		// 如果最后遇到的字符索引大于最长不重复子串的起始位置
-		if lastI, ok := lastOccured[chr]; ok && lastI >= start {
-			start = lastOccured[chr] + 1
+		//if lastI, ok := lastOccured[chr]; ok && lastI >= start {
+		if lastI := lastOccured[chr]; lastI != -1 && lastI >= start { // 优化
+			//start = lastOccured[chr] + 1
+			start = lastI + 1 // 优化
 		}
 
 		// 如果该不重复子串的长度大于最大不重复子串则更新
