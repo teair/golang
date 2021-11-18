@@ -16,13 +16,26 @@ type userError interface {
 
 func errorWrapper(handle appHandler) func(http.ResponseWriter, *http.Request) {
 	return func(writer http.ResponseWriter, request *http.Request) {
-		err := handle(writer, request)
-		if err != nil {
 
+		// 【Panic】
+		defer func() {
+			if r := recover(); r != nil {
+				log.Printf("Panic:%v", r)
+				http.Error(
+					writer,
+					http.StatusText(http.StatusInternalServerError),
+					http.StatusInternalServerError,
+				)
+			}
+		}()
+
+		err := handle(writer, request)
+
+		if err != nil {
 			// 控制台打印错误
 			log.Warn("Error handling request:", err.Error())
 
-			// 对外可访问错误
+			// 对外可访问错误【userError】
 			if userErr, ok := err.(userError); ok {
 				http.Error(
 					writer,
@@ -34,6 +47,7 @@ func errorWrapper(handle appHandler) func(http.ResponseWriter, *http.Request) {
 
 			code := http.StatusOK
 
+			// 【SystemError】
 			switch {
 			case os.IsNotExist(err):
 				code = http.StatusNotFound
@@ -42,7 +56,6 @@ func errorWrapper(handle appHandler) func(http.ResponseWriter, *http.Request) {
 			default:
 				code = http.StatusInternalServerError
 			}
-
 			http.Error(
 				writer,
 				http.StatusText(code),
