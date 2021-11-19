@@ -32,6 +32,16 @@ func TestNoneRepeatingString(t *testing.T) {
 // BenchmarkNoneSubstr 性能测试
 func BenchmarkNoneSubstr(b *testing.B) {
 	s := "黑化肥挥发发灰会花飞灰化肥挥发发黑会飞花"
+
+	for j := 0; j < 13; j++ {
+		s = s + s
+	}
+
+	b.Logf("len(s) = %d", len(s))
+
+	// 重置计时器【不算上边组合字符串的时间】
+	b.ResetTimer()
+
 	n := 8
 	for i := 0; i < b.N; i++ {
 		if actual := lengthOfNonRepeatingSubStr(s); actual != n {
