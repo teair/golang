@@ -1,4 +1,4 @@
-package entry
+package main
 
 import (
 	"demo/immok/basic/tree"
@@ -28,7 +28,7 @@ func (node *myTreeNode) Traverse() {
 	fmt.Printf("this is entry Traverse!")
 }
 
-func TreeMain() {
+func main() {
 
 	// 创建结构
 	//var root tree.Node
