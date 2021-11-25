@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="f586121b-aedf-4171-a600-1f2e2fb5c991" name="mine">
-        <fileTransfer rootFolder="/www/wwwroot/gowork/src" accessType="SFTP" host="182.92.149.107" port="22" sshConfigId="bfd2b4bf-799b-4917-adb9-dbd73bb74c25" sshConfig="root@182.92.149.107:22 password">
+      <webServer id="fa5439af-c434-484c-b161-57474b88072a" name="mine">
+        <fileTransfer rootFolder="/www/wwwroot/gowork/src/demo" accessType="SFTP" host="182.92.149.107" port="22" sshConfigId="db8e0512-1c97-4a6b-940a-d92f45627cd8" sshConfig="root@182.92.149.107:22 password">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
