@@ -24,6 +24,7 @@ func fanIn(chs ...chan string) chan string {
 	c := make(chan string)
 	for _, ch := range chs {
 		//chCopy := ch	// ch 只有一份,chCopy有两份
+		// 通过函数传参拷贝来避免for range循环变量的坑
 		go func(in chan string) {
 			for {
 				c <- <-in
