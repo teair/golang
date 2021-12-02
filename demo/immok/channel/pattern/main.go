@@ -11,7 +11,7 @@ func msgGen(name string) chan string {
 	go func() {
 		i := 0
 		for {
-			time.Sleep(time.Duration(rand.Intn(2000)) * time.Millisecond)
+			time.Sleep(time.Duration(rand.Intn(5000)) * time.Millisecond)
 			c <- fmt.Sprintf("name: %s, message %d", name, i)
 			i++
 		}
@@ -49,8 +49,28 @@ func fanInBySelect(c1, c2 chan string) chan string {
 	return c
 }
 
+// noneBlockingWait 非阻塞机制
+func noneBlockingWait(c chan string) (string, bool) {
+	select {
+	case m := <-c:
+		return m, true
+	default:
+		return "", false
+	}
+}
+
+// timeoutWait 超时等待
+func timeoutWait(c chan string, timeout time.Duration) (string, bool) {
+	select {
+	case m := <-c:
+		return m, true
+	case <-time.After(timeout): // 超过该时间则返回空
+		return "", false
+	}
+}
+
 func main() {
-	c1 := msgGen("chan1")
+	/*c1 := msgGen("chan1")
 	c2 := msgGen("chan2")
 	c3 := msgGen("chan3")
 
@@ -60,5 +80,15 @@ func main() {
 	//f := fanInBySelect(c1,c2)
 	for {
 		fmt.Println(<-f)
+	}*/
+
+	c := msgGen("chan")
+
+	for {
+		if m, ok := timeoutWait(c, 2*time.Second); ok {
+			fmt.Println("Received from chan:", m)
+		} else {
+			fmt.Println("timeout!")
+		}
 	}
 }
