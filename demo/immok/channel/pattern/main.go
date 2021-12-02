@@ -6,13 +6,21 @@ import (
 	"time"
 )
 
-func msgGen(name string) chan string {
+func msgGen(name string, done chan struct{}) chan string {
 	c := make(chan string)
 	go func() {
 		i := 0
 		for {
-			time.Sleep(time.Duration(rand.Intn(5000)) * time.Millisecond)
-			c <- fmt.Sprintf("name: %s, message %d", name, i)
+			select {
+			case <-time.After(time.Duration(rand.Intn(5000)) * time.Millisecond):
+				c <- fmt.Sprintf("name: %s, message %d", name, i)
+			case <-done: // 任务中断与优雅退出(双向channel)
+				fmt.Println("cleaning up!")
+				time.Sleep(2 * time.Second) // 中断花费了两秒
+				fmt.Println("cleanup done!")
+				done <- struct{}{} // 通知调用程序清理完成
+				return
+			}
 			i++
 		}
 	}()
@@ -82,13 +90,16 @@ func main() {
 		fmt.Println(<-f)
 	}*/
 
-	c := msgGen("chan")
-
-	for {
+	done := make(chan struct{}) // 任务中断channel
+	c := msgGen("chan", done)
+	for i := 0; i < 5; i++ {
 		if m, ok := timeoutWait(c, 2*time.Second); ok {
 			fmt.Println("Received from chan:", m)
 		} else {
 			fmt.Println("timeout!")
 		}
 	}
+	done <- struct{}{}      // 第一个{}为结构的定义,第二个{}是初始化这个结构
+	time.Sleep(time.Second) // 给中断操作预留一秒钟的时间
+	<-done                  // 优雅退出(双向通信)
 }
