@@ -1,9 +1,10 @@
-package filelistingserver
+package main
 
 import (
 	"demo/immok/basic/errhandling/filelistingserver/filelisting"
 	log "github.com/sirupsen/logrus"
 	"net/http"
+	_ "net/http/pprof"
 	"os"
 )
 
@@ -65,7 +66,7 @@ func errorWrapper(handle appHandler) func(http.ResponseWriter, *http.Request) {
 	}
 }
 
-func Main() {
+func main() {
 	http.HandleFunc("/", errorWrapper(filelisting.HandleFileList))
 	err := http.ListenAndServe(
 		":8888",
