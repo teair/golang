@@ -72,6 +72,7 @@ func main() {
 		":8888",
 		nil,
 	)
+
 	if err != nil {
 		panic(err)
 	}
